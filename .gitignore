@@ -7,3 +7,4 @@ venv/
 *.err.log
 autonomous-watcher-state.json
 next-autonomous-prompt.txt
+gist/
