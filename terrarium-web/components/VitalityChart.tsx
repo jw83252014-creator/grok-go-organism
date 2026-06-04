@@ -51,28 +51,28 @@ export default function VitalityChart() {
   const currentVitality = historicalData[historicalData.length - 1].vitality;
 
   return (
-    <section className="terrarium-panel rounded-md p-4">
-      <div className="mb-4 flex items-start justify-between gap-3">
+    <section className="terrarium-panel rounded-md p-3">
+      <div className="mb-3 flex items-start justify-between gap-3">
         <div>
           <div className="mb-1 flex items-center gap-2">
             <Activity className="h-4 w-4 text-cyan-300" />
             <h2 className="text-sm font-semibold text-cyan-100">Vitality Index</h2>
           </div>
-          <p className="text-xs text-slate-400">self-maintenance versus goal progress</p>
+          <p className="text-[11px] text-slate-400">maintenance vs goal progress</p>
         </div>
         <div className="text-right">
-          <div className="flex items-center gap-2 rounded border border-rose-400/25 bg-rose-950/30 px-3 py-1">
-            <TrendingDown className="h-4 w-4 text-rose-300" />
-            <span className="text-lg font-semibold text-rose-200">{currentVitality.toFixed(1)}</span>
+          <div className="flex items-center gap-2 rounded border border-rose-400/25 bg-rose-950/30 px-2 py-1">
+            <TrendingDown className="h-3.5 w-3.5 text-rose-300" />
+            <span className="text-base font-semibold text-rose-200">{currentVitality.toFixed(1)}</span>
           </div>
-          <div className="mt-1 flex items-center justify-end gap-1 text-xs text-amber-200">
+          <div className="mt-1 flex items-center justify-end gap-1 text-[11px] text-amber-200">
             <AlertTriangle className="h-3 w-3" />
             preening detected
           </div>
         </div>
       </div>
 
-      <div className="h-56 w-full">
+      <div className="h-36 w-full">
         <ResponsiveContainer width="100%" height="100%" minWidth={0}>
           <AreaChart data={historicalData} margin={{ top: 8, right: 4, left: -24, bottom: 0 }}>
             <defs>

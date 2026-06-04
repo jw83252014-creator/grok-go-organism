@@ -14,6 +14,8 @@ export interface TelemetryEvent {
   type: TelemetryType;
   data: string;
   timestamp: string;
+  source?: "live_grok" | "live_git" | "study_replay" | "historical_git" | "demo" | "system";
+  phase?: "live" | "historical_replay";
 }
 
 export interface CellNode {
@@ -71,7 +73,9 @@ function normalizeIncoming(raw: unknown): TelemetryEvent {
     id: payload.id || eventId(),
     type,
     data: String(payload.data || "pulse"),
-    timestamp: payload.timestamp || nowStamp()
+    timestamp: payload.timestamp || nowStamp(),
+    source: payload.source,
+    phase: payload.phase
   };
 }
 
@@ -94,6 +98,7 @@ export function useTerrariumTelemetry() {
 
   useEffect(() => {
     let active = true;
+    let opened = false;
     let demoTimer: ReturnType<typeof setInterval> | null = null;
     let socket: WebSocket | null = null;
 
@@ -142,6 +147,7 @@ export function useTerrariumTelemetry() {
       socket = new WebSocket(wsUrl);
       socket.onopen = () => {
         if (!active) return;
+        opened = true;
         setConnected(true);
         setTransport("websocket");
       };
@@ -170,7 +176,7 @@ export function useTerrariumTelemetry() {
     }
 
     const fallback = window.setTimeout(() => {
-      if (!connected) startDemo();
+      if (!opened) startDemo();
     }, 1400);
 
     return () => {
@@ -179,7 +185,7 @@ export function useTerrariumTelemetry() {
       if (demoTimer) clearInterval(demoTimer);
       socket?.close();
     };
-  }, [connected, wsUrl]);
+  }, [wsUrl]);
 
   const commits = useMemo(
     () => events.filter(event => event.type === "epigenetic_memory").slice(0, 5),

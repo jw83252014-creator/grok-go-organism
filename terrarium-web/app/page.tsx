@@ -13,7 +13,7 @@ const PetriDish = dynamic(() => import("@/components/PetriDish"), {
 const VitalityChart = dynamic(() => import("@/components/VitalityChart"), {
   ssr: false,
   loading: () => (
-    <section className="terrarium-panel min-h-[320px] rounded-md p-4">
+    <section className="terrarium-panel min-h-[180px] rounded-md p-3">
       <h2 className="text-sm font-semibold text-cyan-100">Vitality Index</h2>
     </section>
   )
@@ -35,7 +35,7 @@ export default function Home() {
         transport={telemetry.transport}
       />
 
-      <section className="pointer-events-auto absolute bottom-4 left-4 right-4 z-20 grid gap-4 lg:left-auto lg:right-6 lg:top-6 lg:w-[430px] lg:grid-cols-1 max-[900px]:relative max-[900px]:bottom-auto max-[900px]:left-auto max-[900px]:right-auto max-[900px]:order-3 max-[900px]:w-full">
+      <section className="pointer-events-auto absolute bottom-4 left-4 right-4 z-20 grid gap-3 lg:bottom-auto lg:left-auto lg:right-5 lg:top-5 lg:w-[310px] lg:grid-cols-1 xl:w-[340px] max-[900px]:relative max-[900px]:bottom-auto max-[900px]:left-auto max-[900px]:right-auto max-[900px]:order-3 max-[900px]:w-full">
         <MetabolismMeter />
         <VitalityChart />
       </section>

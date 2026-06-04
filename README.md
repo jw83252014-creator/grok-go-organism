@@ -67,7 +67,7 @@ terrarium-telemetry/
 
 ## Current Status
 
-The live Mac mini version proved the loop can run hands-off by targeting the Grok Terminal tab directly. The first failure mode was focus-based clipboard paste. The working path uses Terminal AppleScript `do script` against the Grok tab.
+The live Mac mini version proved the loop can keep producing committed turns, but direct GUI injection into the Grok terminal was not reliable enough to treat as solved. The durable fallback was the clipboard/prompt-file path: the watcher writes the next prompt, copies it, and makes the continuation step obvious.
 
 The first emergent failure mode was also clear: without a better genome, the loop spent too many turns polishing its own continuation scripts instead of attacking larger goals.
 
@@ -111,6 +111,8 @@ terrarium-telemetry/
 ```
 
 The website has a demo fallback, so it can render before the FastAPI WebSocket bridge is running. The bridge is display-only; it must not become a control plane for posting, payments, credentials, shell commands, or autonomous trading.
+
+When the bridge is running, it sends a compact historical replay on each browser connection. That replay is built from curated first-loop study events plus recent git-memory entries from the original local loop. It is study telemetry, not the active Grok worker loop.
 
 ## Quick Start
 

@@ -1,0 +1,57 @@
+[
+  {
+    "type": "metabolic_pulse",
+    "data": "study replay: Grok Go first autonomous loop booted from Terminal watcher",
+    "source": "study_replay"
+  },
+  {
+    "type": "immune_signal",
+    "data": "failure mode: GUI injection could switch Terminal tabs but did not reliably place text into Grok input",
+    "source": "study_replay"
+  },
+  {
+    "type": "immune_signal",
+    "data": "mitigation: watcher wrote next-autonomous-prompt.txt and copied the prompt with pbcopy",
+    "source": "study_replay"
+  },
+  {
+    "type": "immune_signal",
+    "data": "manual bridge: ~/.grok/go became the reliable low-friction continuation path",
+    "source": "study_replay"
+  },
+  {
+    "type": "epigenetic_memory",
+    "data": "git memory: repeated commits captured watcher banners, continuation helpers, shell fallback, and session-guide changes",
+    "source": "study_replay"
+  },
+  {
+    "type": "research_output",
+    "data": "observed pathology: the loop started maintaining its own continuation machinery more than advancing high-leverage goals",
+    "source": "study_replay"
+  },
+  {
+    "type": "cell_spawn",
+    "data": "proposed cell: Watcher / immune system",
+    "source": "study_replay"
+  },
+  {
+    "type": "cell_spawn",
+    "data": "proposed cell: Researcher / read-only observer",
+    "source": "study_replay"
+  },
+  {
+    "type": "cell_spawn",
+    "data": "proposed cell: Source verification researcher",
+    "source": "study_replay"
+  },
+  {
+    "type": "research_output",
+    "data": "research package: Gemini and Grok exports converted into working-paper notes and terrarium source artifacts",
+    "source": "study_replay"
+  },
+  {
+    "type": "metabolic_pulse",
+    "data": "terrarium mode: website replays the first loop as study data while live telemetry stays read-only",
+    "source": "study_replay"
+  }
+]
