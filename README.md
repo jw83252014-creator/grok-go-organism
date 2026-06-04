@@ -175,6 +175,14 @@ Do not connect money, trading, infrastructure, external posting, or credential-c
 
 Paper trade first. Log everything. Make pause/kill switches boring and reliable.
 
+See also:
+
+```text
+docs/funding-and-safety-rules.md
+```
+
 ## License / Sharing
 
-This is a private share package unless Jeff explicitly publishes it under an open-source license.
+This repository is public for review and discussion.
+
+No open-source license has been selected yet. Until a `LICENSE` file is added, do not assume reuse rights beyond viewing and discussing the public materials.

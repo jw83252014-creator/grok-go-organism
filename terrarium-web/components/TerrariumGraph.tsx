@@ -1,7 +1,12 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import { ExternalLink, FileText, Github } from "lucide-react";
 import type { CellNode, TelemetryEvent } from "@/lib/useTerrariumTelemetry";
+
+const GITHUB_URL = "https://github.com/jw83252014-creator/grok-go-organism";
+const RESEARCH_PAPER_URL =
+  "https://github.com/jw83252014-creator/grok-go-organism/blob/main/research-paper/grok-go-living-research-organism.md";
 
 function roleColor(role: CellNode["role"]) {
   switch (role) {
@@ -50,6 +55,33 @@ export default function TerrariumGraph({
           <span className={`h-2 w-2 rounded-full ${connected ? "bg-emerald-400" : "bg-amber-400"}`} />
           {transport}
         </div>
+      </div>
+
+      <div className="mb-2 grid grid-cols-2 gap-1.5">
+        <a
+          href={GITHUB_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-between rounded border border-cyan-400/20 bg-cyan-950/20 px-2 py-1.5 text-[11px] text-cyan-50/90 transition hover:border-cyan-300/50 hover:bg-cyan-950/35"
+        >
+          <span className="flex items-center gap-1.5">
+            <Github className="h-3.5 w-3.5" />
+            GitHub
+          </span>
+          <ExternalLink className="h-3 w-3 text-cyan-100/60" />
+        </a>
+        <a
+          href={RESEARCH_PAPER_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-between rounded border border-violet-400/20 bg-violet-950/20 px-2 py-1.5 text-[11px] text-violet-50/90 transition hover:border-violet-300/50 hover:bg-violet-950/35"
+        >
+          <span className="flex items-center gap-1.5">
+            <FileText className="h-3.5 w-3.5" />
+            Paper
+          </span>
+          <ExternalLink className="h-3 w-3 text-violet-100/60" />
+        </a>
       </div>
 
       <div className="mb-2 grid grid-cols-2 gap-1.5">
