@@ -114,6 +114,14 @@ The website has a demo fallback, so it can render before the FastAPI WebSocket b
 
 When the bridge is running, it sends a compact historical replay on each browser connection. That replay is built from curated first-loop study events plus recent git-memory entries from the original local loop. It is study telemetry, not the active Grok worker loop.
 
+Public demo:
+
+```text
+https://terrarium-loipcijlf-jeff-whiting-s-projects.vercel.app
+```
+
+The public deployment runs the built-in study replay/demo mode. It is not connected to private Mac mini logs or the local WebSocket bridge.
+
 ## Quick Start
 
 This package is a shareable skeleton. Paths are currently written for macOS Terminal and Grok CLI.
