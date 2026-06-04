@@ -3,12 +3,9 @@
 import {
   Area,
   AreaChart,
-  CartesianGrid,
   ReferenceLine,
   ResponsiveContainer,
   Tooltip,
-  XAxis,
-  YAxis
 } from "recharts";
 import { Activity, AlertTriangle, TrendingDown } from "lucide-react";
 
@@ -51,30 +48,30 @@ export default function VitalityChart() {
   const currentVitality = historicalData[historicalData.length - 1].vitality;
 
   return (
-    <section className="terrarium-panel rounded-md p-3">
-      <div className="mb-3 flex items-start justify-between gap-3">
+    <section className="terrarium-panel rounded-md p-2">
+      <div className="mb-2 flex items-start justify-between gap-2">
         <div>
           <div className="mb-1 flex items-center gap-2">
-            <Activity className="h-4 w-4 text-cyan-300" />
-            <h2 className="text-sm font-semibold text-cyan-100">Vitality Index</h2>
+            <Activity className="h-3.5 w-3.5 text-cyan-300" />
+            <h2 className="text-xs font-semibold text-cyan-100">Vitality Index</h2>
           </div>
-          <p className="text-[11px] text-slate-400">maintenance vs goal progress</p>
+          <p className="text-[10px] text-slate-400">maintenance vs goals</p>
         </div>
         <div className="text-right">
-          <div className="flex items-center gap-2 rounded border border-rose-400/25 bg-rose-950/30 px-2 py-1">
-            <TrendingDown className="h-3.5 w-3.5 text-rose-300" />
-            <span className="text-base font-semibold text-rose-200">{currentVitality.toFixed(1)}</span>
+          <div className="flex items-center gap-1.5 rounded border border-rose-400/25 bg-rose-950/30 px-1.5 py-0.5">
+            <TrendingDown className="h-3 w-3 text-rose-300" />
+            <span className="text-sm font-semibold text-rose-200">{currentVitality.toFixed(1)}</span>
           </div>
-          <div className="mt-1 flex items-center justify-end gap-1 text-[11px] text-amber-200">
+          <div className="mt-1 flex items-center justify-end gap-1 text-[10px] text-amber-200">
             <AlertTriangle className="h-3 w-3" />
-            preening detected
+            preening
           </div>
         </div>
       </div>
 
-      <div className="h-36 w-full">
+      <div className="h-12 w-full">
         <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-          <AreaChart data={historicalData} margin={{ top: 8, right: 4, left: -24, bottom: 0 }}>
+          <AreaChart data={historicalData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
             <defs>
               <linearGradient id="colorVitality" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#67e8f9" stopOpacity={0.35} />
@@ -85,22 +82,13 @@ export default function VitalityChart() {
                 <stop offset="95%" stopColor="#fb7185" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(103, 232, 249, 0.12)" vertical={false} />
-            <XAxis
-              dataKey="cycle"
-              stroke="#67e8f9"
-              fontSize={10}
-              tickMargin={8}
-              tickFormatter={value => `T-${value}`}
-            />
-            <YAxis stroke="#67e8f9" fontSize={10} domain={[0, 100]} tickCount={5} />
             <Tooltip content={<CustomTooltip />} />
-            <ReferenceLine y={30} stroke="#fb7185" strokeDasharray="3 3" />
+            <ReferenceLine y={30} stroke="#fb7185" strokeDasharray="3 3" strokeOpacity={0.7} />
             <Area
               type="monotone"
               dataKey="vitality"
               stroke="#67e8f9"
-              strokeWidth={2}
+              strokeWidth={1.6}
               fillOpacity={1}
               fill="url(#colorVitality)"
             />
@@ -108,7 +96,7 @@ export default function VitalityChart() {
               type="monotone"
               dataKey="polishing"
               stroke="#fb7185"
-              strokeWidth={2}
+              strokeWidth={1.6}
               fillOpacity={1}
               fill="url(#colorPolishing)"
             />

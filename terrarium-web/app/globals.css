@@ -4,7 +4,7 @@
 
 :root {
   color-scheme: dark;
-  --panel: rgba(2, 10, 16, 0.78);
+  --panel: rgba(2, 10, 16, 0.64);
   --panel-border: rgba(34, 211, 238, 0.22);
 }
 
@@ -61,11 +61,5 @@ select {
   }
   100% {
     transform: translateY(100%);
-  }
-}
-
-@media (max-width: 900px) {
-  body {
-    overflow: auto;
   }
 }

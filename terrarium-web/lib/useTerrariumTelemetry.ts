@@ -29,25 +29,67 @@ export interface CellNode {
 const demoPulses: Array<Omit<TelemetryEvent, "id" | "timestamp">> = [
   {
     type: "metabolic_pulse",
-    data: "turn.complete detected from unified.jsonl"
-  },
-  {
-    type: "epigenetic_memory",
-    data: "commit fc4f833 Add Grok Go research paper package"
-  },
-  {
-    type: "research_output",
-    data: "Researcher drafted source matrix task from Science Skills fork"
+    data: "study replay: Grok Go first autonomous loop booted from Terminal watcher",
+    source: "demo",
+    phase: "historical_replay"
   },
   {
     type: "immune_signal",
-    data: "watcher health: X data is partial until fresh archive arrives"
+    data: "failure mode: GUI injection switched tabs but did not reliably type into Grok",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "immune_signal",
+    data: "mitigation: watcher wrote next prompt to file and copied it with pbcopy",
+    source: "demo",
+    phase: "historical_replay"
   },
   {
     type: "cell_spawn",
-    data: "proposed cell: source-verification researcher"
+    data: "proposed cell: Watcher / immune system",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "cell_spawn",
+    data: "proposed cell: Researcher / read-only observer",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "cell_spawn",
+    data: "proposed cell: Source verification researcher",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "research_output",
+    data: "observed pathology: loop spent too many turns polishing continuation machinery",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "epigenetic_memory",
+    data: "git memory replay: watcher banners, continuation helpers, shell fallback, session guide",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "research_output",
+    data: "research package: working paper, Science Skills plan, and terrarium source notes",
+    source: "demo",
+    phase: "historical_replay"
   }
 ];
+
+function defaultLocalWsUrl() {
+  if (typeof window === "undefined") return "";
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    return "ws://127.0.0.1:8799/ws/terrarium";
+  }
+  return "";
+}
 
 function nowStamp() {
   return new Date().toISOString();
@@ -80,7 +122,7 @@ function normalizeIncoming(raw: unknown): TelemetryEvent {
 }
 
 export function useTerrariumTelemetry() {
-  const wsUrl = process.env.NEXT_PUBLIC_TERRARIUM_WS_URL || "ws://127.0.0.1:8799/ws/terrarium";
+  const [wsUrl, setWsUrl] = useState("");
   const [events, setEvents] = useState<TelemetryEvent[]>([]);
   const [cells, setCells] = useState<CellNode[]>([
     {
@@ -101,6 +143,8 @@ export function useTerrariumTelemetry() {
     let opened = false;
     let demoTimer: ReturnType<typeof setInterval> | null = null;
     let socket: WebSocket | null = null;
+    const resolvedWsUrl = process.env.NEXT_PUBLIC_TERRARIUM_WS_URL || defaultLocalWsUrl();
+    setWsUrl(resolvedWsUrl);
 
     function pushEvent(event: TelemetryEvent) {
       setEvents(prev => [event, ...prev].slice(0, 36));
@@ -132,7 +176,7 @@ export function useTerrariumTelemetry() {
       if (!active || demoTimer) return;
       setTransport("demo");
       let index = 0;
-      demoTimer = setInterval(() => {
+      const tick = () => {
         const base = demoPulses[index % demoPulses.length];
         pushEvent({
           ...base,
@@ -140,11 +184,21 @@ export function useTerrariumTelemetry() {
           timestamp: nowStamp()
         });
         index += 1;
-      }, 2600);
+      };
+      tick();
+      demoTimer = setInterval(tick, 1300);
+    }
+
+    if (!resolvedWsUrl) {
+      startDemo();
+      return () => {
+        active = false;
+        if (demoTimer) clearInterval(demoTimer);
+      };
     }
 
     try {
-      socket = new WebSocket(wsUrl);
+      socket = new WebSocket(resolvedWsUrl);
       socket.onopen = () => {
         if (!active) return;
         opened = true;
@@ -185,7 +239,7 @@ export function useTerrariumTelemetry() {
       if (demoTimer) clearInterval(demoTimer);
       socket?.close();
     };
-  }, [wsUrl]);
+  }, []);
 
   const commits = useMemo(
     () => events.filter(event => event.type === "epigenetic_memory").slice(0, 5),

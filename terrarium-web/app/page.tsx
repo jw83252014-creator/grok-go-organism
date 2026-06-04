@@ -23,8 +23,8 @@ export default function Home() {
   const telemetry = useTerrariumTelemetry();
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-black text-white max-[900px]:flex max-[900px]:flex-col max-[900px]:gap-4 max-[900px]:overflow-auto max-[900px]:p-4">
-      <div className="absolute inset-0 z-0 max-[900px]:relative max-[900px]:order-2 max-[900px]:h-[320px] max-[900px]:overflow-hidden max-[900px]:rounded-md max-[900px]:border max-[900px]:border-cyan-400/20">
+    <main className="relative h-dvh min-h-screen overflow-hidden bg-black text-white">
+      <div className="absolute inset-0 z-0">
         <PetriDish pulse={telemetry.pulse} cells={telemetry.cells} />
       </div>
 
@@ -35,7 +35,7 @@ export default function Home() {
         transport={telemetry.transport}
       />
 
-      <section className="pointer-events-auto absolute bottom-4 left-4 right-4 z-20 grid gap-3 lg:bottom-auto lg:left-auto lg:right-5 lg:top-5 lg:w-[310px] lg:grid-cols-1 xl:w-[340px] max-[900px]:relative max-[900px]:bottom-auto max-[900px]:left-auto max-[900px]:right-auto max-[900px]:order-3 max-[900px]:w-full">
+      <section className="pointer-events-auto absolute right-3 top-3 z-20 grid w-[min(245px,calc(100vw-24px))] gap-2 min-[1280px]:right-5 min-[1280px]:top-5 min-[1280px]:w-[260px] max-[760px]:bottom-3 max-[760px]:top-auto">
         <MetabolismMeter />
         <VitalityChart />
       </section>
