@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import TerrariumGraph from "@/components/TerrariumGraph";
 import MetabolismMeter from "@/components/MetabolismMeter";
+import TerminalReplay from "@/components/TerminalReplay";
 import { useTerrariumTelemetry } from "@/lib/useTerrariumTelemetry";
 
 const PetriDish = dynamic(() => import("@/components/PetriDish"), {
@@ -34,6 +35,7 @@ export default function Home() {
         connected={telemetry.connected}
         transport={telemetry.transport}
       />
+      <TerminalReplay />
 
       <section className="pointer-events-auto absolute right-3 top-3 z-20 grid w-[min(245px,calc(100vw-24px))] gap-2 min-[1280px]:right-5 min-[1280px]:top-5 min-[1280px]:w-[260px] max-[760px]:bottom-3 max-[760px]:top-auto">
         <MetabolismMeter />

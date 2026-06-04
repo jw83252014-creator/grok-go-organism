@@ -43,6 +43,8 @@ docs/
   glossary.md
   safety.md
   x-context-ingestion.md
+  notebooklm-bookmark-research-pipeline.md
+  terminal-replay-visual.md
   caveman-explainer.md
   live-mac-layout.md
   public-framing.md
@@ -168,6 +170,27 @@ The current data state is:
 - Chrome extension path built, but it still needs to be loaded manually once through `chrome://extensions`.
 
 This is not yet a complete fresh X export for the last few days.
+
+## NotebookLM And Bookmark Research
+
+The next research layer should cluster X bookmarks and Grok-expanded bookmark reports into source packs before sending anything to NotebookLM:
+
+```text
+docs/notebooklm-bookmark-research-pipeline.md
+```
+
+This keeps NotebookLM focused on useful source bundles instead of raw X/firehose context.
+
+## Terminal Replay
+
+The public terrarium now includes a compact desktop-only sanitized terminal replay. It is not a raw live terminal feed.
+
+For generating reviewed replay artifacts from local logs, see:
+
+```text
+docs/terminal-replay-visual.md
+scripts/sanitize-grok-terminal-replay.py
+```
 
 ## Safety Note
 
