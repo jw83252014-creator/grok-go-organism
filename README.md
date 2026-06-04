@@ -117,7 +117,7 @@ When the bridge is running, it sends a compact historical replay on each browser
 Public demo:
 
 ```text
-https://terrarium-web.vercel.app
+https://grok-go.vercel.app
 ```
 
 The public deployment runs the built-in study replay/demo mode. It is not connected to private Mac mini logs or the local WebSocket bridge.
