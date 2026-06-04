@@ -22,6 +22,29 @@ The best way to give another agent complete X context is not screenshots or manu
    - Best for repeatable automation.
    - May require paid access and app setup.
 
+## Current Local Pipeline
+
+The live Agent Bridge pipeline now has four pieces:
+
+1. Historical archive parser:
+   - `agent-comms/bin/x-archive-ingest`
+   - Uses the downloaded X archive that currently stops at May 19, 2026.
+
+2. Visible notification snapshots:
+   - AppleScript snapshot path exists, but is not reliable enough as a background watcher.
+   - Treat it as a one-shot extraction fallback only.
+
+3. Relationship ledger and graph:
+   - `agent-comms/bin/x-build-ledger`
+   - Produces `x-engagement-ledger.jsonl` and `x-relationship-graph.json`.
+
+4. Chrome extension capture:
+   - `agent-comms/tools/x-notification-capture-extension`
+   - Posts visible notification cells to Agent Bridge `POST /api/x/notifications`.
+   - Requires a one-time manual Chrome step: load unpacked extension from `chrome://extensions`.
+
+Important precision: this does not yet mean every recent X data point has been captured. It means we have old official archive data plus visible current notification data, and a path to keep collecting visible notifications after the extension is loaded.
+
 ## Recommended Report Format
 
 Ask the browser/X agent to produce:
@@ -51,4 +74,3 @@ Ask the browser/X agent to produce:
 ## Caution
 
 Browser collection can miss replies, hide rate-limited content, or summarize inaccurately. For durable research, save links and raw text wherever possible.
-

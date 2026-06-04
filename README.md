@@ -46,6 +46,17 @@ docs/
   caveman-explainer.md
   live-mac-layout.md
   public-framing.md
+
+research-paper/
+  grok-go-living-research-organism.md
+  science-skills-integration-plan.md
+  sources/
+  appendices/
+
+researcher/
+  researcher-population-loop-skeleton.py
+  researcher-dashboard-population-logic.md
+  security-cells-spec.md
 ```
 
 ## Current Status
@@ -59,6 +70,25 @@ The next step is multi-cell structure:
 - Builder Cell: advances concrete goals
 - Explorer Cell: discovers new directions and architectures
 - Watcher Cell: immune system, loop health, budget, guardrails
+- Researcher Cell: read-only observation, scoring, paper drafting, human feedback ingestion
+
+## Research Paper Package
+
+The current working paper lives here:
+
+```text
+research-paper/grok-go-living-research-organism.md
+```
+
+The paper is deliberately framed as a working preprint-style artifact, not as a final scientific claim. It separates observed local behavior from design proposals and includes limitations around X data, autonomous-turn auditing, and the Researcher layer not yet being fully autonomous.
+
+The Google DeepMind Science Skills integration plan lives here:
+
+```text
+research-paper/science-skills-integration-plan.md
+```
+
+Science Skills is being treated as an upstream design pattern for narrow, grounded Researcher skills, not as a blindly imported tool bundle.
 
 ## Quick Start
 
@@ -95,6 +125,17 @@ The original live loop was writing into a separate local repo, not this share pa
 - Live prompt handoff: `~/.grok/next-autonomous-prompt.txt`
 
 See `docs/live-mac-layout.md` for the full map.
+
+## X Data Status
+
+The current data state is:
+
+- downloaded X archive through May 19, 2026;
+- visible logged-in X notification snapshots from the browser;
+- normalized local ledger and graph in Agent Bridge;
+- Chrome extension path built, but it still needs to be loaded manually once through `chrome://extensions`.
+
+This is not yet a complete fresh X export for the last few days.
 
 ## Safety Note
 
