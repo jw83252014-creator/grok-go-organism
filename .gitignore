@@ -3,8 +3,12 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+node_modules/
+.next/
+terrarium-web/screenshots/
 *.log
 *.err.log
+*.pid
 autonomous-watcher-state.json
 next-autonomous-prompt.txt
 gist/

@@ -57,6 +57,12 @@ researcher/
   researcher-population-loop-skeleton.py
   researcher-dashboard-population-logic.md
   security-cells-spec.md
+
+terrarium-web/
+  Next.js public microscope for the Grok Go organism
+
+terrarium-telemetry/
+  FastAPI WebSocket bridge for read-only local telemetry
 ```
 
 ## Current Status
@@ -89,6 +95,22 @@ research-paper/science-skills-integration-plan.md
 ```
 
 Science Skills is being treated as an upstream design pattern for narrow, grounded Researcher skills, not as a blindly imported tool bundle.
+
+## Terrarium Website
+
+The Gemini-generated "Glass Terrarium" website code has been materialized into a runnable Next.js app:
+
+```text
+terrarium-web/
+```
+
+The local read-only telemetry bridge lives here:
+
+```text
+terrarium-telemetry/
+```
+
+The website has a demo fallback, so it can render before the FastAPI WebSocket bridge is running. The bridge is display-only; it must not become a control plane for posting, payments, credentials, shell commands, or autonomous trading.
 
 ## Quick Start
 
