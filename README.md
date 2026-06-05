@@ -52,6 +52,7 @@ docs/
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
   notebooklm-bookmark-research-pipeline.md
+  organism-dashboard-roadmap.md
   social-researcher-and-funding-plan.md
   terminal-replay-visual.md
   caveman-explainer.md
@@ -166,6 +167,12 @@ The current dashboard scoring formulas are tracked here:
 
 ```text
 docs/telemetry-formulas.md
+```
+
+The next organism dashboard shape is mapped here:
+
+```text
+docs/organism-dashboard-roadmap.md
 ```
 
 When the bridge is running, it sends a compact historical replay on each browser connection. That replay is built from curated first-loop study events plus recent git-memory entries from the original local loop. It is study telemetry, not the active Grok worker loop.
