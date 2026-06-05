@@ -52,6 +52,7 @@ docs/
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
   notebooklm-bookmark-research-pipeline.md
+  social-researcher-and-funding-plan.md
   terminal-replay-visual.md
   caveman-explainer.md
   live-mac-layout.md
@@ -111,6 +112,12 @@ For turning existing browser-tab agents into Hermes/Agent Bridge profiles withou
 
 ```text
 docs/web-agent-memory-migration.md
+```
+
+For the public X/YouTube/research-update role and serious funding paths, see:
+
+```text
+docs/social-researcher-and-funding-plan.md
 ```
 
 For the next Grok Go restart, use:
