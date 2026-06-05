@@ -121,6 +121,12 @@ For the public X/YouTube/research-update role and serious funding paths, see:
 docs/social-researcher-and-funding-plan.md
 ```
 
+An X-ready lessons graphic from the June 5 live-loop assay is here:
+
+```text
+source-artifacts/grok-go-lessons-2026-06-05.png
+```
+
 For the next Grok Go restart, use:
 
 ```text
