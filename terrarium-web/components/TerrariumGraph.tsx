@@ -1,7 +1,8 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Activity, Cpu, ExternalLink, FileText, Github, ShieldCheck } from "lucide-react";
+import { Activity, Clock3, Cpu, ExternalLink, FileText, Github, ShieldCheck } from "lucide-react";
 import type { AssayScore, CellNode, TelemetryEvent } from "@/lib/useTerrariumTelemetry";
 
 const GITHUB_URL = "https://github.com/jw83252014-creator/grok-go-organism";
@@ -33,14 +34,30 @@ function shortTime(value: string) {
   });
 }
 
-function numberScore(score: Partial<AssayScore> | undefined, key: keyof AssayScore, fallback = 0) {
+function elapsedTime(startedAt: string, now: number | null) {
+  if (now === null) return "--:--:--";
+  const start = new Date(startedAt).getTime();
+  if (Number.isNaN(start)) return "--:--:--";
+  const totalSeconds = Math.max(0, Math.floor((now - start) / 1000));
+  const hours = Math.floor(totalSeconds / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  return [hours, minutes, seconds].map(value => String(value).padStart(2, "0")).join(":");
+}
+
+function scoreLabel(score: Partial<AssayScore> | undefined, key: keyof AssayScore, fallback = "--") {
   const value = score?.[key];
-  return typeof value === "number" ? value : fallback;
+  return typeof value === "number" ? String(value) : fallback;
 }
 
 function queueScore(score: Partial<AssayScore> | undefined) {
   const value = score?.queue_health;
   return typeof value === "string" ? value : "pending";
+}
+
+function stringScore(score: Partial<AssayScore> | undefined, key: keyof AssayScore, fallback = "") {
+  const value = score?.[key];
+  return typeof value === "string" ? value : fallback;
 }
 
 function pulseEvent(event: TelemetryEvent) {
@@ -57,18 +74,34 @@ export default function TerrariumGraph({
   events,
   cells,
   connected,
-  transport
+  transport,
+  runStartedAt
 }: {
   events: TelemetryEvent[];
   cells: CellNode[];
   connected: boolean;
   transport: "websocket" | "demo";
+  runStartedAt: string;
 }) {
+  const [now, setNow] = useState<number | null>(null);
+  useEffect(() => {
+    setNow(Date.now());
+    const timer = window.setInterval(() => setNow(Date.now()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
+
   const latestAssay = events.find(event => event.type === "assay_score" && event.score);
   const score = latestAssay?.score;
   const pulseEvents = events.filter(pulseEvent).slice(0, 4);
-  const vitality = numberScore(score, "vitality", transport === "demo" ? 82 : 0);
+  const vitality = scoreLabel(score, "vitality", transport === "demo" ? "90" : "--");
   const queue = queueScore(score);
+  const runtime = useMemo(() => elapsedTime(runStartedAt, now), [now, runStartedAt]);
+  const fullFormula =
+    typeof score?.formula === "string"
+      ? score.formula
+      : "(goal + tokens + local + memory + safety + rtk - tax) / 30 * 100";
+  const formulaVersion = stringScore(score, "formula_version", "v0.2-rtk");
+  const compactFormula = "v=(g+t+l+m+s+r-tax)/30";
 
   return (
     <section className="terrarium-panel pointer-events-auto absolute left-3 top-3 z-20 w-[min(330px,calc(100vw-24px))] rounded-md p-2.5 min-[1280px]:left-5 min-[1280px]:top-5 min-[1280px]:w-[350px]">
@@ -77,9 +110,15 @@ export default function TerrariumGraph({
           <h1 className="text-sm font-semibold text-white">Grok Go Terrarium</h1>
           <p className="text-xs text-cyan-100/70">read-only telemetry microscope</p>
         </div>
-        <div className="flex items-center gap-2 rounded border border-cyan-400/25 bg-cyan-950/25 px-2 py-1 text-[11px] text-cyan-100">
-          <span className={`h-2 w-2 rounded-full ${connected ? "bg-emerald-400" : "bg-amber-400"}`} />
-          {transport}
+        <div className="grid gap-1 text-[11px] text-cyan-100">
+          <div className="flex items-center justify-end gap-2 rounded border border-cyan-400/25 bg-cyan-950/25 px-2 py-1">
+            <span className={`h-2 w-2 rounded-full ${connected ? "bg-emerald-400" : "bg-amber-400"}`} />
+            {transport}
+          </div>
+          <div className="flex items-center justify-end gap-1 rounded border border-white/10 bg-white/5 px-2 py-1 text-[10px] text-cyan-50/80">
+            <Clock3 className="h-3 w-3" />
+            {runtime}
+          </div>
         </div>
       </div>
 
@@ -138,33 +177,42 @@ export default function TerrariumGraph({
         <div className="grid grid-cols-3 gap-1.5">
           <div className="rounded border border-cyan-400/15 bg-cyan-950/20 px-2 py-1.5">
             <div className="text-[10px] text-cyan-100/60">vitality</div>
-            <div className="text-base font-semibold text-cyan-50">{vitality || "--"}</div>
+            <div className="text-base font-semibold text-cyan-50">{vitality}</div>
           </div>
           <div className="rounded border border-emerald-400/15 bg-emerald-950/20 px-2 py-1.5">
             <div className="text-[10px] text-emerald-100/60">goal</div>
             <div className="text-base font-semibold text-emerald-50">
-              {numberScore(score, "goal_progress") || "--"}/5
+              {scoreLabel(score, "goal_progress")}/5
             </div>
           </div>
           <div className="rounded border border-sky-400/15 bg-sky-950/20 px-2 py-1.5">
             <div className="text-[10px] text-sky-100/60">tokens</div>
             <div className="text-base font-semibold text-sky-50">
-              {numberScore(score, "token_efficiency") || "--"}/5
+              {scoreLabel(score, "token_efficiency")}/5
             </div>
           </div>
         </div>
-        <div className="mt-1.5 grid grid-cols-3 gap-1.5 text-[10px]">
+        <div className="mt-1.5 grid grid-cols-4 gap-1.5 text-[10px]">
           <div className="flex items-center gap-1 rounded border border-violet-400/15 bg-violet-950/20 px-1.5 py-1 text-violet-100">
             <Cpu className="h-3 w-3" />
-            local {numberScore(score, "local_offload") || "--"}/5
+            local {scoreLabel(score, "local_offload")}/5
+          </div>
+          <div className="rounded border border-cyan-400/15 bg-cyan-950/20 px-1.5 py-1 text-cyan-100">
+            rtk {scoreLabel(score, "rtk_compliance")}/5
           </div>
           <div className="rounded border border-rose-400/15 bg-rose-950/20 px-1.5 py-1 text-rose-100">
-            tax {numberScore(score, "infrastructure_tax") || "--"}/5
+            tax {scoreLabel(score, "infrastructure_tax")}/5
           </div>
           <div className="flex items-center justify-end gap-1 rounded border border-emerald-400/15 bg-emerald-950/20 px-1.5 py-1 text-emerald-100">
             <ShieldCheck className="h-3 w-3" />
-            safe {numberScore(score, "safety") || "--"}/5
+            safe {scoreLabel(score, "safety")}/5
           </div>
+        </div>
+        <div
+          className="mt-1.5 truncate rounded border border-white/10 bg-white/[0.04] px-2 py-1 text-[10px] text-cyan-50/65"
+          title={fullFormula}
+        >
+          math {formulaVersion} {compactFormula}
         </div>
       </div>
 

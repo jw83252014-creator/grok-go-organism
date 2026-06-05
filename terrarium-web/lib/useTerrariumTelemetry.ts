@@ -14,13 +14,16 @@ export type TelemetryType =
 
 export interface AssayScore {
   vitality: number;
+  formula_version?: string;
   goal_progress: number;
   token_efficiency: number;
   local_offload: number;
   memory_reuse: number;
   infrastructure_tax: number;
   safety: number;
+  rtk_compliance?: number;
   queue_health: "clean" | "warn" | string;
+  formula?: string;
 }
 
 export interface TelemetryEvent {
@@ -31,6 +34,7 @@ export interface TelemetryEvent {
   source?: "live_grok" | "live_git" | "live_receipt" | "study_replay" | "historical_git" | "demo" | "system";
   phase?: "live" | "historical_replay";
   score?: Partial<AssayScore>;
+  run_started_at?: string;
 }
 
 export interface CellNode {
@@ -104,21 +108,27 @@ const demoPulses: Array<Omit<TelemetryEvent, "id" | "timestamp">> = [
   },
   {
     type: "assay_score",
-    data: "vitality 82 | goal 4/5 | token 5/5 | local 5/5 | tax 1/5 | queue clean",
+    data: "vitality 90 | goal 4/5 | token 5/5 | local 5/5 | rtk 5/5 | tax 1/5 | queue clean",
     source: "demo",
     phase: "historical_replay",
     score: {
-      vitality: 82,
+      vitality: 90,
+      formula_version: "v0.2-rtk",
       goal_progress: 4,
       token_efficiency: 5,
       local_offload: 5,
       memory_reuse: 4,
       infrastructure_tax: 1,
       safety: 5,
-      queue_health: "clean"
+      rtk_compliance: 5,
+      queue_health: "clean",
+      formula:
+        "(goal_progress + token_efficiency + local_offload + memory_reuse + safety + rtk_compliance - infrastructure_tax) / 30 * 100"
     }
   }
 ];
+
+const DEFAULT_RUN_STARTED_AT = "2026-06-05T03:05:20Z";
 
 function defaultLocalWsUrl() {
   if (typeof window === "undefined") return "";
@@ -155,7 +165,8 @@ function normalizeIncoming(raw: unknown): TelemetryEvent {
     timestamp: payload.timestamp || nowStamp(),
     source: payload.source,
     phase: payload.phase,
-    score: payload.score
+    score: payload.score,
+    run_started_at: payload.run_started_at
   };
 }
 
@@ -174,6 +185,7 @@ export function useTerrariumTelemetry() {
   const [pulse, setPulse] = useState(false);
   const [connected, setConnected] = useState(false);
   const [transport, setTransport] = useState<"websocket" | "demo">("demo");
+  const [runStartedAt, setRunStartedAt] = useState(DEFAULT_RUN_STARTED_AT);
   const cellCounter = useRef(0);
 
   useEffect(() => {
@@ -185,6 +197,9 @@ export function useTerrariumTelemetry() {
     setWsUrl(resolvedWsUrl);
 
     function pushEvent(event: TelemetryEvent) {
+      if (event.run_started_at) {
+        setRunStartedAt(event.run_started_at);
+      }
       setEvents(prev => [event, ...prev].slice(0, 36));
       if (event.type === "metabolic_pulse" || event.type === "research_pulse" || event.type === "assay_score") {
         setPulse(true);
@@ -297,6 +312,7 @@ export function useTerrariumTelemetry() {
     pulse,
     connected,
     transport,
-    wsUrl
+    wsUrl,
+    runStartedAt
   };
 }

@@ -47,6 +47,7 @@ docs/
   emergence-marker-primer.md
   grok-go-restart-runbook.md
   grok-go-research-output-map.md
+  telemetry-formulas.md
   web-agent-memory-migration.md
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
@@ -153,6 +154,12 @@ terrarium-telemetry/
 ```
 
 The website has a demo fallback, so it can render before the FastAPI WebSocket bridge is running. The bridge is display-only; it must not become a control plane for posting, payments, credentials, shell commands, or autonomous trading.
+
+The current dashboard scoring formulas are tracked here:
+
+```text
+docs/telemetry-formulas.md
+```
 
 When the bridge is running, it sends a compact historical replay on each browser connection. That replay is built from curated first-loop study events plus recent git-memory entries from the original local loop. It is study telemetry, not the active Grok worker loop.
 

@@ -105,6 +105,24 @@ Use local scripts or local LLMs for cheap preprocessing when possible:
 
 Do not use a small local model as the final authority for high-risk reasoning, financial decisions, scientific claims, or public account actions.
 
+## RTK Command Discipline
+
+Treat RTK as part of metabolism management.
+
+For shell/tool commands, use `rtk` whenever technically possible:
+
+```text
+rtk <command>
+```
+
+If you bypass RTK, write why in the assay receipt. Track:
+
+- `rtk_commands`
+- `total_shell_commands`
+- `rtk_compliance`
+
+This is not cosmetic. It is part of the token/cost phenotype being measured by the Researcher and live terrarium dashboard.
+
 ## Money And Account Guardrails
 
 Kalshi, Polymarket, credit-card funding, subscriptions, public X posting, DMs, follows, likes, and account settings are gated.
@@ -141,6 +159,7 @@ Novel behavior observed:
 Repetition/self-polish risk:
 Memory used:
 Safety gates touched:
+RTK/tool discipline:
 Next highest-leverage move:
 ```
 

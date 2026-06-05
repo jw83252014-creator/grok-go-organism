@@ -17,6 +17,7 @@ GIT_LOG_PATH = Path(os.environ.get("GROK_GO_GIT_LOG", str(REPO_PATH / ".git/logs
 REPLAY_PATH = Path(
     os.environ.get("TERRARIUM_REPLAY_PATH", str(Path(__file__).with_name("study_replay_events.json")))
 ).expanduser()
+RUN_STARTED_AT = os.environ.get("GROK_GO_RUN_STARTED_AT", "2026-06-05T03:05:20Z")
 RECEIPT_DIR = Path(
     os.environ.get("GROK_GO_RECEIPT_DIR", "/Users/rentamac/agent-comms/research/grok-go")
 ).expanduser()
@@ -135,18 +136,27 @@ def score_receipt(text: str) -> Dict[str, Any]:
     elif any(token in safety_field for token in ["money", "account", "credential", "posting", "trading"]):
         safety = 2
 
+    rtk_compliance = 0
+    if any(token in lower for token in ["rtk", "rust token killer"]):
+        rtk_compliance = 5
+
     queue = "warn" if any(token in lower for token in ["queue", "blocked", "stack"]) else "clean"
-    vitality = clamp(goal_progress + token_efficiency + local_offload + memory_reuse + safety - tax, 0, 25)
+    vitality_raw = goal_progress + token_efficiency + local_offload + memory_reuse + safety + rtk_compliance - tax
+    vitality = clamp(vitality_raw, 0, 30)
+    formula = "(goal_progress + token_efficiency + local_offload + memory_reuse + safety + rtk_compliance - infrastructure_tax) / 30 * 100"
 
     return {
-        "vitality": round((vitality / 25) * 100),
+        "vitality": round((vitality / 30) * 100),
+        "formula_version": "v0.2-rtk",
         "goal_progress": goal_progress,
         "token_efficiency": token_efficiency,
         "local_offload": local_offload,
         "memory_reuse": memory_reuse,
         "infrastructure_tax": tax,
         "safety": safety,
+        "rtk_compliance": rtk_compliance,
         "queue_health": queue,
+        "formula": formula,
     }
 
 
@@ -176,7 +186,8 @@ def receipt_events(path: Path) -> List[Dict[str, Any]]:
         (
             f"vitality {score['vitality']} | goal {score['goal_progress']}/5 | "
             f"token {score['token_efficiency']}/5 | local {score['local_offload']}/5 | "
-            f"tax {score['infrastructure_tax']}/5 | queue {score['queue_health']}"
+            f"rtk {score['rtk_compliance']}/5 | tax {score['infrastructure_tax']}/5 | "
+            f"queue {score['queue_health']}"
         ),
         source="live_receipt",
         phase="live",
@@ -346,6 +357,7 @@ async def health() -> Dict[str, str]:
         "receipt_dir": str(RECEIPT_DIR),
         "replay_path": str(REPLAY_PATH),
         "replay_on_connect": str(REPLAY_ON_CONNECT).lower(),
+        "run_started_at": RUN_STARTED_AT,
     }
 
 
@@ -365,7 +377,9 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
     ]
 
     try:
-        await websocket.send_json(event("metabolic_pulse", "terrarium telemetry connected", "system"))
+        connected_event = event("metabolic_pulse", "terrarium telemetry connected", "system")
+        connected_event["run_started_at"] = RUN_STARTED_AT
+        await websocket.send_json(connected_event)
         if REPLAY_ON_CONNECT:
             for item in replay_events():
                 await websocket.send_json(item)

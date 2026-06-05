@@ -34,6 +34,7 @@ export default function Home() {
         cells={telemetry.cells}
         connected={telemetry.connected}
         transport={telemetry.transport}
+        runStartedAt={telemetry.runStartedAt}
       />
       <TerminalReplay />
 
