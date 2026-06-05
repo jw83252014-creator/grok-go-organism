@@ -43,6 +43,7 @@ docs/
   glossary.md
   safety.md
   x-context-ingestion.md
+  web-ai-lane-adapter-plan.md
   notebooklm-bookmark-research-pipeline.md
   terminal-replay-visual.md
   caveman-explainer.md
@@ -58,6 +59,7 @@ research-paper/
 researcher/
   researcher-population-loop-skeleton.py
   researcher-dashboard-population-logic.md
+  local-llm-token-savings-plan.md
   security-cells-spec.md
 
 terrarium-web/
@@ -79,6 +81,18 @@ The next step is multi-cell structure:
 - Explorer Cell: discovers new directions and architectures
 - Watcher Cell: immune system, loop health, budget, guardrails
 - Researcher Cell: read-only observation, scoring, paper drafting, human feedback ingestion
+
+The next restart should use the Researcher wrapper directive:
+
+```text
+directives/grok-go-restart-researcher-wrapper.md
+```
+
+The web-lane adapter plan for X/Grok, Grok.com, Gemini, NotebookLM, Claude, ChatGPT/Codex, and Hermes is here:
+
+```text
+docs/web-ai-lane-adapter-plan.md
+```
 
 ## Research Paper Package
 
