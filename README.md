@@ -51,7 +51,9 @@ docs/
   architecture.md
   glossary.md
   safety.md
+  biological-operating-system-master-gist.md
   conways-game-of-life-and-grok-go.md
+  sam-hermes-github-integration-prompt.md
   emergence-marker-primer.md
   grok-go-restart-runbook.md
   grok-go-research-output-map.md
