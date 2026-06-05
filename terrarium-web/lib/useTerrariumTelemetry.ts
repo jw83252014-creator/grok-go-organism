@@ -7,15 +7,30 @@ export type TelemetryType =
   | "epigenetic_memory"
   | "cell_spawn"
   | "immune_signal"
-  | "research_output";
+  | "research_output"
+  | "research_pulse"
+  | "assay_score"
+  | "local_model";
+
+export interface AssayScore {
+  vitality: number;
+  goal_progress: number;
+  token_efficiency: number;
+  local_offload: number;
+  memory_reuse: number;
+  infrastructure_tax: number;
+  safety: number;
+  queue_health: "clean" | "warn" | string;
+}
 
 export interface TelemetryEvent {
   id: string;
   type: TelemetryType;
   data: string;
   timestamp: string;
-  source?: "live_grok" | "live_git" | "study_replay" | "historical_git" | "demo" | "system";
+  source?: "live_grok" | "live_git" | "live_receipt" | "study_replay" | "historical_git" | "demo" | "system";
   phase?: "live" | "historical_replay";
+  score?: Partial<AssayScore>;
 }
 
 export interface CellNode {
@@ -80,6 +95,28 @@ const demoPulses: Array<Omit<TelemetryEvent, "id" | "timestamp">> = [
     data: "research package: working paper, Science Skills plan, and terrarium source notes",
     source: "demo",
     phase: "historical_replay"
+  },
+  {
+    type: "local_model",
+    data: "local Qwen lane: cheap chunking, dedupe, and prefilter summaries before Grok synthesis",
+    source: "demo",
+    phase: "historical_replay"
+  },
+  {
+    type: "assay_score",
+    data: "vitality 82 | goal 4/5 | token 5/5 | local 5/5 | tax 1/5 | queue clean",
+    source: "demo",
+    phase: "historical_replay",
+    score: {
+      vitality: 82,
+      goal_progress: 4,
+      token_efficiency: 5,
+      local_offload: 5,
+      memory_reuse: 4,
+      infrastructure_tax: 1,
+      safety: 5,
+      queue_health: "clean"
+    }
   }
 ];
 
@@ -104,7 +141,7 @@ function roleFromText(text: string): CellNode["role"] {
   if (lower.includes("watch") || lower.includes("immune")) return "watcher";
   if (lower.includes("research") || lower.includes("paper")) return "researcher";
   if (lower.includes("memory") || lower.includes("git") || lower.includes("commit")) return "memory";
-  if (lower.includes("x ") || lower.includes("api") || lower.includes("source")) return "sensory";
+  if (lower.includes("x ") || lower.includes("api") || lower.includes("source") || lower.includes("qwen") || lower.includes("local")) return "sensory";
   return "builder";
 }
 
@@ -117,7 +154,8 @@ function normalizeIncoming(raw: unknown): TelemetryEvent {
     data: String(payload.data || "pulse"),
     timestamp: payload.timestamp || nowStamp(),
     source: payload.source,
-    phase: payload.phase
+    phase: payload.phase,
+    score: payload.score
   };
 }
 
@@ -148,7 +186,7 @@ export function useTerrariumTelemetry() {
 
     function pushEvent(event: TelemetryEvent) {
       setEvents(prev => [event, ...prev].slice(0, 36));
-      if (event.type === "metabolic_pulse") {
+      if (event.type === "metabolic_pulse" || event.type === "research_pulse" || event.type === "assay_score") {
         setPulse(true);
         window.setTimeout(() => setPulse(false), 380);
       }
@@ -246,9 +284,15 @@ export function useTerrariumTelemetry() {
     [events]
   );
 
+  const assayScore = useMemo(
+    () => events.find(event => event.type === "assay_score" && event.score)?.score,
+    [events]
+  );
+
   return {
     events,
     commits,
+    assayScore,
     cells,
     pulse,
     connected,

@@ -7,7 +7,8 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import { Activity, AlertTriangle, TrendingDown } from "lucide-react";
+import { Activity, AlertTriangle, TrendingUp } from "lucide-react";
+import type { AssayScore } from "@/lib/useTerrariumTelemetry";
 
 const historicalData = [
   { cycle: 40, vitality: 82, polishing: 10 },
@@ -44,8 +45,22 @@ function CustomTooltip({
   );
 }
 
-export default function VitalityChart() {
-  const currentVitality = historicalData[historicalData.length - 1].vitality;
+export default function VitalityChart({ assayScore }: { assayScore?: Partial<AssayScore> }) {
+  const currentVitality =
+    typeof assayScore?.vitality === "number"
+      ? assayScore.vitality
+      : historicalData[historicalData.length - 1].vitality;
+  const currentPolishing =
+    typeof assayScore?.infrastructure_tax === "number"
+      ? Math.min(Math.max(assayScore.infrastructure_tax * 20, 0), 100)
+      : historicalData[historicalData.length - 1].polishing;
+  const chartData = assayScore
+    ? [
+        { cycle: 67, vitality: 20, polishing: 99 },
+        { cycle: 68, vitality: currentVitality, polishing: currentPolishing }
+      ]
+    : historicalData;
+  const status = currentVitality >= 65 ? "building" : "preening";
 
   return (
     <section className="terrarium-panel rounded-md p-2">
@@ -58,20 +73,32 @@ export default function VitalityChart() {
           <p className="text-[10px] text-slate-400">maintenance vs goals</p>
         </div>
         <div className="text-right">
-          <div className="flex items-center gap-1.5 rounded border border-rose-400/25 bg-rose-950/30 px-1.5 py-0.5">
-            <TrendingDown className="h-3 w-3 text-rose-300" />
-            <span className="text-sm font-semibold text-rose-200">{currentVitality.toFixed(1)}</span>
+          <div
+            className={`flex items-center gap-1.5 rounded border px-1.5 py-0.5 ${
+              currentVitality >= 65
+                ? "border-emerald-400/25 bg-emerald-950/30"
+                : "border-rose-400/25 bg-rose-950/30"
+            }`}
+          >
+            <TrendingUp className={`h-3 w-3 ${currentVitality >= 65 ? "text-emerald-300" : "text-rose-300"}`} />
+            <span className={`text-sm font-semibold ${currentVitality >= 65 ? "text-emerald-200" : "text-rose-200"}`}>
+              {currentVitality.toFixed(1)}
+            </span>
           </div>
-          <div className="mt-1 flex items-center justify-end gap-1 text-[10px] text-amber-200">
+          <div
+            className={`mt-1 flex items-center justify-end gap-1 text-[10px] ${
+              currentVitality >= 65 ? "text-emerald-200" : "text-amber-200"
+            }`}
+          >
             <AlertTriangle className="h-3 w-3" />
-            preening
+            {status}
           </div>
         </div>
       </div>
 
       <div className="h-12 w-full">
         <ResponsiveContainer width="100%" height="100%" minWidth={0}>
-          <AreaChart data={historicalData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
+          <AreaChart data={chartData} margin={{ top: 2, right: 2, left: 2, bottom: 0 }}>
             <defs>
               <linearGradient id="colorVitality" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#67e8f9" stopOpacity={0.35} />
