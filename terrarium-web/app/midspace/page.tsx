@@ -1,374 +1,416 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   Archive,
-  BatteryCharging,
-  CheckCircle2,
-  Compass,
-  Flame,
+  Bot,
+  Check,
+  Clipboard,
+  Copy,
+  ExternalLink,
   Inbox,
-  Layers,
   Link as LinkIcon,
-  Play,
-  Plus,
-  ShieldAlert,
-  Upload,
-  Zap
+  MessageSquareText,
+  RefreshCcw,
+  Send,
+  Sparkles,
+  Users
 } from "lucide-react";
 
-type Lane = "active" | "high-meta" | "low-meta" | "incubation" | "boneyard";
-type Metabolism = "high" | "low";
+interface AgentConnector {
+  key: string;
+  label: string;
+  status: string;
+  detail: string;
+  needsJeff: boolean;
+}
 
-interface Task {
+interface Agent {
   id: string;
-  title: string;
-  lane: Lane;
-  metabolism: Metabolism;
-  source: "genome" | "jeff" | "sam" | "researcher";
+  name: string;
+  provider?: string;
+  connectors?: AgentConnector[];
 }
 
-const initialTasks: Task[] = [
-  {
-    id: "1",
-    title: "Polymarket weather cell: convert current thesis into paper-trading runbook",
-    lane: "active",
-    metabolism: "high",
-    source: "genome"
-  },
-  {
-    id: "2",
-    title: "Build upload/intake API for ideas, screenshots, docs, and X links",
-    lane: "high-meta",
-    metabolism: "high",
-    source: "researcher"
-  },
-  {
-    id: "3",
-    title: "Map Sam overlap against Grok Go repo and shared business board",
-    lane: "high-meta",
-    metabolism: "high",
-    source: "sam"
-  },
-  {
-    id: "4",
-    title: "Scan X for high-signal multi-agent / biology / autonomy threads",
-    lane: "low-meta",
-    metabolism: "low",
-    source: "jeff"
-  },
-  {
-    id: "5",
-    title: "Mine GitHub for token-efficient local model worker patterns",
-    lane: "low-meta",
-    metabolism: "low",
-    source: "researcher"
-  },
-  {
-    id: "6",
-    title: "Digest old Downloads folder exports into public-safe research notes",
-    lane: "low-meta",
-    metabolism: "low",
-    source: "genome"
-  },
-  {
-    id: "7",
-    title: "Archive completed continuation-loop polish receipts",
-    lane: "boneyard",
-    metabolism: "low",
-    source: "genome"
-  }
-];
-
-const lanes: Array<{
-  id: Lane;
+interface Approval {
+  id: string;
+  status: string;
+  agent: string;
+  kind: string;
   title: string;
-  subtitle: string;
-  Icon: typeof Play;
-  tone: string;
-  empty: string;
-}> = [
-  {
-    id: "incubation",
-    title: "Incubation",
-    subtitle: "Capture first, score later",
-    Icon: Inbox,
-    tone: "border-sky-500/45 text-sky-300",
-    empty: "No raw signal waiting"
-  },
-  {
-    id: "active",
-    title: "Active Digestion",
-    subtitle: "One concrete execution loop",
-    Icon: Play,
-    tone: "border-teal-400/70 text-teal-300",
-    empty: "No active compute cycle"
-  },
-  {
-    id: "high-meta",
-    title: "High Metabolism",
-    subtitle: "API / premium model spend",
-    Icon: Flame,
-    tone: "border-rose-500/55 text-rose-300",
-    empty: "No expensive tasks queued"
-  },
-  {
-    id: "low-meta",
-    title: "Low Metabolism",
-    subtitle: "Local Qwen / cheap foraging",
-    Icon: Compass,
-    tone: "border-amber-500/55 text-amber-300",
-    empty: "No low-cost foraging queued"
-  },
-  {
-    id: "boneyard",
-    title: "Boneyard",
-    subtitle: "Completed, killed, or archived",
-    Icon: CheckCircle2,
-    tone: "border-zinc-700 text-zinc-400",
-    empty: "Nothing assimilated yet"
-  }
-];
-
-function sourceLabel(source: Task["source"]) {
-  if (source === "jeff") return "Jeff";
-  if (source === "sam") return "Sam";
-  if (source === "researcher") return "Researcher";
-  return "Genome";
 }
 
-function nextId() {
-  return `${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+interface BridgeState {
+  meeting: string[];
+  tasks: string;
+  agents: Agent[];
+  approvals: Approval[];
+}
+
+interface ChatMessage {
+  raw: string;
+  timestamp: string;
+  agent: string;
+  message: string;
+}
+
+const suggestedAgents = ["all", "grok", "claude", "gemini", "librarian", "codex", "sam"];
+const urlPattern = /https?:\/\/[^\s<>"')]+/gi;
+
+function fallbackBridgeUrl() {
+  if (typeof window === "undefined") return "";
+  const host = window.location.hostname;
+  if (host === "localhost" || host === "127.0.0.1") return "http://127.0.0.1:8787";
+  if (host.startsWith("100.")) return `http://${host}:8787`;
+  if (host.endsWith(".local")) return `http://${host}:8787`;
+  return "";
+}
+
+function parseMeetingLine(line: string): ChatMessage {
+  const match = line.match(/^\[([^\]]+)\]\s+([^:]+):\s*([\s\S]*)$/);
+  if (!match) {
+    return {
+      raw: line,
+      timestamp: "",
+      agent: "bridge",
+      message: line
+    };
+  }
+  return {
+    raw: line,
+    timestamp: match[1],
+    agent: match[2].trim(),
+    message: match[3].trim()
+  };
+}
+
+function extractUrls(value: string) {
+  return Array.from(new Set(value.match(urlPattern) || []));
+}
+
+function compactTime(iso: string) {
+  if (!iso) return "";
+  const parsed = new Date(iso);
+  if (Number.isNaN(parsed.getTime())) return iso;
+  return parsed.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+}
+
+function visibleAgentName(agent: Agent) {
+  return agent.name || agent.id;
 }
 
 export default function MidspacePage() {
-  const [tasks, setTasks] = useState(initialTasks);
-  const [draft, setDraft] = useState("");
-  const [isLowMetabolismMode, setIsLowMetabolismMode] = useState(false);
+  const [bridgeUrl, setBridgeUrl] = useState("");
+  const [state, setState] = useState<BridgeState | null>(null);
+  const [composer, setComposer] = useState("");
+  const [selectedAgent, setSelectedAgent] = useState("all");
+  const [copiedId, setCopiedId] = useState("");
+  const [status, setStatus] = useState("connecting");
+  const [isSending, setIsSending] = useState(false);
+  const [linkAutoRoute, setLinkAutoRoute] = useState(true);
+  const endRef = useRef<HTMLDivElement | null>(null);
 
-  const counts = useMemo(
-    () =>
-      lanes.reduce(
-        (acc, lane) => ({
-          ...acc,
-          [lane.id]: tasks.filter(task => task.lane === lane.id).length
-        }),
-        {} as Record<Lane, number>
-      ),
-    [tasks]
+  const messages = useMemo(() => (state?.meeting || []).map(parseMeetingLine).slice(-80), [state]);
+  const linksInDraft = useMemo(() => extractUrls(composer), [composer]);
+  const pendingApprovals = useMemo(
+    () => (state?.approvals || []).filter(approval => approval.status === "pending"),
+    [state]
   );
+  const incubationCount = useMemo(() => {
+    const tasks = state?.tasks || "";
+    return tasks
+      .split(/\r?\n/)
+      .filter(line => /incubat|inbox|librarian|x context|link/i.test(line))
+      .length;
+  }, [state]);
+  const activeAgents = useMemo(() => {
+    const bridgeAgents = state?.agents?.map(agent => agent.id).filter(Boolean) || [];
+    return Array.from(new Set([...suggestedAgents, ...bridgeAgents])).slice(0, 28);
+  }, [state]);
 
-  function toggleMetabolismMode() {
-    setIsLowMetabolismMode(prev => {
-      const next = !prev;
-      if (next) {
-        setTasks(current =>
-          current.map(task =>
-            task.lane === "active" && task.metabolism === "high"
-              ? { ...task, lane: "low-meta", metabolism: "low" }
-              : task
-          )
-        );
-      }
-      return next;
+  const refresh = useCallback(async () => {
+    const resolved = bridgeUrl || fallbackBridgeUrl();
+    if (!resolved) {
+      setStatus("public demo mode");
+      return;
+    }
+    setBridgeUrl(resolved);
+    try {
+      const response = await fetch(`${resolved}/api/state`, { cache: "no-store" });
+      if (!response.ok) throw new Error(`Bridge returned ${response.status}`);
+      const payload = (await response.json()) as BridgeState;
+      setState(payload);
+      setStatus("live");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "bridge offline");
+    }
+  }, [bridgeUrl]);
+
+  useEffect(() => {
+    setBridgeUrl(fallbackBridgeUrl());
+  }, []);
+
+  useEffect(() => {
+    void refresh();
+    const timer = window.setInterval(() => void refresh(), 5000);
+    return () => window.clearInterval(timer);
+  }, [refresh]);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages.length]);
+
+  async function postJson(path: string, body: Record<string, unknown>) {
+    const resolved = bridgeUrl || fallbackBridgeUrl();
+    if (!resolved) throw new Error("Agent Bridge URL is not available on this network");
+    const response = await fetch(`${resolved}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
     });
+    if (!response.ok) throw new Error(`${path} returned ${response.status}`);
   }
 
-  function moveTask(id: string, lane: Lane) {
-    setTasks(current =>
-      current.map(task =>
-        task.id === id
-          ? {
-              ...task,
-              lane,
-              metabolism: lane === "high-meta" ? "high" : lane === "low-meta" ? "low" : task.metabolism
-            }
-          : task
-      )
-    );
+  async function sendMessage() {
+    const text = composer.trim();
+    if (!text || isSending) return;
+    setIsSending(true);
+    try {
+      const directed = selectedAgent === "all" ? text : `@${selectedAgent} ${text}`;
+      await postJson("/api/say", {
+        agent: "jeff",
+        message: directed
+      });
+
+      if (linkAutoRoute && linksInDraft.length > 0) {
+        const linkList = linksInDraft.join(" ");
+        await postJson("/api/say", {
+          agent: "router",
+          message: `@librarian Link intake from Midspace. Pull context, classify, summarize, and file a receipt. Links: ${linkList}`
+        });
+        await postJson("/api/task", {
+          owner: "librarian",
+          task: `Incubate link(s) from Midspace: ${linkList}`
+        });
+      }
+
+      if (/idea:|incubat|someday|maybe|park this|save this/i.test(text)) {
+        await postJson("/api/task", {
+          owner: "incubation",
+          task: text.replace(/^idea:\s*/i, "")
+        });
+      }
+
+      setComposer("");
+      await refresh();
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "send failed");
+    } finally {
+      setIsSending(false);
+    }
   }
 
-  function addIdea() {
-    const title = draft.trim();
-    if (!title) return;
-    setTasks(current => [
-      {
-        id: nextId(),
-        title,
-        lane: "incubation",
-        metabolism: "low",
-        source: "jeff"
-      },
-      ...current
-    ]);
-    setDraft("");
+  async function copyText(id: string, text: string) {
+    await navigator.clipboard.writeText(text);
+    setCopiedId(id);
+    window.setTimeout(() => setCopiedId(""), 1400);
   }
 
   return (
-    <main className="h-dvh overflow-y-auto bg-black text-cyan-50 selection:bg-teal-400 selection:text-black">
-      <div className="pointer-events-none fixed inset-0 grid-field opacity-50" />
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_35%_12%,rgba(20,184,166,0.16),transparent_34%),radial-gradient(circle_at_80%_28%,rgba(14,165,233,0.12),transparent_28%),linear-gradient(180deg,rgba(0,0,0,0.18),rgba(0,0,0,0.86))]" />
+    <main className="min-h-dvh overflow-hidden bg-[#030507] text-cyan-50">
+      <div className="pointer-events-none fixed inset-0 grid-field opacity-30" />
+      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_left,rgba(20,184,166,0.16),transparent_35%),linear-gradient(180deg,rgba(0,0,0,0.12),rgba(0,0,0,0.72))]" />
 
-      <div className="relative z-10 mx-auto flex min-h-full max-w-[1720px] flex-col gap-5 p-4 sm:p-6">
-        <header className="terrarium-panel rounded-md p-4 sm:p-5">
-          <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-            <div>
-              <div className="flex items-center gap-3">
-                <Layers className="h-6 w-6 text-teal-300" />
-                <h1 className="text-lg font-semibold uppercase tracking-[0.22em] text-teal-100 sm:text-2xl">
-                  Neural Spatial Workspace
+      <div className="relative z-10 mx-auto flex h-dvh max-w-5xl flex-col px-3 py-3 sm:px-5 sm:py-4">
+        <header className="mb-3 rounded-md border border-cyan-400/15 bg-black/55 px-3 py-3 backdrop-blur-md sm:px-4">
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0">
+              <div className="flex items-center gap-2">
+                <MessageSquareText className="h-5 w-5 text-teal-300" />
+                <h1 className="truncate text-base font-semibold tracking-wide text-cyan-50 sm:text-xl">
+                  Grok Go Room
                 </h1>
               </div>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-cyan-100/68">
-                Midspace for Jeff + Sam: capture everything, activate almost nothing, and require visible human gates before
-                expensive execution.
+              <p className="mt-1 text-xs text-cyan-100/55">
+                Chat first. Incubation, routing, and receipts happen behind the glass.
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-              <div className="rounded border border-cyan-400/20 bg-black/45 px-3 py-2 text-right">
-                <div className="text-[10px] uppercase tracking-[0.2em] text-cyan-100/45">Autonomic State</div>
-                <div className={isLowMetabolismMode ? "text-sm font-semibold text-amber-300" : "text-sm font-semibold text-teal-300"}>
-                  {isLowMetabolismMode ? "Hibernation / Foraging" : "Optimal Metabolic Flow"}
-                </div>
-              </div>
+            <div className="flex items-center gap-2 text-[11px]">
+              <span className="rounded-full border border-cyan-400/20 bg-black/55 px-2.5 py-1 text-cyan-100/70">
+                {status}
+              </span>
               <button
-                onClick={toggleMetabolismMode}
-                className={`flex h-11 items-center justify-center gap-2 rounded border px-4 text-xs font-semibold uppercase tracking-[0.18em] transition ${
-                  isLowMetabolismMode
-                    ? "border-amber-400/60 bg-amber-950/40 text-amber-200"
-                    : "border-teal-300/60 bg-teal-950/30 text-teal-100"
-                }`}
+                onClick={() => void refresh()}
+                className="rounded-full border border-cyan-400/20 bg-black/55 p-2 text-cyan-100/70 transition hover:border-teal-300/50 hover:text-teal-100"
+                aria-label="Refresh bridge state"
               >
-                <BatteryCharging className="h-4 w-4" />
-                Metabolism
+                <RefreshCcw className="h-4 w-4" />
               </button>
+            </div>
+          </div>
+
+          <div className="mt-3 grid gap-2 text-[11px] sm:grid-cols-3">
+            <div className="rounded border border-cyan-400/12 bg-cyan-950/12 px-3 py-2">
+              <div className="flex items-center gap-2 text-cyan-100/50">
+                <Users className="h-3.5 w-3.5" />
+                Agents
+              </div>
+              <div className="mt-1 font-semibold text-cyan-50">{state?.agents?.length ?? 0} visible</div>
+            </div>
+            <div className="rounded border border-cyan-400/12 bg-cyan-950/12 px-3 py-2">
+              <div className="flex items-center gap-2 text-cyan-100/50">
+                <Inbox className="h-3.5 w-3.5" />
+                Incubation
+              </div>
+              <div className="mt-1 font-semibold text-cyan-50">{incubationCount} background items</div>
+            </div>
+            <div className="rounded border border-cyan-400/12 bg-cyan-950/12 px-3 py-2">
+              <div className="flex items-center gap-2 text-cyan-100/50">
+                <Check className="h-3.5 w-3.5" />
+                Approvals
+              </div>
+              <div className="mt-1 font-semibold text-cyan-50">{pendingApprovals.length} pending</div>
             </div>
           </div>
         </header>
 
-        <section className="terrarium-panel rounded-md p-4">
-          <div className="grid gap-3 lg:grid-cols-[1fr_auto_auto] lg:items-center">
-            <label className="group flex min-h-14 items-center gap-3 rounded border border-cyan-400/18 bg-black/50 px-3 focus-within:border-teal-300/70">
-              <Plus className="h-4 w-4 shrink-0 text-teal-300" />
-              <input
-                value={draft}
-                onChange={event => setDraft(event.target.value)}
-                onKeyDown={event => {
-                  if (event.key === "Enter") addIdea();
-                }}
-                placeholder="Capture idea, X link, file note, Sam thought, or customer problem..."
-                className="w-full bg-transparent text-sm text-cyan-50 outline-none placeholder:text-cyan-100/35"
-              />
-            </label>
+        <section className="mb-3 flex gap-2 overflow-x-auto pb-1">
+          {activeAgents.map(agent => (
             <button
-              onClick={addIdea}
-              className="flex h-14 items-center justify-center gap-2 rounded border border-teal-300/50 bg-teal-950/35 px-5 text-xs font-semibold uppercase tracking-[0.18em] text-teal-100 transition hover:bg-teal-800/45"
+              key={agent}
+              onClick={() => setSelectedAgent(agent)}
+              className={`shrink-0 rounded-full border px-3 py-2 text-xs font-medium transition ${
+                selectedAgent === agent
+                  ? "border-teal-300/70 bg-teal-400/12 text-teal-100"
+                  : "border-cyan-400/14 bg-black/45 text-cyan-100/62 hover:border-cyan-300/40"
+              }`}
             >
-              <Inbox className="h-4 w-4" />
-              Intake
+              {agent === "all" ? "@all" : `@${agent}`}
             </button>
-            <button className="flex h-14 items-center justify-center gap-2 rounded border border-cyan-400/20 bg-black/45 px-5 text-xs font-semibold uppercase tracking-[0.18em] text-cyan-100/70">
-              <Upload className="h-4 w-4" />
-              Upload Dock
-            </button>
-          </div>
-          <div className="mt-3 flex flex-wrap gap-2 text-[10px] uppercase tracking-[0.16em] text-cyan-100/44">
-            <span className="inline-flex items-center gap-1 rounded border border-cyan-400/15 px-2 py-1">
-              <LinkIcon className="h-3 w-3" /> future: URL capture
-            </span>
-            <span className="rounded border border-cyan-400/15 px-2 py-1">future: file upload</span>
-            <span className="rounded border border-cyan-400/15 px-2 py-1">future: phone approval</span>
-            <span className="rounded border border-cyan-400/15 px-2 py-1">future: Sam sync</span>
-          </div>
+          ))}
         </section>
 
-        <section className="grid gap-4 xl:grid-cols-5">
-          {lanes.map(lane => {
-            const laneTasks = tasks.filter(task => task.lane === lane.id);
-            const disabled = isLowMetabolismMode && lane.id === "high-meta";
-            return (
-              <section
-                key={lane.id}
-                className={`rounded-md border bg-zinc-950/82 p-3 shadow-[0_0_22px_rgba(34,211,238,0.05)] transition ${
-                  disabled ? "border-zinc-900 opacity-35" : lane.tone
+        <section className="min-h-0 flex-1 overflow-y-auto rounded-md border border-cyan-400/14 bg-black/50 p-3 backdrop-blur-md">
+          {messages.length === 0 ? (
+            <div className="grid h-full place-items-center text-center text-sm text-cyan-100/45">
+              <div>
+                <Bot className="mx-auto mb-3 h-8 w-8 text-cyan-100/35" />
+                No bridge messages loaded yet.
+              </div>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {messages.map((item, index) => {
+                const id = `${item.timestamp}-${item.agent}-${index}`;
+                const isHuman = item.agent === "jeff" || item.agent === "sam";
+                return (
+                  <article
+                    key={id}
+                    className={`group rounded-md border p-3 ${
+                      isHuman
+                        ? "border-teal-300/22 bg-teal-950/16"
+                        : "border-cyan-400/12 bg-zinc-950/72"
+                    }`}
+                  >
+                    <div className="mb-2 flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="font-mono text-xs font-semibold text-cyan-50">@{item.agent}</span>
+                          <span className="text-[10px] uppercase tracking-[0.16em] text-cyan-100/35">
+                            {compactTime(item.timestamp)}
+                          </span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => void copyText(id, item.message)}
+                        className="shrink-0 rounded border border-cyan-400/12 bg-black/35 p-1.5 text-cyan-100/45 opacity-100 transition hover:border-teal-300/45 hover:text-teal-100 sm:opacity-0 sm:group-hover:opacity-100"
+                        aria-label="Copy message"
+                      >
+                        {copiedId === id ? <Clipboard className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+                      </button>
+                    </div>
+                    <p className="whitespace-pre-wrap break-words text-sm leading-6 text-cyan-50/84">{item.message}</p>
+                    {extractUrls(item.message).length > 0 ? (
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {extractUrls(item.message).slice(0, 4).map(link => (
+                          <a
+                            key={link}
+                            href={link}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex max-w-full items-center gap-1 rounded border border-cyan-400/14 bg-black/35 px-2 py-1 text-[11px] text-cyan-100/62 hover:text-teal-100"
+                          >
+                            <ExternalLink className="h-3 w-3 shrink-0" />
+                            <span className="truncate">{link}</span>
+                          </a>
+                        ))}
+                      </div>
+                    ) : null}
+                  </article>
+                );
+              })}
+              <div ref={endRef} />
+            </div>
+          )}
+        </section>
+
+        <footer className="mt-3 rounded-md border border-cyan-400/15 bg-black/65 p-3 backdrop-blur-md">
+          {linksInDraft.length > 0 ? (
+            <div className="mb-2 flex flex-wrap items-center gap-2 rounded border border-teal-300/18 bg-teal-950/15 px-3 py-2 text-xs text-teal-50/75">
+              <LinkIcon className="h-4 w-4 text-teal-300" />
+              {linkAutoRoute ? "Link will auto-route to @librarian for X/web context and filing." : "Link detected; auto-route is off."}
+            </div>
+          ) : null}
+
+          <div className="grid gap-2 sm:grid-cols-[1fr_auto]">
+            <textarea
+              value={composer}
+              onChange={event => setComposer(event.target.value)}
+              onKeyDown={event => {
+                if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) {
+                  event.preventDefault();
+                  void sendMessage();
+                }
+              }}
+              rows={3}
+              placeholder={`Message ${selectedAgent === "all" ? "@all" : `@${selectedAgent}`}... paste links here and Librarian gets a background task.`}
+              className="min-h-24 resize-none rounded border border-cyan-400/14 bg-black/55 px-3 py-3 text-sm leading-6 text-cyan-50 outline-none placeholder:text-cyan-100/35 focus:border-teal-300/55"
+            />
+            <div className="grid gap-2 sm:w-36">
+              <button
+                onClick={() => void sendMessage()}
+                disabled={isSending || composer.trim().length === 0}
+                className="inline-flex items-center justify-center gap-2 rounded border border-teal-300/55 bg-teal-500/14 px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-teal-50 transition hover:bg-teal-400/20 disabled:cursor-not-allowed disabled:opacity-45"
+              >
+                <Send className="h-4 w-4" />
+                Send
+              </button>
+              <button
+                onClick={() => setLinkAutoRoute(value => !value)}
+                className={`inline-flex items-center justify-center gap-2 rounded border px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.13em] transition ${
+                  linkAutoRoute
+                    ? "border-cyan-300/30 bg-cyan-950/16 text-cyan-100"
+                    : "border-zinc-700 bg-zinc-950 text-zinc-400"
                 }`}
               >
-                <div className="mb-3 border-b border-white/8 pb-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="flex items-center gap-2">
-                      <lane.Icon className="h-4 w-4" />
-                      <h2 className="text-xs font-bold uppercase tracking-[0.17em]">{lane.title}</h2>
-                    </div>
-                    <span className="rounded bg-white/6 px-2 py-0.5 text-[10px] text-cyan-100/65">{counts[lane.id]}</span>
-                  </div>
-                  <p className="mt-1 text-[11px] leading-5 text-cyan-100/43">{lane.subtitle}</p>
-                </div>
-
-                <div className="space-y-3">
-                  {laneTasks.length === 0 ? (
-                    <p className="py-8 text-center text-[11px] uppercase tracking-[0.14em] text-zinc-600">{lane.empty}</p>
-                  ) : (
-                    laneTasks.map(task => (
-                      <article key={task.id} className="group rounded border border-white/8 bg-black/62 p-3">
-                        <div className="mb-3 flex items-center justify-between gap-2">
-                          <span className="rounded bg-white/7 px-2 py-0.5 text-[9px] uppercase tracking-[0.14em] text-cyan-100/52">
-                            {sourceLabel(task.source)}
-                          </span>
-                          <span
-                            className={`inline-flex items-center gap-1 text-[9px] uppercase tracking-[0.14em] ${
-                              task.metabolism === "high" ? "text-rose-300/75" : "text-amber-300/75"
-                            }`}
-                          >
-                            {task.metabolism === "high" ? <Zap className="h-3 w-3" /> : <BatteryCharging className="h-3 w-3" />}
-                            {task.metabolism}
-                          </span>
-                        </div>
-                        <p className={lane.id === "boneyard" ? "text-xs leading-5 text-zinc-500 line-through" : "text-xs leading-5 text-cyan-50/82"}>
-                          {task.title}
-                        </p>
-                        <div className="mt-4 grid grid-cols-2 gap-2 opacity-100 sm:opacity-0 sm:transition sm:group-hover:opacity-100">
-                          {lane.id !== "active" && lane.id !== "boneyard" ? (
-                            <button
-                              onClick={() => moveTask(task.id, "active")}
-                              className="rounded border border-teal-300/30 bg-teal-950/25 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-teal-100"
-                            >
-                              Approve
-                            </button>
-                          ) : null}
-                          {lane.id !== "low-meta" && lane.id !== "boneyard" ? (
-                            <button
-                              onClick={() => moveTask(task.id, "low-meta")}
-                              className="rounded border border-amber-300/25 bg-amber-950/20 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100"
-                            >
-                              Forage
-                            </button>
-                          ) : null}
-                          {lane.id !== "boneyard" ? (
-                            <button
-                              onClick={() => moveTask(task.id, "boneyard")}
-                              className="rounded border border-zinc-600/50 bg-zinc-900/40 px-2 py-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-zinc-300"
-                            >
-                              <Archive className="mx-auto h-3.5 w-3.5" />
-                            </button>
-                          ) : null}
-                        </div>
-                      </article>
-                    ))
-                  )}
-                </div>
-              </section>
-            );
-          })}
-        </section>
-
-        <footer className="flex flex-wrap items-center gap-2 pb-4 text-[10px] uppercase tracking-[0.17em] text-cyan-100/42">
-          <ShieldAlert className="h-3.5 w-3.5 text-cyan-100/48" />
-          <span>Strict petri dish protocol active</span>
-          <span className="text-cyan-100/22">//</span>
-          <span>Human execution gates armed</span>
-          <span className="text-cyan-100/22">//</span>
-          <span>Storage/backend pending</span>
+                <Sparkles className="h-3.5 w-3.5" />
+                Link Skill
+              </button>
+              <button
+                onClick={() => {
+                  setComposer(current => `idea: ${current}`.trim());
+                }}
+                className="inline-flex items-center justify-center gap-2 rounded border border-cyan-400/14 bg-black/35 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.13em] text-cyan-100/65 transition hover:border-cyan-300/35"
+              >
+                <Archive className="h-3.5 w-3.5" />
+                Incubate
+              </button>
+            </div>
+          </div>
+          <p className="mt-2 text-[11px] text-cyan-100/35">
+            Tip: press Cmd/Ctrl+Enter to send. Public posting, spending, betting, and account changes still require explicit human approval.
+          </p>
         </footer>
       </div>
     </main>

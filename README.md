@@ -62,6 +62,7 @@ docs/
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
   midspace-workbench-storage-architecture.md
+  chat-first-midspace-agent-room.md
   tailscale-midspace-sam-connection-map.md
   notebooklm-bookmark-research-pipeline.md
   organism-dashboard-roadmap.md
