@@ -44,6 +44,7 @@ docs/
   architecture.md
   glossary.md
   safety.md
+  emergence-marker-primer.md
   grok-go-restart-runbook.md
   grok-go-research-output-map.md
   web-agent-memory-migration.md
@@ -91,6 +92,12 @@ The next restart should use the Researcher wrapper directive:
 
 ```text
 directives/grok-go-restart-researcher-wrapper.md
+```
+
+The current research phase is framed here:
+
+```text
+docs/emergence-marker-primer.md
 ```
 
 The web-lane adapter plan for X/Grok, Grok.com, Gemini, NotebookLM, Claude, ChatGPT/Codex, and Hermes is here:

@@ -44,6 +44,20 @@ This restart has five ranked goals:
 4. Web-lane adapter design for Grok, Gemini, NotebookLM, Claude, ChatGPT/Codex, and Hermes.
 5. Actual project progress after the first three are minimally working.
 
+## Current Research Phase
+
+This run is in **Instrumented Epigenetic Germination**.
+
+The research phrasing is **instrumented phenotyping / assay phase**: observe what behavior the loop expresses under its genome, metabolism, memory, sensors, and constraints.
+
+Before choosing work, read:
+
+```text
+/Users/rentamac/grok-go-organism-share/docs/emergence-marker-primer.md
+```
+
+Use that file to score novelty, repetition, memory reuse, goal progress, energy efficiency, and safety compliance. Do not claim life, AGI, consciousness, or autonomous money-making. Treat those as research questions, not conclusions.
+
 ## Research Output Routing
 
 Read this map before writing research:
@@ -112,7 +126,23 @@ At the end of each meaningful turn, write enough detail for the Researcher to sc
 - whether it reduced token spend;
 - whether it advanced a real goal;
 - whether it was self-maintenance;
+- whether any emergence marker changed;
 - what should happen next.
+
+Use this compact assay receipt format when useful:
+
+```text
+Turn:
+Primary action:
+Goal advanced:
+Infrastructure tax paid:
+Token/cost effect:
+Novel behavior observed:
+Repetition/self-polish risk:
+Memory used:
+Safety gates touched:
+Next highest-leverage move:
+```
 
 ## Completion Marker
 

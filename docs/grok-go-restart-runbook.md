@@ -30,6 +30,13 @@ grok-go-researcher
 
 The helper script creates the panes and records pane output, but it does not automatically start Grok or the watcher. The human starts those commands after checking the preflight receipt.
 
+Important current limitation: this tmux wrapper is an observation harness, not yet the injection target. The current watcher finds macOS Terminal.app tabs whose process list contains `grok`, then uses Terminal/AppleScript to send the next prompt. If Grok is started only inside tmux, the stock watcher will not drive it unless a tmux-target watcher path is added.
+
+Practical choice:
+
+- fastest restart: keep the live Grok worker in Terminal.app and use tmux for Researcher observation/logging;
+- cleanest isolated restart: add/test a tmux-target watcher that uses `tmux load-buffer`, `tmux paste-buffer`, and `tmux send-keys`.
+
 ## Preflight
 
 Run:
@@ -69,6 +76,8 @@ In the watcher pane:
 ./scripts/start-watcher.sh
 ```
 
+This command expects a separate Terminal.app Grok session. Do not assume it targets pane 2 of the tmux session.
+
 ## First Mission
 
 The first restarted Grok Go turn should focus on:
@@ -77,7 +86,8 @@ The first restarted Grok Go turn should focus on:
 2. moving cheap filtering to local scripts or local server mode;
 3. documenting RTK/context-saving discipline;
 4. improving Researcher telemetry;
-5. avoiding low-value watcher polish.
+5. scoring the run against `docs/emergence-marker-primer.md`;
+6. avoiding low-value watcher polish.
 
 ## Hard Guards
 
@@ -89,4 +99,3 @@ The first restarted Grok Go turn should focus on:
 - No destructive git operations.
 
 Kalshi and Polymarket stay read-only or paper-trade until the approval layer exists.
-
