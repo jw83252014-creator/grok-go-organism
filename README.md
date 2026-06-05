@@ -28,6 +28,8 @@ scripts/
   grok-autonomous-log-watcher.py   # main event-driven watcher
   start-watcher.sh                 # foreground launcher
   force-next-turn.sh               # one-shot continuation helper
+  grok-go-preflight-receipt.sh     # pre-restart research receipt
+  start-grok-go-researcher-tmux.sh # three-pane researcher wrapper
 
 launchd/
   com.example.grok-autonomous-watcher.plist
@@ -42,6 +44,8 @@ docs/
   architecture.md
   glossary.md
   safety.md
+  grok-go-restart-runbook.md
+  web-agent-memory-migration.md
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
   notebooklm-bookmark-research-pipeline.md
@@ -92,6 +96,20 @@ The web-lane adapter plan for X/Grok, Grok.com, Gemini, NotebookLM, Claude, Chat
 
 ```text
 docs/web-ai-lane-adapter-plan.md
+```
+
+For turning existing browser-tab agents into Hermes/Agent Bridge profiles without losing continuity, see:
+
+```text
+docs/web-agent-memory-migration.md
+```
+
+For the next Grok Go restart, use:
+
+```text
+docs/grok-go-restart-runbook.md
+scripts/grok-go-preflight-receipt.sh
+scripts/start-grok-go-researcher-tmux.sh
 ```
 
 ## Research Paper Package
