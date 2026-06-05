@@ -29,6 +29,13 @@ Use one of these paths before connecting local LLM output to any autonomous loop
 3. A strict JSON parser that rejects malformed output.
 4. A queue file where failed jobs become failure receipts instead of retries forever.
 
+Harness finding from 2026-06-05:
+
+- `llama-cli` auto-entered conversation mode and flooded blank prompts.
+- `llama-completion` was the right binary in principle, but this local build exited with code 1 during quick one-shot tests.
+- Do not wire either CLI directly into Grok Go yet.
+- The next implementation should use `llama-server` so the model stays loaded and the caller gets bounded HTTP requests with timeouts and JSON validation.
+
 ## Best Local Jobs
 
 - Bookmark clustering.
@@ -64,4 +71,3 @@ Use one of these paths before connecting local LLM output to any autonomous loop
 ```
 
 The output should be treated as a draft filter, not a final decision.
-
