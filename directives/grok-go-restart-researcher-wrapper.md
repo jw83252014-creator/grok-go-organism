@@ -44,6 +44,34 @@ This restart has five ranked goals:
 4. Web-lane adapter design for Grok, Gemini, NotebookLM, Claude, ChatGPT/Codex, and Hermes.
 5. Actual project progress after the first three are minimally working.
 
+## Research Output Routing
+
+Read this map before writing research:
+
+```text
+/Users/rentamac/grok-go-organism-share/docs/grok-go-research-output-map.md
+```
+
+First restarted-loop research should go to:
+
+```text
+/Users/rentamac/agent-comms/research/grok-go/
+```
+
+Private working source notes may also go to:
+
+```text
+/Users/rentamac/mining-engine/research-sources/
+```
+
+Researcher receipts and terminal/pane logs stay local/private under:
+
+```text
+/Users/rentamac/.grok/researcher-receipts/
+```
+
+Only copy reviewed, sanitized research into the public `grok-go-organism-share` repo.
+
 ## Infrastructure Tax Rule
 
 Watcher and continuation polish are infrastructure tax.
@@ -93,4 +121,3 @@ End each autonomous turn with:
 ```text
 [[GROK_AUTONOMOUS_TURN_COMPLETE]]
 ```
-

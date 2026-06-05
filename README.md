@@ -45,6 +45,7 @@ docs/
   glossary.md
   safety.md
   grok-go-restart-runbook.md
+  grok-go-research-output-map.md
   web-agent-memory-migration.md
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
