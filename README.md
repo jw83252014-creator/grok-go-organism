@@ -61,6 +61,7 @@ docs/
   web-agent-memory-migration.md
   x-context-ingestion.md
   web-ai-lane-adapter-plan.md
+  midspace-workbench-storage-architecture.md
   notebooklm-bookmark-research-pipeline.md
   organism-dashboard-roadmap.md
   social-researcher-and-funding-plan.md
