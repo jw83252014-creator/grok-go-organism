@@ -51,6 +51,7 @@ docs/
   architecture.md
   glossary.md
   safety.md
+  conways-game-of-life-and-grok-go.md
   emergence-marker-primer.md
   grok-go-restart-runbook.md
   grok-go-research-output-map.md
@@ -110,6 +111,7 @@ The current research phase is framed here:
 
 ```text
 docs/emergence-marker-primer.md
+docs/conways-game-of-life-and-grok-go.md
 ```
 
 The web-lane adapter plan for X/Grok, Grok.com, Gemini, NotebookLM, Claude, ChatGPT/Codex, and Hermes is here:
