@@ -56,6 +56,56 @@ interface ChatMessage {
 
 const suggestedAgents = ["all", "grok", "claude", "gemini", "librarian", "codex", "sam"];
 const urlPattern = /https?:\/\/[^\s<>"')]+/gi;
+const quickMoves = [
+  {
+    id: "x-radar",
+    label: "X Radar",
+    because: "Find who cares, where to reply, and why it matters today.",
+    owner: "librarian",
+    message:
+      "@librarian Run X Radar. Look at recent likes/follows/replies/bookmarks available to you, research the people lightly, find the highest-leverage threads/rooms for Grok Go, Bid Local, comedy, and agent-organism work. Output: 5 places to show up, why each matters, exact draft replies, and risk notes. Do not post."
+  },
+  {
+    id: "mine-backlog",
+    label: "Mine Backlog",
+    because: "Turn the pile of chats/downloads into ranked moves.",
+    owner: "grok-go",
+    message:
+      "@grok @codex Mine the backlog for highest-leverage projects. Use the Mining Engine framing: capture repeated themes, score by impact/effort/revenue/public signal, and return the top 7 next moves in plain English. Output each as: Do this / because / who owns it / first artifact."
+  },
+  {
+    id: "push-grok-go",
+    label: "Push Grok Go",
+    because: "Give the organism one concrete build/research task.",
+    owner: "grok",
+    message:
+      "@grok Push Grok Go forward one useful step. Avoid self-polishing. Pick one concrete artifact that improves the public research organism, telemetry, researcher layer, or revenue path. Output: what to build, why it matters, exact next prompt or task."
+  },
+  {
+    id: "make-post",
+    label: "Draft X Post",
+    because: "Turn current work into a post with a target audience.",
+    owner: "librarian",
+    message:
+      "@librarian Draft one high-leverage X post from current Agent Bridge/Grok Go context. Include: target audience, emotional hook, why they would care, exact post, image idea, and where to reply or quote for leverage. Approval required before posting."
+  },
+  {
+    id: "make-video",
+    label: "Video Move",
+    because: "Turn the best idea into a simple Grok Go Lab clip.",
+    owner: "claude",
+    message:
+      "@claude @gemini Create one plain-English Grok Go Lab video move. Output: title, 30-second hook, 2-minute outline, visual direction, and why this video helps sell the project. No long technical explanation."
+  },
+  {
+    id: "sync-sam",
+    label: "Sync Sam",
+    because: "Give Sam the clean cofounder view, not the whole storm.",
+    owner: "sam",
+    message:
+      "@sam @codex Create a Sam sync brief. Explain in plain English: what changed, why it matters for Jeff/Sam, what Sam should look at, and the 3 highest-leverage cofounder actions this week."
+  }
+];
 
 function fallbackBridgeUrl() {
   if (typeof window === "undefined") return "";
@@ -216,6 +266,26 @@ export default function MidspacePage() {
     window.setTimeout(() => setCopiedId(""), 1400);
   }
 
+  async function runQuickMove(move: (typeof quickMoves)[number]) {
+    if (isSending) return;
+    setIsSending(true);
+    try {
+      await postJson("/api/say", {
+        agent: "jeff",
+        message: move.message
+      });
+      await postJson("/api/task", {
+        owner: move.owner,
+        task: `${move.label}: ${move.because}`
+      });
+      await refresh();
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "quick move failed");
+    } finally {
+      setIsSending(false);
+    }
+  }
+
   return (
     <main className="min-h-dvh overflow-hidden bg-[#030507] text-cyan-50">
       <div className="pointer-events-none fixed inset-0 grid-field opacity-30" />
@@ -287,6 +357,23 @@ export default function MidspacePage() {
               }`}
             >
               {agent === "all" ? "@all" : `@${agent}`}
+            </button>
+          ))}
+        </section>
+
+        <section className="mb-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {quickMoves.map(move => (
+            <button
+              key={move.id}
+              onClick={() => void runQuickMove(move)}
+              disabled={isSending}
+              className="rounded-md border border-cyan-400/14 bg-black/48 p-3 text-left transition hover:border-teal-300/45 hover:bg-teal-950/14 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <div className="flex items-center gap-2 text-sm font-semibold text-cyan-50">
+                <Sparkles className="h-4 w-4 text-teal-300" />
+                {move.label}
+              </div>
+              <p className="mt-1 text-xs leading-5 text-cyan-100/52">{move.because}</p>
             </button>
           ))}
         </section>

@@ -54,6 +54,9 @@ docs/
   biological-operating-system-master-gist.md
   conways-game-of-life-and-grok-go.md
   sam-hermes-github-integration-prompt.md
+  leverage-radar-command-center-gist.md
+  downloads-context-scan-2026-06-05.md
+  x-radar-receipt-format.md
   emergence-marker-primer.md
   grok-go-restart-runbook.md
   grok-go-research-output-map.md
