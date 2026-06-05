@@ -55,6 +55,7 @@ docs/
   organism-dashboard-roadmap.md
   social-researcher-and-funding-plan.md
   x-growth-and-monetization-plan.md
+  youtube-plain-english-outreach-plan.md
   terminal-replay-visual.md
   caveman-explainer.md
   live-mac-layout.md
@@ -121,6 +122,7 @@ For the public X/YouTube/research-update role and serious funding paths, see:
 ```text
 docs/social-researcher-and-funding-plan.md
 docs/x-growth-and-monetization-plan.md
+docs/youtube-plain-english-outreach-plan.md
 ```
 
 An X-ready lessons graphic from the June 5 live-loop assay is here:
