@@ -7,6 +7,7 @@ It is a read-only public microscope for the Grok Go loop:
 - center: real-time cybernetic cell visualizer;
 - left/top: recent telemetry and proposed cell nodes;
 - right/bottom: metabolism and vitality panels;
+- public links: GitHub, working paper, and Grok Go Lab YouTube;
 - data source: `NEXT_PUBLIC_TERRARIUM_WS_URL`, defaulting to `ws://127.0.0.1:8799/ws/terrarium`;
 - fallback: demo pulses when no telemetry server is connected.
 

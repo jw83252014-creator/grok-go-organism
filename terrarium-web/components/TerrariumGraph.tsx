@@ -2,12 +2,22 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Activity, Clock3, Cpu, ExternalLink, FileText, Github, ShieldCheck } from "lucide-react";
+import {
+  Activity,
+  Clock3,
+  Cpu,
+  ExternalLink,
+  FileText,
+  Github,
+  ShieldCheck,
+  Youtube
+} from "lucide-react";
 import type { AssayScore, CellNode, TelemetryEvent } from "@/lib/useTerrariumTelemetry";
 
 const GITHUB_URL = "https://github.com/jw83252014-creator/grok-go-organism";
 const RESEARCH_PAPER_URL =
   "https://github.com/jw83252014-creator/grok-go-organism/blob/main/research-paper/grok-go-living-research-organism.md";
+const YOUTUBE_URL = "https://youtube.com/@grokgolab";
 
 function roleColor(role: CellNode["role"]) {
   switch (role) {
@@ -122,7 +132,7 @@ export default function TerrariumGraph({
         </div>
       </div>
 
-      <div className="mb-2 grid grid-cols-2 gap-1.5">
+      <div className="mb-2 grid grid-cols-3 gap-1.5">
         <a
           href={GITHUB_URL}
           target="_blank"
@@ -146,6 +156,18 @@ export default function TerrariumGraph({
             Paper
           </span>
           <ExternalLink className="h-3 w-3 text-violet-100/60" />
+        </a>
+        <a
+          href={YOUTUBE_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="flex items-center justify-between rounded border border-rose-400/20 bg-rose-950/20 px-2 py-1.5 text-[11px] text-rose-50/90 transition hover:border-rose-300/50 hover:bg-rose-950/35"
+        >
+          <span className="flex items-center gap-1.5">
+            <Youtube className="h-3.5 w-3.5" />
+            YouTube
+          </span>
+          <ExternalLink className="h-3 w-3 text-rose-100/60" />
         </a>
       </div>
 

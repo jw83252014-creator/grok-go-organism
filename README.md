@@ -21,6 +21,13 @@ The useful framing is biological:
 - Immune system: watcher, safety rules, budget checks, pause/kill switch
 - Differentiation: specialized cells such as Builder, Explorer, Watcher, Forecasting, Memory
 
+## Public Links
+
+- Website: https://grok-go.vercel.app
+- GitHub: https://github.com/jw83252014-creator/grok-go-organism
+- YouTube: https://youtube.com/@grokgolab
+- Working paper: https://github.com/jw83252014-creator/grok-go-organism/blob/main/research-paper/grok-go-living-research-organism.md
+
 ## Repository Layout
 
 ```text
@@ -129,6 +136,12 @@ An X-ready lessons graphic from the June 5 live-loop assay is here:
 
 ```text
 source-artifacts/grok-go-lessons-2026-06-05.png
+```
+
+The Grok Go Lab YouTube/profile icon is here:
+
+```text
+source-artifacts/grok-go-lab-profile.png
 ```
 
 For the next Grok Go restart, use:

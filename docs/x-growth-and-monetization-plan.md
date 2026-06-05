@@ -250,7 +250,7 @@ Important: keep funding asks tied to concrete receipts:
 - "Here is what the loop did."
 - "Here is what failed."
 - "Here is what we need next."
-- "Here is the repo/paper/website."
+- "Here is the repo/paper/website/YouTube."
 
 ## Human Approval Policy
 
@@ -274,5 +274,11 @@ Until the social layer is mature:
 6. Add analytics snapshots.
 7. Create a weekly public research digest.
 8. Add a funding page linked from the website.
+
+Created public video channel:
+
+```text
+https://youtube.com/@grokgolab
+```
 
 The target is not viral spam. The target is credible compounding attention from people who understand why persistent, observable agent loops matter.

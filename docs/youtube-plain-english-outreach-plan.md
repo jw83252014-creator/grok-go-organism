@@ -4,6 +4,12 @@
 
 The channel should help normal people understand what is happening without needing to know JSON, agents, terminals, GitHub, or biology jargon.
 
+Current channel:
+
+```text
+https://youtube.com/@grokgolab
+```
+
 ## Core Rule
 
 Explain like this first:
@@ -180,6 +186,9 @@ https://grok-go.vercel.app/
 
 Repo:
 https://github.com/jw83252014-creator/grok-go-organism
+
+YouTube:
+https://youtube.com/@grokgolab
 
 Looking for feedback, contributors, and people who can help us explain this clearly.
 ```
