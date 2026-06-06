@@ -6,6 +6,7 @@
 ## Last 20 Recent Download Files
 
 ```text
+2026-06-05 16:56 | AI-Agents-Inspired-by-Biological-Life (1).md
 2026-06-05 16:32 | Agent-Bridge-Persistent-Link-File.md
 2026-06-05 16:32 | Telegram-AgentBridge-for-AI-OS.md
 2026-06-05 16:31 | Grok-Comedy-Bot-X-Automation.md
@@ -65,6 +66,18 @@ Important ideas:
 Best integration:
 
 Use this as source material for Grok Go Lab videos, paper updates, and visual explainers.
+
+The newer `(1)` export from June 5 is now the canonical Gemini source artifact:
+
+```text
+source-artifacts/gemini/AI-Agents-Inspired-by-Biological-Life.md
+```
+
+It also confirms a critical boundary: Gemini is a long-context synthesis lane, not a local filesystem/GitHub actor unless wrapped by a real tool surface.
+
+Best integration update:
+
+Create a Gemini + Librarian Research Cell memory pack. Gemini supplies synthesis; Librarian supplies live X context; Midspace/Agent Bridge routes tasks and receipts.
 
 ### 3. `living-research-organism-human-peer-review-paper-outline.md`
 
@@ -133,6 +146,48 @@ Best integration:
 
 Run Mining Engine over these and produce X Radar targets plus top project moves.
 
+Additional extracted pattern:
+
+- "Research Harvester" Hermes Agent for X bookmarks and link reports.
+- "Chrome tab becomes Hermes Agent" should really mean: export tab memory, seed a memory pack, and wrap browser use with an observe/fingerprint/send/wait/receipt adapter.
+- Do not give every specialist direct X account access. Route live X context through Librarian.
+
+### 7. `Grok-Comedy-Bot-X-Automation.md`
+
+This matches the X growth lane and approval-gated posting design.
+
+Important ideas:
+
+- Use X API when possible and browser automation only as a careful fallback.
+- Keep a memory vault / canon file for long-running threads.
+- Monitor replies and mentions.
+- Draft first, approve second, post last.
+- Avoid spam and over-tagging.
+
+Best integration:
+
+Turn this into a specialized attention lane under Leverage Radar, using Librarian source packets and human approval.
+
+### 8. `hermes-webui-master.zip`
+
+Not one of the newest files, but relevant to the Hermes direction.
+
+Useful surfaces found in the README/listing:
+
+- profiles;
+- sessions;
+- workspace/file browser;
+- memory;
+- tasks/cron;
+- provider choice;
+- messaging platform access;
+- phone-friendly WebUI;
+- ability to orchestrate other agents.
+
+Best integration:
+
+Use Hermes as the persistent shell/profile layer and Midspace as the simple shared room. Do not rebuild all Hermes surfaces inside Grok Go unless we need a narrow custom view.
+
 ## Repeated Themes Found
 
 1. **Biology frame:** genome, metabolism, immune system, cells, emergence.
@@ -180,3 +235,23 @@ result
 ```
 
 That is the first artifact the Leverage Radar should produce.
+
+## Gemini + Librarian Follow-Up
+
+Created a dedicated handoff plan:
+
+```text
+docs/gemini-librarian-hermes-cell-plan.md
+```
+
+Created a seed memory pack:
+
+```text
+agent-memory/gemini-librarian-research-cell/
+```
+
+This is the clean path for turning a Gemini tab export into a durable cell:
+
+```text
+Gemini export -> source artifact -> memory pack -> Librarian source packet -> Gemini synthesis receipt -> human approval -> build/post
+```
