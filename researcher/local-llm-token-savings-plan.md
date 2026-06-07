@@ -71,3 +71,42 @@ Harness finding from 2026-06-05:
 ```
 
 The output should be treated as a draft filter, not a final decision.
+
+## Skill Envelope Pattern
+
+"Teaching" the local model a skill should mean giving it a small, repeatable harness, not pretending it permanently learned something:
+
+1. A short `SKILL.md`-style instruction.
+2. A strict input schema.
+3. A strict output schema.
+4. A few examples.
+5. A timeout.
+6. A JSON verifier.
+7. A blocker receipt when the job fails.
+
+This is enough for useful basal chores such as source extraction, classification, clustering, and blocker surfacing.
+
+Example output for a blocked local job:
+
+```json
+{
+  "status": "blocked",
+  "task": "arxiv-2606-03300-source-packet",
+  "blocker": "could not fetch arXiv PDF from local network path",
+  "checked": ["https://arxiv.org/abs/2606.03300"],
+  "needs": "Codex help",
+  "recommended_next_action": "fetch the PDF/HTML with a network-enabled tool and rerun extraction"
+}
+```
+
+## New Safe Research Chore
+
+The Parisi/Zamponi arXiv source about AI-assisted proof is a good local-model job:
+
+- extract all mentions of Claude/model use;
+- extract all verification/correction language;
+- build a claim table;
+- flag hype-risk wording;
+- propose questions for a stronger model or human reviewer.
+
+Do not let the local model explain or validate the physics proof as a final claim.

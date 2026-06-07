@@ -170,3 +170,6 @@ End each autonomous turn with:
 ```text
 [[GROK_AUTONOMOUS_TURN_COMPLETE]]
 ```
+
+## Current research priority (Jeff)
+PRIORITY (Jeff 2026-06-07): Research Google TurboQuant — KV-cache compression (~6x memory, ~8x attention speedup, ICLR 2026; PolarQuant + QJL). Work out how to fold it into Grok Go memory/token efficiency. Source: research.google/blog/turboquant

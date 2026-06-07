@@ -12,3 +12,8 @@ terrarium-web/screenshots/
 autonomous-watcher-state.json
 next-autonomous-prompt.txt
 gist/
+grok-go-local-loop/*.log
+grok-go-local-loop/.watchdog*
+grok-go-local-loop/publish.log
+.env
+*.env

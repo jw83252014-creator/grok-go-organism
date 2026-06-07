@@ -165,6 +165,14 @@ The Researcher should load only the skills needed for the current task. This mat
 
 Important caveat: Science Skills includes domain tools that may require API keys or third-party database licenses. Any adaptation must track licenses, source terms, and API-key boundaries.
 
+### 7.1 External Comparator: AI-Assisted Scientific Proof
+
+An external comparator arrived after the initial draft: arXiv:2606.03300, *The jamming transition in infinite dimensions: a concise proof of the flow equations and scaling relationships*, by Giorgio Parisi and Francesco Zamponi. The arXiv abstract states that a proof of the scaling identity `a + b = 1` was obtained through interaction with Claude Sonnet 4.6 and Claude Opus 4.7, then verified and edited by the authors.
+
+This should be handled carefully. It is not evidence that an autonomous loop independently did Nobel-level science. It is evidence that frontier models are entering serious scientific workflows where human verification, correction, editing, and provenance matter. For Grok Go, the lesson is methodological: the Researcher layer should not merely generate fluent research prose. It should preserve traces, separate claims from interpretations, flag hype risk, and route final scientific assertions through stronger review gates.
+
+The Mining Engine should ingest this source as a high-signal case study for the paper section on AI-assisted discovery and verifier architecture.
+
 ## 8. Human Review Loop
 
 The long-term system should produce public artifacts, not just private logs. A proposed review loop:
@@ -230,4 +238,3 @@ Grok Go is not a finished organism. It is a small but useful experimental patter
 - Science Skills local clone source note: `sources/google-deepmind-science-skills-source-note.md`
 - Gemini biological-life export source note: `sources/gemini-biological-life-source-note.md`
 - X data pipeline status: `../docs/x-context-ingestion.md` and Agent Bridge `X_DATA_PIPELINE_2026-06-03.md`
-
