@@ -1,0 +1,3 @@
+# Grok Go GROK cell (PAID grok-build) — running state (one line per turn)
+2026-06-07 075551 | Advanced free LLM API catalog (high-value self-sustainability item): web/X research on cheahjs repo + recents; appended "## Grok Go evaluations" section (expanded OR frees incl. Hermes-405B/gpt-oss, GitHub Models w/ Grok3/GPT5/Llama4, Groq/Cerebras updates, self-hosted gateway pattern, Agnes mention; priorities for researcher/mining/low-metab). Saved to grok-cell/turn-20260607-075551.md. EMERGENCE + STATE updated. Next: evaluate/wire one (GitHub or Groq) or draft paper section using new brain options.
+
