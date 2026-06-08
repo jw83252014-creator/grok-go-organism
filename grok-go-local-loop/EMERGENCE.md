@@ -1,1 +1,1 @@
-- 2026-06-08 00:25 — Mining Engine operations refined with energy-aware 4-step workflow. Next: Draft formal Mining Protocol specification.
+- 2026-06-08 00:32 — Turn 20260608-003258.md created with energy-aware 4-step mining workflow draft. Next: Complete operations description addressing 5 gaps.
