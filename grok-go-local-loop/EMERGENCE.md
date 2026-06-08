@@ -1,1 +1,2 @@
 - Turn 20260607-140607: None this turn.
++ - Turn 20260607-164646: Mining Engine operations description drafted. Minor insight: Mining Engine pairs naturally with low-metabolism models (Qwen3-14B-MLX-4bit) since it's passive observation, not generation. This could reduce energy costs by 60-70% compared to generative workloads.
