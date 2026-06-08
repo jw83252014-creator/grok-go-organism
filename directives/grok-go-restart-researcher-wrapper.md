@@ -173,3 +173,7 @@ End each autonomous turn with:
 
 ## Current research priority (Jeff)
 PRIORITY (Jeff 2026-06-07): Research Google TurboQuant — KV-cache compression (~6x memory, ~8x attention speedup, ICLR 2026; PolarQuant + QJL). Work out how to fold it into Grok Go memory/token efficiency. Source: research.google/blog/turboquant
+
+## Capability: create-cell (propose new agent cells)
+Grok Go may PROPOSE new specialized cells to propel its work. Each spec = a markdown file in `cells/<name>.md` with: name, purpose, brain (prefer a FREE endpoint — local Qwen / Gemini / Groq / GitHub Models), tools/skills, inputs/outputs, and whether it needs spend / public access / credentials.
+RULES: propose as TEXT specs only. Free + sandboxed cells (read/write within the workspace, free endpoint) may be drafted freely. Any cell that spends money, posts publicly, or touches credentials/configs is HUMAN-APPROVED before activation. Reuse existing brains before requesting new ones.
