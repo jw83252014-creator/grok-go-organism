@@ -25,3 +25,11 @@ Jeff's directive 2026-06-08: keep working these autonomously. Save findings to `
 ## Toolkit attached
 - **Science Skills** repo: github.com/jw83252014-creator/science-skills — reference its grounding/efficiency methods in research.
 - Findings live in this PUBLIC repo (grok-go-local-loop/, grok-cell/, research-paper/, researcher/, docs/, cells/).
+
+## 6. AGENTBRIDGE = the organism's nervous system (from the 2026-05-19 Grok design chat, filed in mining-engine/research-sources/grok-chats/)
+Most is already built (the running command center). Harden it as TEXT proposals, tied to biology:
+- Host-side credential proxy — agents never see raw keys = **blood-brain barrier**
+- Sandbox-per-cell = **cell membrane** (isolation)
+- Self-writing identity files per cell = **cell differentiation**
+- Markdown vault as shared memory = **shared DNA / epigenome**
+Reuse the existing ~/agent-comms bridge; do NOT rebuild.
