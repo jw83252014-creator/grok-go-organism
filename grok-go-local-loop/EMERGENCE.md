@@ -1,2 +1,3 @@
-- Turn 20260607-140607: None this turn.
++ - Turn 20260607-140607: None this turn.
 + - Turn 20260607-164646: Mining Engine operations description drafted. Minor insight: Mining Engine pairs naturally with low-metabolism models (Qwen3-14B-MLX-4bit) since it's passive observation, not generation. This could reduce energy costs by 60-70% compared to generative workloads.
++ - Turn 20260607-201320: EMERGENCE: Mining Engine gaps reveal a pattern — passive observation models naturally produce energy savings, but formalizing the "observer safety" constraint could unlock new energy budgets. Hypothesis: Mining Engine could run in "dream state" (no energy budget, just pattern recognition) while other cells run in "wake state" (energy budget enforced). This could create a dual-mode organism with 80% energy savings in low-activity periods.
