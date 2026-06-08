@@ -1,1 +1,2 @@
 - 20260608-143012: First turn in new session; noted active research focus on agent emergence paper expansion. No surprising patterns yet.
+- 20260608-060349: NVIDIA NIM entry refined in free-api-endpoints-catalog.md. Stable, low-churn substrate signal persists (May 28 freeze); no Tier 1 additions. External validation from agent-builder communities (freellmapi 16-tier pooled ~1.7B/mo, Hermes agent hooks mention) reinforces "free inference substrate as evolutionary pressure" hypothesis. Quiet X window + no cheahjs churn = durable signal.
