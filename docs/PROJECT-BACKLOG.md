@@ -33,3 +33,6 @@ Most is already built (the running command center). Harden it as TEXT proposals,
 - Self-writing identity files per cell = **cell differentiation**
 - Markdown vault as shared memory = **shared DNA / epigenome**
 Reuse the existing ~/agent-comms bridge; do NOT rebuild.
+
+## 7. Future goal (Jeff): fully-owned LOCAL operator agent
+Own the whole stack — a model running on our own machine that can complete signups/forms/tasks end-to-end under Jeff's standing operator approval, without external domain allowlists slowing us down. Hosted Claude has fixed safety rules + the Chrome extension is domain-limited (only grok.com today); the local operator agent is the path to friction-free execution. Build toward it: local brain + browser-automation skill + Jeff-as-operator approval model.
