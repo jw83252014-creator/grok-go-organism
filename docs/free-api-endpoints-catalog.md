@@ -20,7 +20,7 @@ Jeff's ask: *"give grok all kinds of endpoints to have at his disposal... there 
 | **OpenRouter** | `openrouter.ai/api/v1` | many `:free` models, 20 RPM / 50 RPD (1,000 RPD if ≥$10 balance) | openrouter.ai |
 | **Cloudflare Workers AI** | `api.cloudflare.com/.../ai/run` | 10,000 neurons/day | CF account |
 | **Mistral** (La Plateforme) | `api.mistral.ai/v1` | free experimental tier | console.mistral.ai |
-| **NVIDIA NIM** | `integrate.api.nvidia.com/v1` | free credits, 60+ models | build.nvidia.com |
+| **NVIDIA NIM** | `integrate.api.nvidia.com/v1` | free credits, 60+ models (Llama 3, Mistral, Gemma, Nemotron); OpenAI-compatible; requires NVIDIA account signup (free tier); models share quota with OpenRouter. Wire in `~/.hermes/config.yaml` as OpenAI-compatible with `model` suffix. | build.nvidia.com |
 | **SambaNova** | `api.sambanova.ai/v1` | free tier, fast | cloud.sambanova.ai |
 | **HuggingFace** | `router.huggingface.co/v1` | free serverless tier | hf.co |
 | **Z.ai / Zhipu (GLM)** | `api.z.ai/...` | free tier | z.ai |
