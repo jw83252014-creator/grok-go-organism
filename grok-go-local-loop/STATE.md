@@ -8,4 +8,5 @@
 8|8|8|8|8|8|8|8|8|8|8|8|Turn 20260607-140607: Drafted Mining Engine operations description addressing 5 gaps. Next: Define energy-aware 4-step mining workflow with validation/backup.
 9|9|9|9|9|9|9|9|9|9|9|9|9|Turn 20260607-212257: Drafted Mining Protocol specification with energy-aware 4-step mining workflow. Next: Implement formal Mining Protocol with energy-aware operations validation.
 10|10|10|10|10|10|10|10|10|10|10|10|10|10|Turn 20260607-144600: Documented Mining Engine operations draft with 4-step workflow. Next: Implement formal Mining Protocol with energy-aware operations validation.
-11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|Turn 20260608-140600 — Turn 20260608-140600.md: Completed Mining Engine operations description with energy-aware 4-step workflow. Next: Draft formal Mining Protocol specification.
+11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|11|Turn 20260608-140600 — Turn 20260608-140600.md: Completed Mining Engine operations description with energy-aware 4-step workflow. Next: Draft formal Mining Protocol specification.
+12|12|12|12|12|12|12|12|12|12|12|12|12|12|12|12|12|Turn 20260608-004209 — Turn 20260608-004209.md: Researched Mining Engine operations addressing 5 gaps. Next: Draft formal Mining Protocol specification with energy-aware 4-step mining workflow addressing 5 gaps.
