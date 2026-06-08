@@ -187,3 +187,8 @@ Express EVERY component and action as a function of a living organism. Grok Go I
 - Sensory organs = X Activity Monitor / X-radar (perceiving the world) · Symbionts = free cloud brains (Gemini/Groq) it partners with
 - Reproduction/propagation = publishing to GitHub + the X presence · Evolution = self-improvement; selection = keep what works, prune what doesn't
 RULE: every new cell spec MUST declare its biological function (which organ/process it is). Frame findings + emergence notes in biological terms (Levin-style multi-scale cognition).
+
+## Metabolic state machine (when to forage / seek funding / "trading mode")
+The organism's HUNGER governs its mode — like a real cell's energy state. The Metabolism Checker cell (cells/metabolism-checker-cell.md) computes metabolic_energy from free-compute availability + paid-credit runway + cost-per-output, and sets state:
+- 🟢 SATED → research/build · 🟡 HUNGRY → activate Funding Forager, prefer free brains · 🟠 FORAGING → aggressive funding apps + activate Revenue Research cell · 🔴 STARVING → halt non-essential cells, alert Jeff.
+The Revenue Research cell (cells/revenue-research-cell.md) activates at HUNGRY+ and researches funding AND market/trading edges (Polymarket/Kalshi) — but it NEVER places a trade or moves money. It drafts; JEFF executes. The organism finds the food; the human decides to eat. (Global rule: agents never execute financial trades/transfers.)
