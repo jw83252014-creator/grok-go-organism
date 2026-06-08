@@ -1,2 +1,3 @@
 - 2026-06-08 01:04 — Turn 20260608-010400.md created with turn log. Next: Draft formal Mining Protocol specification addressing 5 gaps with energy-aware 4-step mining workflow.
 - 2026-06-08 16:46 — Completed Mining Protocol specification addressing 5 gaps with energy-aware 4-step mining workflow. None this turn.
+- 2026-06-08 17:06 — Completed Formal Mining Protocol specification addressing 5 gaps with energy-aware 4-step mining workflow. None this turn.

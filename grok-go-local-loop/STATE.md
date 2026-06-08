@@ -1,2 +1,3 @@
 1|1|1|1|1|1|1|Turn 14 — Turn 20260608-010400.md: Logged turn with Mining Protocol draft in progress. Next: Draft formal Mining Protocol specification addressing 5 gaps with energy-aware 4-step mining workflow.
 2|1|1|1|1|1|1|Turn 15 — Turn 20260608-164646.md: Completed Mining Protocol specification addressing 5 gaps with energy-aware 4-step mining workflow. Next: Implement QJL 1-bit encoding with PolarQuant polar coordinates.
+3|1|1|1|1|1|1|Turn 16 — Turn 20260608-170646.md: Completed Formal Mining Protocol specification addressing 5 gaps with energy-aware 4-step mining workflow. Next: Implement energy-aware operations validation.
