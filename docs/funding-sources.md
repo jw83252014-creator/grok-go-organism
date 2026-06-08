@@ -25,6 +25,7 @@ Honest leads, ranked by how realistically an **independent builder (no LLC/VC ye
 - **GitHub Sponsors / Patreon / Ko-fi** — community funding once the X presence grows.
 - **Manifund / Long-Term Future Fund / Astera** — grants if the alignment/science angle deepens.
 
-## Move
-- **Today, no entity needed:** MS Founders Hub + AWS Activate + Google $300 + Emergent Ventures application.
-- **File a simple LLC** → unlocks NVIDIA Inception, bigger cloud tiers, and the startup credit programs cleanly.
+## Move (Champion Fencing LLC — Georgia — now exists ✅)
+- **Apply AS Champion Fencing LLC (GA)** → unlocks the startup programs: **MS Founders Hub, AWS Activate, Google for Startups + $300, NVIDIA Inception.** Frame honestly: an established Georgia company now running an AI/agent R&D initiative (Grok Go).
+- **Independent-researcher track (NOT the LLC):** Anthropic AI-for-Science / External Researcher + **Emergent Ventures** — apply as an independent researcher; these want research/nonprofit framing.
+- **Honesty line:** real LLC + real AI project = legit. Don't claim VC funding, revenue, or a team you don't have.
