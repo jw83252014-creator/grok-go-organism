@@ -25,6 +25,7 @@ The dashboard is not one giant control panel. It is a set of small bounded dashb
 
 - Architecture note: `../docs/dashboard-as-conscious-interface.md`
 - Hermes Desktop/Gateway cell plan: `hermes-desktop-cell-plan.md`
+- Grok file harvest manifest: `../source-artifacts/grok-reports/2026-06-09-agentbridge-files-manifest.md`
 - Roadmap: `../docs/organism-dashboard-roadmap.md`
 - Research paper section: `../research-paper/grok-go-living-research-organism.md`
 - Panel/cell manifest: `panel-cell-manifest.json`
