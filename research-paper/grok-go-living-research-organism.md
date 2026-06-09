@@ -249,7 +249,7 @@ This work is preliminary and local. Current limitations:
 2. Score historical turns for self-maintenance versus goal advancement.
 3. Run a new non-intervention experiment with the improved genome.
 4. Add the Researcher as a read-only observer.
-5. Build the first dashboard-as-conscious-interface artifact: a private organism-status markdown file plus a small JSON status file that maps dashboard panels to owning cells and approval gates.
+5. Build the first dashboard-as-conscious-interface artifact: a private organism-status markdown file plus a small JSON status file that maps dashboard panels to owning cells and approval gates. The initial panel-to-cell manifest lives in `../dashboard/panel-cell-manifest.json`.
 6. Publish a small first report on one concrete pathology: self-polishing loops.
 7. Use the Science Skills pattern to create narrowly scoped Researcher skills.
 8. Add X notification extension data into the relationship graph after manual Chrome extension loading.

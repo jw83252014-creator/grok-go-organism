@@ -84,6 +84,10 @@ research-paper/
   sources/
   appendices/
 
+dashboard/
+  README.md                         # dashboard as conscious interface
+  panel-cell-manifest.json          # each knob/panel mapped to a cell and gate
+
 researcher/
   researcher-population-loop-skeleton.py
   researcher-dashboard-population-logic.md
