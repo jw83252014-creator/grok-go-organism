@@ -1,0 +1,201 @@
+{
+  "schema_version": "0.1",
+  "updated_at": "2026-06-09",
+  "purpose": "Map each dashboard panel, knob, meter, or button to a bounded agent-cell with explicit inputs, outputs, actions, and gates.",
+  "panels": [
+    {
+      "id": "easy_list",
+      "label": "Easy List",
+      "owner_cell": "Project Manager Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "grok-go-local-loop/NEXT-7-DAYS.md",
+        "docs/PROJECT-BACKLOG.md",
+        "Agent Bridge tasks",
+        "current blockers"
+      ],
+      "outputs": [
+        "ranked phone-first action list"
+      ],
+      "allowed_actions": [
+        "display",
+        "rank",
+        "link_to_source"
+      ],
+      "blocked_actions": [
+        "submit forms",
+        "post publicly",
+        "spend money",
+        "change accounts"
+      ],
+      "gate": "human approval for any external action"
+    },
+    {
+      "id": "metabolism",
+      "label": "Metabolism",
+      "owner_cell": "Metabolism Checker Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "paid-turn counters",
+        "local model health",
+        "token logs",
+        "credit/billing notes"
+      ],
+      "outputs": [
+        "green/yellow/orange/red energy state",
+        "runway warning",
+        "local-first recommendation"
+      ],
+      "allowed_actions": [
+        "display",
+        "warn",
+        "recommend"
+      ],
+      "blocked_actions": [
+        "buy credits",
+        "enable paid loops",
+        "change billing"
+      ],
+      "gate": "Jeff approval for spend or paid-model expansion"
+    },
+    {
+      "id": "bridge_health",
+      "label": "Bridge Health",
+      "owner_cell": "Watcher / Immune Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "launchd service status",
+        "port checks",
+        "recent room replies",
+        "Chrome bridge logs",
+        "Termux/Moto status"
+      ],
+      "outputs": [
+        "alive/down/warning status",
+        "specific repair instruction"
+      ],
+      "allowed_actions": [
+        "display",
+        "warn",
+        "suggest restart command"
+      ],
+      "blocked_actions": [
+        "unbounded restart",
+        "silent service replacement",
+        "credential changes"
+      ],
+      "gate": "bounded repair only; human approval for persistent service changes"
+    },
+    {
+      "id": "approvals",
+      "label": "Approval Queue",
+      "owner_cell": "Approval Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "Agent Bridge approvals",
+        "Telegram notifier state"
+      ],
+      "outputs": [
+        "approve/deny choices",
+        "risk summary",
+        "reversibility summary"
+      ],
+      "allowed_actions": [
+        "display",
+        "approve",
+        "deny"
+      ],
+      "blocked_actions": [
+        "auto-approve",
+        "hide risk",
+        "bypass source of truth"
+      ],
+      "gate": "Jeff must explicitly approve"
+    },
+    {
+      "id": "research_digest",
+      "label": "Research Digest",
+      "owner_cell": "Researcher Cell",
+      "layer": "subconscious_to_conscious",
+      "inputs": [
+        "source notes",
+        "Agent Bridge meeting log",
+        "chat exports",
+        "research-paper drafts",
+        "Mining Engine outputs"
+      ],
+      "outputs": [
+        "claim map",
+        "evidence gaps",
+        "paper update proposals"
+      ],
+      "allowed_actions": [
+        "summarize",
+        "cite",
+        "flag uncertainty",
+        "propose edits"
+      ],
+      "blocked_actions": [
+        "publish claims",
+        "rewrite genome without review",
+        "treat speculation as evidence"
+      ],
+      "gate": "human or stronger-model review for public/scientific claims"
+    },
+    {
+      "id": "public_terrarium",
+      "label": "Public Terrarium",
+      "owner_cell": "Public Observer Cell",
+      "layer": "public_observability",
+      "inputs": [
+        "sanitized telemetry",
+        "public repo status",
+        "public paper links",
+        "approved progress notes"
+      ],
+      "outputs": [
+        "public status",
+        "public replay",
+        "contribution prompts"
+      ],
+      "allowed_actions": [
+        "display sanitized telemetry",
+        "link public artifacts"
+      ],
+      "blocked_actions": [
+        "show raw private logs",
+        "show credentials or account-adjacent status",
+        "control private systems"
+      ],
+      "gate": "sanitization before public display"
+    },
+    {
+      "id": "funding_lane",
+      "label": "Funding Lane",
+      "owner_cell": "Funding Forager Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "funding-sources.md",
+        "credit-applications-research-statement.md",
+        "grant/source research"
+      ],
+      "outputs": [
+        "draft applications",
+        "eligibility notes",
+        "human click list"
+      ],
+      "allowed_actions": [
+        "research",
+        "draft",
+        "rank opportunities"
+      ],
+      "blocked_actions": [
+        "submit applications",
+        "enter billing",
+        "change accounts",
+        "claim funding"
+      ],
+      "gate": "Jeff submits or approves every external funding action"
+    }
+  ]
+}
