@@ -68,7 +68,7 @@ Examples:
 
 - Null coordination cell;
 - Researcher digest cell;
-- Visuals lead cell;
+- Creative Department / Visuals Lead cell;
 - Tech lead cell;
 - Free Endpoint Forager cell;
 - Approval cell;
@@ -88,6 +88,7 @@ Possible cells:
 - Browser Broadcast Cell: insert the same question into multiple selected Grok/Gemini/ChatGPT tabs, collect replies, and compare them.
 - Files/Attachments Cell: detect per-chat downloads/attachments and save a manifest so every chat's files remain linked to the right conversation.
 - Visual Prompt Cell: generate and refine prompts for images/video/visual fights, with all public outputs approval-gated.
+- Creative Department Cell: name and coordinate creative roles such as Creative Director, Head of Creative, Visual Systems Lead, and Art Director.
 
 These should start as manual or semi-automatic tools. Full auto-walking across accounts/chats should require explicit scope, rate limits, and a dry-run mode.
 

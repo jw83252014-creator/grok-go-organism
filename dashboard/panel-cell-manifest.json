@@ -291,25 +291,38 @@
     },
     {
       "id": "visuals_lead",
-      "label": "Visuals Lead",
-      "owner_cell": "Visuals Lead Cell",
+      "label": "Creative Department / Visuals Lead",
+      "owner_cell": "Creative Director Cell",
+      "aliases": [
+        "Creative Director",
+        "Head of Creative",
+        "Visual Systems Lead",
+        "Art Director",
+        "Visuals Lead Cell"
+      ],
       "layer": "conscious_interface",
       "inputs": [
         "approved visual goals",
         "Grok image/video prompts",
         "downloaded visual artifacts",
-        "brand/public-framing docs"
+        "brand/public-framing docs",
+        "dashboard color/geometry references",
+        "style rules and public voice notes"
       ],
       "outputs": [
         "visual prompt queue",
         "image/video artifact map",
-        "approval-ready creative options"
+        "approval-ready creative options",
+        "dashboard visual language notes",
+        "creative role assignments"
       ],
       "allowed_actions": [
         "draft prompts",
         "organize downloads",
         "compare visual options",
-        "prepare approval cards"
+        "prepare approval cards",
+        "recommend creative titles",
+        "map artifacts to dashboard panels"
       ],
       "blocked_actions": [
         "publish visuals",
