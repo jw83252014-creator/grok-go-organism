@@ -70,6 +70,7 @@ docs/
   notebooklm-bookmark-research-pipeline.md
   organism-dashboard-roadmap.md
   social-researcher-and-funding-plan.md
+  dashboard-as-conscious-interface.md
   x-growth-and-monetization-plan.md
   youtube-plain-english-outreach-plan.md
   terminal-replay-visual.md
@@ -206,6 +207,7 @@ The next organism dashboard shape is mapped here:
 
 ```text
 docs/organism-dashboard-roadmap.md
+docs/dashboard-as-conscious-interface.md
 ```
 
 When the bridge is running, it sends a compact historical replay on each browser connection. That replay is built from curated first-loop study events plus recent git-memory entries from the original local loop. It is study telemetry, not the active Grok worker loop.
