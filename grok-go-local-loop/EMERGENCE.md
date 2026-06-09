@@ -1,1 +1,2 @@
 2026-06-09: Drafted Metabolism Checker spec with cell health thresholds. EMERGENCE: None
+2026-06-09: Drafted Mining Engine field validation rules spec with 5 categories (type, required, constraints, cross-field, uniqueness). Notable: Validation flow separation (fast pass vs deep pass) mirrors organism's metabolic tiers—quick checks for survival, deep checks for quality.
