@@ -196,6 +196,190 @@
         "claim funding"
       ],
       "gate": "Jeff submits or approves every external funding action"
+    },
+    {
+      "id": "hermes_desktop_gateway",
+      "label": "Hermes Desktop / Gateway",
+      "owner_cell": "Hermes Desktop Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "Hermes profile list",
+        "Hermes gateway status",
+        "Hermes sessions",
+        "messaging targets",
+        "provider/auth status without secrets"
+      ],
+      "outputs": [
+        "active profile/session status",
+        "available send targets",
+        "gateway health",
+        "missing login/auth gates"
+      ],
+      "allowed_actions": [
+        "display",
+        "link to Hermes sessions",
+        "show safe send targets",
+        "recommend profile/session repair"
+      ],
+      "blocked_actions": [
+        "display raw secrets",
+        "change model/provider",
+        "submit account logins",
+        "send external messages without an explicit target"
+      ],
+      "gate": "human approval for provider changes, credentials, external sends, or profile mutations"
+    },
+    {
+      "id": "chat_harvester",
+      "label": "Chat Harvester",
+      "owner_cell": "Chat Harvester Cell",
+      "layer": "subconscious_to_conscious",
+      "inputs": [
+        "Grok/Gemini/ChatGPT chat list",
+        "current chat DOM",
+        "downloaded markdown exports",
+        "per-chat attachments/files"
+      ],
+      "outputs": [
+        "chat export manifest",
+        "markdown export paths",
+        "attachment/file map",
+        "ingestion queue for Mining Engine"
+      ],
+      "allowed_actions": [
+        "dry-run list visible chats",
+        "export approved current chat",
+        "record file manifest",
+        "queue local mining task"
+      ],
+      "blocked_actions": [
+        "delete chats",
+        "rename chats",
+        "post publicly",
+        "change account settings",
+        "crawl unbounded chat history"
+      ],
+      "gate": "approved scope, dry-run first, bounded count/range for any chat-walking"
+    },
+    {
+      "id": "browser_broadcast",
+      "label": "Browser Broadcast",
+      "owner_cell": "Browser Broadcast Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "selected browser tabs",
+        "approved prompt",
+        "Agent Bridge room state"
+      ],
+      "outputs": [
+        "per-agent replies",
+        "comparison summary",
+        "consensus and disagreement map"
+      ],
+      "allowed_actions": [
+        "send approved prompt to selected tabs",
+        "collect replies",
+        "summarize differences"
+      ],
+      "blocked_actions": [
+        "send to all tabs by default",
+        "use account-mutating prompts",
+        "submit forms",
+        "click external actions"
+      ],
+      "gate": "Jeff or operator approves prompt and tab set before broadcast"
+    },
+    {
+      "id": "visuals_lead",
+      "label": "Visuals Lead",
+      "owner_cell": "Visuals Lead Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "approved visual goals",
+        "Grok image/video prompts",
+        "downloaded visual artifacts",
+        "brand/public-framing docs"
+      ],
+      "outputs": [
+        "visual prompt queue",
+        "image/video artifact map",
+        "approval-ready creative options"
+      ],
+      "allowed_actions": [
+        "draft prompts",
+        "organize downloads",
+        "compare visual options",
+        "prepare approval cards"
+      ],
+      "blocked_actions": [
+        "publish visuals",
+        "spend paid credits unbounded",
+        "change account settings"
+      ],
+      "gate": "human approval for public use or paid generation"
+    },
+    {
+      "id": "tech_lead",
+      "label": "Tech Lead",
+      "owner_cell": "Tech Lead Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "service health",
+        "repo status",
+        "open PRs",
+        "agent bridge logs",
+        "known blockers"
+      ],
+      "outputs": [
+        "repair queue",
+        "owner assignment",
+        "next technical action",
+        "risk summary"
+      ],
+      "allowed_actions": [
+        "diagnose",
+        "rank repairs",
+        "assign owners",
+        "open draft PRs"
+      ],
+      "blocked_actions": [
+        "silently rewrite unrelated files",
+        "restart unbounded loops",
+        "merge without review",
+        "change credentials"
+      ],
+      "gate": "bounded repair changes only; review for broad infra or credential work"
+    },
+    {
+      "id": "free_endpoint_forager",
+      "label": "Free Endpoint Forager",
+      "owner_cell": "Free Endpoint Forager Cell",
+      "layer": "subconscious_to_conscious",
+      "inputs": [
+        "free-api-endpoints-catalog.md",
+        "provider docs",
+        "Hermes model/provider status",
+        "local model status"
+      ],
+      "outputs": [
+        "candidate endpoint list",
+        "wiring notes",
+        "limits/cost/risk notes",
+        "recommended safe smoke tests"
+      ],
+      "allowed_actions": [
+        "research",
+        "summarize",
+        "draft wiring plan",
+        "propose smoke test"
+      ],
+      "blocked_actions": [
+        "create accounts",
+        "enter API keys",
+        "enable billing",
+        "run paid tests"
+      ],
+      "gate": "human credential and billing approval required"
     }
   ]
 }
