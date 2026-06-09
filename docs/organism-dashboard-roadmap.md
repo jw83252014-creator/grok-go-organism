@@ -16,6 +16,8 @@ Each dashboard feature should be treated as a small bounded agent or cell:
 - a bridge-health card belongs to the Watcher / Immune Cell;
 - a research digest belongs to the Researcher Cell;
 - a funding panel belongs to the Funding Forager Cell.
+- a Creative Department panel belongs to the Creative Director / Visuals Lead Cell;
+- a Movie Board belongs to the Story / Canon Cell, with Gemini helping continuity and Grok helping visual concepts.
 
 This is how the dashboard can feel alive without becoming unsafe. Every visible control must expose its owner, inputs, allowed action, and approval gate.
 

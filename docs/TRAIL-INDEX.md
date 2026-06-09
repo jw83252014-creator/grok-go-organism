@@ -12,6 +12,8 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 |---|---|
 | Grok Go content + plans | `~/grok-go-organism-share/docs/` (video scripts, x-presence, x-content-system, launch-plan, this index) |
 | Living dashboard architecture | `~/grok-go-organism-share/docs/dashboard-as-conscious-interface.md` |
+| Dashboard + movie production plan | `~/grok-go-organism-share/docs/dashboard-movie-grok-gemini-production-plan.md` |
+| Dashboard/movie X drafts | `~/grok-go-organism-share/docs/x-posts-dashboard-movie-grok-gemini-2026-06-09.md` |
 | Tasks handed to agents | `~/agent-comms/inbox/` (librarian-*, notebooklm-*) |
 | Cross-agent coordination/trail | `~/agent-comms/meeting.log` |
 | Approvals (content gate) | bridge `/api/approval/request` + `~/agent-comms/approvals/` |
