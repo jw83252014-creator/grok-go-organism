@@ -3,4 +3,4 @@
 3|3|2|Turn 20260609-154029: Expanded Mining Engine field validation rules spec with concrete examples and edge cases. Next: Review against actual data patterns.
 4|4|2|Turn 20260609-154302: Drafted turn note outlining Mining Engine data patterns review. Next: Identify actual data sources and extraction configs to validate against.
 EMERGENCE: Pattern - Mining Engine work is converging: field validation rules → data patterns review. The "conway-game-of-life" framing suggests emergent structure from simple extraction rules; validating against real data may reveal emergent patterns in extraction behavior itself.
-4|4|2|
+6|4|4|2|Turn 20260609-154718: Drafted Mining Engine data patterns framework (eligibility, extraction value, friction, timing patterns). Next: Review funding-forager cell leads log against patterns.
