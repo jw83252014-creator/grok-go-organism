@@ -4,3 +4,4 @@
 4|4|4|4|4|4|4|4|4|4|1|1|1|1|1|Turn 20260609-144606: Drafted Mining Engine data ingestion interface spec. Next: Expand with field validation rules. EMERGENCE: None
 5|5|5|5|4|4|4|4|4|4|1|1|1|1|1|Turn 20260609-044610: Reviewed research stack map; identified Mining Engine as core infra. Next: Define field schemas for data ingestion interface. EMERGENCE: None
 6|6|6|6|6|6|6|6|6|6|6|6|6|6|6|Turn 20260609-051929: Reviewed research stack map; identified Mining Engine as core infra. Next: Define field schemas for data ingestion interface. EMERGENCE: None
+Turn 20260609-100750: Reviewed research stack map; identified Mining Engine (#2) and Wiki Layer (#3) as core infra. Next: Draft field schemas for data ingestion interface spec.
