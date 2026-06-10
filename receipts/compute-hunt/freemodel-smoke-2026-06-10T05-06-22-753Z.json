@@ -1,0 +1,28 @@
+{
+  "provider": "freemodel.dev",
+  "base_url": "https://api.freemodel.dev/v1",
+  "tested_at": "2026-06-10T05:06:15.337Z",
+  "tests": [
+    {
+      "name": "models",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "chat_completions",
+      "model": "gpt-5.5",
+      "status": 200,
+      "ok": true,
+      "content_preview": "FM_OK"
+    }
+  ],
+  "secret_logged": false,
+  "model_count": 4,
+  "sample_models": [
+    "gpt-5.5",
+    "gpt-5.4",
+    "gpt-5.4-mini",
+    "gpt-5.3-codex"
+  ],
+  "chosen_model": "gpt-5.5"
+}

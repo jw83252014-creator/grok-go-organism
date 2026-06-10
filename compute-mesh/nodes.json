@@ -63,6 +63,49 @@
       "kill_switch": "docker compose down or stop gateway process"
     },
     {
+      "id": "freemodel-openai-quarantine",
+      "kind": "third-party-openai-compatible-api",
+      "owner": "jeff",
+      "endpoint": "https://api.freemodel.dev/v1",
+      "brains": [
+        "provider-advertised-gpt-routes"
+      ],
+      "allowed_jobs": [
+        "tiny_smoke_tests",
+        "non_sensitive_prompt_experiments",
+        "router_shape_checks"
+      ],
+      "forbidden_jobs": [
+        "private_memory",
+        "repo_dumps",
+        "secrets",
+        "account_actions",
+        "autonomous_loops",
+        "paid_or_unbounded_jobs"
+      ],
+      "spend": "third-party-free-or-trial-unknown",
+      "network": "external-api",
+      "status": "technical-smoke-ok-trust-quarantined",
+      "observed": {
+        "tested_at": "2026-06-10T05:06:15Z",
+        "openai_models_ok": true,
+        "openai_chat_completions_ok": true,
+        "anthropic_messages_ok": false,
+        "receipt_paths": [
+          "receipts/compute-hunt/freemodel-smoke-2026-06-10T05-06-22-753Z.json",
+          "receipts/compute-hunt/freemodel-anthropic-shape-2026-06-10T05-06-56-543Z.json"
+        ]
+      },
+      "requirements": [
+        "no secrets or private prompts",
+        "do not expose key in docs or chat",
+        "rotate key after pasted-chat test",
+        "review ToS/privacy/security before any broader use",
+        "use an Anthropic-to-OpenAI proxy if Claude Code integration is needed"
+      ],
+      "kill_switch": "revoke API key / remove env var / stop proxy"
+    },
+    {
       "id": "oracle-free-arm-01",
       "kind": "free-vm",
       "owner": "jeff",

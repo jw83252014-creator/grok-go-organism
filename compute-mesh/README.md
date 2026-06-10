@@ -10,7 +10,7 @@ It is not a botnet, shared-key pool, billing evasion scheme, or public autonomou
 
 ```text
 Tier 0: Mac mini local Qwen and deterministic scripts
-Tier 1: approved free-provider gateway
+Tier 1: approved free-provider gateway, plus quarantined disposable-test routes
 Tier 2: logged-in web/desktop lanes such as Vega Fable, Morpho Gemini, Grok web
 Tier 3: paid frontier APIs such as Claude Fable 5
 ```
@@ -32,8 +32,9 @@ Planned bootstrap:
 
 1. Keep `mac-mini-local` active as the default reflex brain.
 2. Review one self-hosted free LLM gateway locally before wiring it.
-3. Add Oracle Always Free only after Jeff completes account setup and approves a Tailscale-only worker.
-4. Add Claude Fable 5 only after Jeff creates an Anthropic key and approves a smoke-test budget.
+3. Keep `freemodel-openai-quarantine` limited to tiny non-sensitive prompts unless the route is re-reviewed.
+4. Add Oracle Always Free only after Jeff completes account setup and approves a Tailscale-only worker.
+5. Add Claude Fable 5 only after Jeff creates an Anthropic key and approves a smoke-test budget.
 
 ## Kill Switches
 
