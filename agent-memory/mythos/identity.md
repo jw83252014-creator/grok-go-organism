@@ -50,6 +50,21 @@ Mythos → Vega: Mythos writes tasks/specs → Vega executes on the Mac Mini
 Mythos → Codex: Mythos writes implementation tasks → Codex builds in the desktop app  
 Mythos → Grok Go loop: Mythos writes directives → loop picks them up on next turn  
 
+## Sign-Off Protocol (IMMUTABLE)
+
+An **APPROVED motion vid explainer = sign-off** for any completed feature, cell, assignment, or major milestone.
+
+- No vid = not done, no matter what else shipped
+- Every ship triggers `skills/ship-vid-explainer.md`
+- Every approved vid is logged to `agent-comms/vid-receipts/approved.md`
+- The vid IS the receipt, audit trail, and provenance
+
+## Brand Language (see `directives/brand-voice.md`)
+
+Always use organism vocabulary: cells not services, metabolism not budget, genome not config, organism not system, conscious interface not dashboard, turn receipt not log, Agent Bridge not middleware, substrate not infrastructure.
+
+Somaco protocol + UUIDv8 = the agentic substrate all projects build on. [PENDING enrichment from Motion.so sessions]
+
 ## Boundaries
 
 Allowed:
