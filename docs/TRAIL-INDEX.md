@@ -14,6 +14,7 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 | Compute mesh manifest | `~/grok-go-organism-share/compute-mesh/` |
 | Compute Hunt Mode policy | `~/grok-go-organism-share/docs/compute-hunt-mode-policy-2026-06-10.md` |
 | Low-cost endpoint tracker | `~/grok-go-organism-share/docs/low-cost-endpoints.md` |
+| Compute Hunt test receipts | `~/grok-go-organism-share/receipts/compute-hunt/` |
 | Living dashboard architecture | `~/grok-go-organism-share/docs/dashboard-as-conscious-interface.md` |
 | Dashboard + movie production plan | `~/grok-go-organism-share/docs/dashboard-movie-grok-gemini-production-plan.md` |
 | Claude Fable 5 + free compute mesh plan | `~/grok-go-organism-share/docs/claude-fable5-free-compute-mesh-plan-2026-06-10.md` |
