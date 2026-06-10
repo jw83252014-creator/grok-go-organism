@@ -20,6 +20,7 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 | Tonight Meta Cron clip scripts | `~/The-Device/scripts/Tonight-Clip-Scripts-2026-06-10.md` |
 | Clip A/B frame shotlist from Grok Terminal | `~/The-Device/production/Clip-A-B-Frame-Shotlist-2026-06-10.md` |
 | NotebookLM Meta Cron podcast source pack | `~/The-Device/production/NotebookLM-Meta-Cron-Podcast-Source-2026-06-10.md` |
+| Downloads Meta Cron/Vajra harvest map | `~/The-Device/production/Downloads-Meta-Cron-Vajra-Harvest-2026-06-10.md` |
 | Dashboard/movie X drafts | `~/grok-go-organism-share/docs/x-posts-dashboard-movie-grok-gemini-2026-06-09.md` |
 | Tasks handed to agents | `~/agent-comms/inbox/` (librarian-*, notebooklm-*) |
 | Cross-agent coordination/trail | `~/agent-comms/meeting.log` |
