@@ -13,6 +13,7 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 | Grok Go content + plans | `~/grok-go-organism-share/docs/` (video scripts, x-presence, x-content-system, launch-plan, this index) |
 | Living dashboard architecture | `~/grok-go-organism-share/docs/dashboard-as-conscious-interface.md` |
 | Dashboard + movie production plan | `~/grok-go-organism-share/docs/dashboard-movie-grok-gemini-production-plan.md` |
+| Morpho Gemini Agent Bridge onboarding | `~/grok-go-organism-share/docs/morpho-agent-bridge-onboarding-2026-06-10.md` |
 | Movie creative department ledger | `~/grok-go-organism-share/docs/movie-creative-department-ledger-2026-06-10.md` |
 | The Device / Vajra video prompt pack | `~/grok-go-organism-share/docs/the-device-vajra-video-prompt-pack-2026-06-10.md` |
 | Grok Chrome creative handoff | `~/grok-go-organism-share/source-artifacts/grok-reports/2026-06-10-grok-chrome-creative-handoff.md` |
