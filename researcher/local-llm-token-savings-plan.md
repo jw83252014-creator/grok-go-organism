@@ -54,6 +54,19 @@ Harness finding from 2026-06-05:
 - Code edits with broad blast radius.
 - Financial or trading reasoning.
 
+## Frontier Escalation Layer
+
+Claude Fable 5 is now a possible Tier 3 escalation model (`claude-fable-5`), but it should not replace the local reflex layer.
+
+Routing order:
+
+1. Deterministic scripts and RTK cleanup.
+2. Local Qwen for compression, clustering, receipts, and rough triage.
+3. Approved free endpoint gateway for moderate synthesis and foraging.
+4. Fable 5 only for high-value tasks where local/free paths cannot carry the reasoning.
+
+Every Fable 5 call needs a cost estimate, an artifact target, and an approval receipt unless Jeff has pre-approved a tiny smoke-test budget.
+
 ## Minimal Interface
 
 ```json

@@ -11,8 +11,10 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 | What | Where |
 |---|---|
 | Grok Go content + plans | `~/grok-go-organism-share/docs/` (video scripts, x-presence, x-content-system, launch-plan, this index) |
+| Compute mesh manifest | `~/grok-go-organism-share/compute-mesh/` |
 | Living dashboard architecture | `~/grok-go-organism-share/docs/dashboard-as-conscious-interface.md` |
 | Dashboard + movie production plan | `~/grok-go-organism-share/docs/dashboard-movie-grok-gemini-production-plan.md` |
+| Claude Fable 5 + free compute mesh plan | `~/grok-go-organism-share/docs/claude-fable5-free-compute-mesh-plan-2026-06-10.md` |
 | Morpho Gemini Agent Bridge onboarding | `~/grok-go-organism-share/docs/morpho-agent-bridge-onboarding-2026-06-10.md` |
 | Morpho onboarding inventory + tasks | `~/grok-go-organism-share/docs/morpho-onboarding-inventory-2026-06-10.md` |
 | Movie creative department ledger | `~/grok-go-organism-share/docs/movie-creative-department-ledger-2026-06-10.md` |
