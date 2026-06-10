@@ -37,15 +37,41 @@
 - **Emergence** is the goal — behavior that wasn't explicitly programmed
 - **Substrate** = the free compute + API layer the organism forages on
 
-## Somaco / UUIDv8 Substrate (PENDING)
+## Somaco / UUIDv8 Substrate
 
-> [FILL IN: paste the Motion.so session prompts or Discord context here]
->
-> Known so far:
-> - UUIDv8 is used as the agentic substrate identifier system
-> - Somaco protocol governs how agents coordinate / identify themselves
-> - Supply chain UUID watching → prediction signals (Sam's work)
-> - Polymarket agentic tech integrates with this substrate
+**SoMaCoSF** (Sam's project, somacosf.com) is a prediction market intelligence platform.  
+**GYST UUIDv8** is the identity substrate — a 128-bit self-describing provenance token.
+
+Every signal, every agent, every data point in the organism gets a UUID that encodes:
+```
+type(12) | namespace(12) | timestamp(24) | version(4=0x8) |
+fractal(12) | variant(2) | signal(16) | hash(42)
+```
+
+This is not a random ID. It's a **provenance anchor** — the UUID describes itself.
+- `type` = what kind of signal (CDU lead time, labor backlog, copper demand...)
+- `signal` = normalized forecast price or confidence (0–1)
+- `hash` = SHA-256 fingerprint of the metadata — tamper-evident
+
+**The $295B thesis:** 6 hyperscaler CEOs committed $295B to AI datacenter capex.
+That capital flows through supply chains with 18-month propagation:
+- T+2mo: liquid cooling CDU specs triggered
+- T+6mo: cable tray POs (strongest external signal — POs before permits)
+- T+9mo: IBEW labor mobilization
+- T+18mo: full campus commissioning
+
+Polymarket has **zero coverage** of this signal space. That's the edge.
+
+**How this connects to Grok Go:**  
+The UUIDv8 substrate is the identity layer for every cell, every receipt, every turn.  
+When a cell emits a receipt, it gets a GYST UUID. When a signal is detected, it gets tagged.  
+The organism's memory is content-addressed. Provenance is built-in, not bolted on.
+
+**Visual language for vids:** UUID pulses as cells spawn. The 128-bit structure briefly
+visible on each node — type code glowing, hash fragmenting outward. The substrate is
+the dark matter everything else runs on.
+
+> Motion.so visual sessions still needed for full prompt style — Vega to pull from Mini.
 
 ## Projects Vocabulary
 
