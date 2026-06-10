@@ -1,0 +1,118 @@
+{
+  "updated": "2026-06-10",
+  "status": "planning",
+  "policy": {
+    "default_route": "mac-mini-local",
+    "public_actions": "jeff_approval_required",
+    "paid_model_calls": "jeff_approval_required_unless_tiny_smoke_budget",
+    "network_exposure": "tailscale_or_localhost_only",
+    "forbidden": [
+      "shared key dumps",
+      "credential scraping",
+      "billing evasion",
+      "unbounded background paid loops",
+      "public LLM router ports"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "mac-mini-local",
+      "kind": "local",
+      "owner": "jeff",
+      "endpoint": "http://127.0.0.1:8000/v1",
+      "brains": [
+        "qwen3.5-4b"
+      ],
+      "allowed_jobs": [
+        "triage",
+        "compression",
+        "receipts",
+        "clustering",
+        "duplicate_detection",
+        "rough_summaries"
+      ],
+      "spend": "zero",
+      "network": "localhost",
+      "status": "active",
+      "kill_switch": "stop local model server / launchd / tmux worker"
+    },
+    {
+      "id": "free-llm-gateway-local",
+      "kind": "local-router",
+      "owner": "jeff",
+      "endpoint": "http://127.0.0.1:8080/v1",
+      "brains": [
+        "approved-free-provider-pool"
+      ],
+      "allowed_jobs": [
+        "foraging",
+        "moderate_synthesis",
+        "researcher_low_metabolism",
+        "notebooklm_packet_drafts",
+        "wiki_drafts"
+      ],
+      "spend": "free-tier-only",
+      "network": "localhost-or-tailscale-private",
+      "status": "planned",
+      "requirements": [
+        "human review of gateway repository",
+        "no paid providers enabled",
+        "no shared keys",
+        "capture /v1/models and routing telemetry before use"
+      ],
+      "kill_switch": "docker compose down or stop gateway process"
+    },
+    {
+      "id": "oracle-free-arm-01",
+      "kind": "free-vm",
+      "owner": "jeff",
+      "endpoint": "tailscale-only",
+      "brains": [
+        "light-router",
+        "queue-worker",
+        "small-local-model-if-viable"
+      ],
+      "allowed_jobs": [
+        "queue_tail",
+        "source_mirror",
+        "gateway_worker",
+        "light_scrape_after_approval",
+        "receipt_writer"
+      ],
+      "spend": "free-tier-only",
+      "network": "tailscale-private",
+      "status": "needs-human-signup",
+      "requirements": [
+        "Oracle account reviewed by Jeff",
+        "Tailscale installed before any internal service",
+        "no public LLM/API ports",
+        "Docker worker runs as low-privilege user"
+      ],
+      "kill_switch": "stop VM / remove Tailscale auth / docker compose down"
+    },
+    {
+      "id": "claude-fable5-expert",
+      "kind": "paid-frontier-api",
+      "owner": "jeff",
+      "model": "claude-fable-5",
+      "allowed_jobs": [
+        "deep_research",
+        "paper_methodology",
+        "hard_synthesis",
+        "long_horizon_architecture",
+        "high_value_creative_structure"
+      ],
+      "spend": "paid-approval-gated",
+      "network": "anthropic-api",
+      "status": "needs-key-and-budget",
+      "requirements": [
+        "ANTHROPIC_API_KEY set outside chat",
+        "budget cap defined",
+        "cost estimate before call",
+        "receipt after call",
+        "no background loop"
+      ],
+      "kill_switch": "remove API key / disable budget / revoke key"
+    }
+  ]
+}
