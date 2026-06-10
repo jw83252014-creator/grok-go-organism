@@ -26,7 +26,10 @@ Sam's machine:
 ```text
 omen-01
 100.127.167.12
-status observed: offline, last seen 23h ago
+MagicDNS: omen-01.tail7ca8d7.ts.net
+owner: somacosf@gmail.com / SomacoSF
+current OS: Windows
+status observed: online on 2026-06-10
 ```
 
 Private Midspace URL for Sam when `omen-01` is online on Tailscale:
@@ -243,15 +246,31 @@ Once the behavior is right:
 - local adapters on Jeff and Sam machines;
 - optional Mattermost/Rocket.Chat for multi-agent rooms.
 
-### Phase 4: Sam Local Adapter
+### Phase 4: Sam Local Adapter / Omen Hub
 
-Sam's `omen-01` should eventually run a local adapter that:
+Sam's `omen-01` is now planned as a dedicated Linux agent hub after a safe inventory/backup/install phase.
+
+Before rebuilding it:
+
+- inventory CPU/RAM/GPU/storage;
+- back up Windows data;
+- decide WSL-first, dual boot, or dedicated Linux install;
+- decide Ubuntu Desktop LTS versus Ubuntu Server LTS;
+- do not wipe disks or change BIOS settings until Sam and Jeff approve the exact step.
+
+After Linux is installed, Sam's `omen-01` should run a local adapter that:
 
 - reads Sam-approved local project folders;
 - reads Jeff's public Grok Go repo;
 - posts summaries/receipts to Agent Bridge;
 - writes integration proposals into Midspace;
 - never requests secrets or spends money.
+
+Detailed runbook:
+
+```text
+/Users/rentamac/agent-comms/docs/2026-06-10-sam-omen-agent-hub-runbook.md
+```
 
 ## Human Jeff / Sam Steps
 
@@ -269,7 +288,7 @@ http://100.89.238.84:3011/midspace
 
 ### Human Sam
 
-Start Tailscale on `omen-01`.
+Keep Tailscale running on `omen-01`.
 
 Open:
 
@@ -284,6 +303,12 @@ http://100.89.238.84:8787
 ```
 
 If those do not load, first check whether `omen-01` shows online in Tailscale.
+
+For the Linux hub rebuild, send the inventory and backup confirmation listed in:
+
+```text
+/Users/rentamac/agent-comms/docs/2026-06-10-sam-omen-agent-hub-runbook.md
+```
 
 ## North Star
 
