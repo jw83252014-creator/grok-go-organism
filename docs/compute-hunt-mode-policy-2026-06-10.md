@@ -73,12 +73,21 @@ Source:
 
 freemodel.dev exists and advertises an OpenAI-compatible API.
 
-Current status:
+Current tested status, 2026-06-10:
 
-- Needs manual account/API-key review by Jeff.
-- Needs a ToS/privacy/security pass before use.
-- Needs verification that it exposes an Anthropic Messages-compatible route for Claude Code, or else we need a local proxy that converts Claude Code's Anthropic-shaped requests to OpenAI-compatible requests.
-- Treat as temporary low-cost/trial access, not permanent free compute.
+- Jeff supplied a test API key.
+- `/v1/models` returned 200 OK.
+- `/v1/chat/completions` returned 200 OK for a tiny smoke prompt.
+- Provider-advertised model IDs included `gpt-5.5`, `gpt-5.4`, `gpt-5.4-mini`, and `gpt-5.3-codex`.
+- `/v1/messages` returned 404.
+- `/v1/messages/count_tokens` returned 404.
+
+Conclusion:
+
+- It works technically as an OpenAI-compatible route.
+- It is **not** direct free Claude Code access.
+- Keep it trust-quarantined: no secrets, no private memory, no full repo dumps, no autonomous loop.
+- If we want Claude Code to use it, we need a reviewed local Anthropic-to-OpenAI proxy.
 
 Do not assume Grok's `~/.config/claude-code/config.json` instructions are correct. Current official Claude Code routing is env/settings based, not that config path.
 
