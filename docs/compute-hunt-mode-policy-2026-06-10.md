@@ -81,15 +81,29 @@ Current tested status, 2026-06-10:
 - Provider-advertised model IDs included `gpt-5.5`, `gpt-5.4`, `gpt-5.4-mini`, and `gpt-5.3-codex`.
 - `/v1/messages` returned 404.
 - `/v1/messages/count_tokens` returned 404.
+- The public dashboard/docs claim Claude Code should use a separate base URL: `https://cc.freemodel.dev`.
+- `https://cc.freemodel.dev` has not been smoke-tested with Jeff's key yet.
 
 Conclusion:
 
 - It works technically as an OpenAI-compatible route.
-- It is **not** direct free Claude Code access.
+- `https://api.freemodel.dev/v1` is **not** direct free Claude Code access.
+- `https://cc.freemodel.dev` is a provider-claimed Claude Code route and needs a separate no-secret receipt.
 - Keep it trust-quarantined: no secrets, no private memory, no full repo dumps, no autonomous loop.
 - If we want Claude Code to use it, we need a reviewed local Anthropic-to-OpenAI proxy.
 
 Do not assume Grok's `~/.config/claude-code/config.json` instructions are correct. Current official Claude Code routing is env/settings based, not that config path.
+
+Provider-claimed Claude Code config shape:
+
+```bash
+export ANTHROPIC_API_KEY="entered-locally-not-in-chat"
+export ANTHROPIC_BASE_URL="https://cc.freemodel.dev"
+export CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC="1"
+claude
+```
+
+Security note: their docs also show plaintext `apiKeyHelper` examples. Prefer a local shell prompt, macOS Keychain, or an ignored env file over committing or chatting the key.
 
 ## Better Claude Code Free/Low-Cost Routes To Evaluate
 

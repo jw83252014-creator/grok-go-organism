@@ -57,12 +57,34 @@ Observed:
 - Provider-advertised model IDs included `gpt-5.5`, `gpt-5.4`, `gpt-5.4-mini`, and `gpt-5.3-codex`.
 - `POST https://api.freemodel.dev/v1/messages`: 404.
 - `POST https://api.freemodel.dev/v1/messages/count_tokens`: 404.
+- Public site docs also advertise a separate Claude Code / Anthropic-style route at `https://cc.freemodel.dev`. This route still needs a no-secret smoke test with Jeff's key entered locally, not pasted into chat.
 
 Conclusion:
 
 - Works as an OpenAI-compatible route for tiny, non-sensitive, disposable tests.
-- Does **not** work as direct Claude Code access because Claude Code needs an Anthropic Messages-compatible gateway or a supported Bedrock/Vertex path.
+- `https://api.freemodel.dev/v1` does **not** work as direct Claude Code access because Claude Code needs an Anthropic Messages-compatible gateway or a supported Bedrock/Vertex path.
+- `https://cc.freemodel.dev` is the provider-claimed Claude Code route; test it separately before accepting the claim.
 - Could be tested behind a local Anthropic-to-OpenAI proxy later, but only after proxy security review.
+
+## freemodel.dev Telegram Binding Notes
+
+The public frontend shows account verification options: phone, payment/top-up, or Telegram. The Telegram tab calls `/api/telegram/start-bind`, opens a deep link in Telegram, and polls `/api/telegram/check-bind?token=...` until verified.
+
+User-facing flow:
+
+1. Log in on `https://freemodel.dev`.
+2. Open the dashboard verification/unlock prompt.
+3. Choose **Bind Telegram**.
+4. Click **Open in Telegram** or scan the QR code.
+5. In Telegram, tap **Start** on the opened bot/link.
+6. Return to the web page and wait for **Telegram account bound**.
+
+Common failure modes:
+
+- `start-bind` requires an active website login session; logged-out requests return `401 Unauthorized`.
+- The generated Telegram link can expire; use **Generate new link**.
+- A Telegram account can only bind once; if it says already bound, use the account that originally bound it or rotate accounts legitimately.
+- Browser handoff can fail on mobile; try desktop Chrome plus phone QR scan, or disable aggressive ad/tracking blockers for this site.
 
 ## Forager's Rule
 
