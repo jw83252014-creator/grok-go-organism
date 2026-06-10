@@ -100,6 +100,17 @@ Production goal:
 - make short social posts showing the build process;
 - connect the story back to the real Grok Go dashboard without claiming the system is more autonomous than it is.
 
+## 2026-06-10 Creative Launch Artifacts
+
+New working files:
+
+- `docs/movie-creative-department-ledger-2026-06-10.md` tracks Grok/Gemini/Claude/Codex handoffs, recovered source files, creative cells, and what still needs recovery.
+- `docs/the-device-vajra-video-prompt-pack-2026-06-10.md` starts the first five short videos: The Nightstand Spark, Finger In The Data Flow, Meta Cron Awakens, Indestructible Clarity, and The Invitation.
+- `source-artifacts/grok-reports/2026-06-10-grok-chrome-creative-handoff.md` saves the fresh Grok Chrome handoff: gritty organism visuals, "One Brain Breaks. Cells", terminals-inside-terminals, embodiment/avatar direction, and missing production pieces.
+- `/Users/rentamac/The-Device/production/Creative-Department-Video-Launch-2026-06-10.md` mirrors the launch plan inside The Device repo.
+
+Grok Chrome was prompted through Agent Bridge for a fresh creative handoff. The first reply appeared stale; the retry succeeded and is saved as a source artifact.
+
 ## First Dashboard Track
 
 Use the dashboard to show the real work:
@@ -135,6 +146,7 @@ Do not claim:
 1. Keep Command Center and Easy List phone-safe.
 2. Add a Creative Department panel to the dashboard.
 3. Add a Movie Board panel to the dashboard.
-4. Mirror the movie-specific plan into `the-device`.
-5. Draft X posts as approval-gated copy, not auto-published content.
-6. Keep raw Grok/Gemini exports local until reviewed.
+4. Use the video prompt pack to generate five approval-gated trailer/script drafts.
+5. Mirror approved movie-specific artifacts into `the-device`.
+6. Draft X posts as approval-gated copy, not auto-published content.
+7. Keep raw Grok/Gemini exports local until reviewed.
