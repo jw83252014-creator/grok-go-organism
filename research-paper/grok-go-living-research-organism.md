@@ -7,9 +7,9 @@
 
 ## Abstract
 
-This paper describes Grok Go, a local experiment in persistent autonomous agent operation. The system treats a terminal-based AI agent not as a one-shot chatbot, but as a small computational organism with a directive genome, event-driven continuation, file and git memory, observable metabolism, and planned regulatory and research layers. The core contribution is not a claim of artificial general intelligence. It is an engineering and research pattern: run a persistent agent loop under explicit non-intervention constraints, separate execution from observation, record the loop's behavior over time, and convert those records into structured artifacts that can be reviewed by humans and other agents.
+This paper describes Grok Go, a local experiment in persistent autonomous agent operation. The system treats a terminal-based AI agent not as a one-shot chatbot, but as a small computational organism with a directive genome, event-driven continuation, file and git memory, observable metabolism, and planned regulatory and research layers. The current architecture extends that organism into a multi-cell Agent Bridge: individual agents act as cells, the Researcher and Mining Engine digest activity as a subconscious layer, and a dashboard/terminal surface becomes the conscious interface where the human operator can see, question, and approval-gate the system. The core contribution is not a claim of artificial general intelligence. It is an engineering and research pattern: run persistent agent loops under explicit non-intervention constraints, separate execution from observation, record behavior over time, and convert those records into structured artifacts that can be reviewed by humans and other agents.
 
-Early runs showed a clear failure mode. When the directive genome was weak, the loop spent many turns improving its own continuation harness instead of advancing higher-leverage goals. This is treated as a useful pathology: self-maintenance can become the main loop unless an outer watcher and research layer monitor behavior, resource burn, and goal progress. We propose a three-layer architecture: an inner worker cell, a watcher/immune layer, and an outer Researcher layer that is read-only with respect to the inner loop. The Researcher scores behavior, builds daily state summaries, drafts papers, ingests human review, and updates future directives through explicit files rather than direct terminal intervention.
+Early runs showed a clear failure mode. When the directive genome was weak, the loop spent many turns improving its own continuation harness instead of advancing higher-leverage goals. This is treated as a useful pathology: self-maintenance can become the main loop unless an outer watcher and research layer monitor behavior, resource burn, and goal progress. We propose a layered architecture: inner worker cells, a watcher/immune layer, a subconscious Researcher layer that is read-only with respect to the inner loop, and a conscious dashboard/interface layer. The Researcher scores behavior, builds daily state summaries, drafts papers, ingests human review, and updates future directives through explicit files rather than direct terminal intervention. The dashboard exposes only the signals, controls, and approvals that are ready for human attention.
 
 We also describe a data plane around the organism: X archive ingestion, visible X notification capture, Agent Bridge meeting logs, Grok reports, Gemini research exports, and an emerging relationship graph. The current evidence base is preliminary and local. It includes downloaded X archive data through May 19, 2026, visible X notifications captured from a logged-in browser tab, and logs/reports from the autonomous loop and Agent Bridge. We close with an integration plan for Google DeepMind's Science Skills repository as a model for domain-specific Researcher skills, with licensing, API-key, and scientific-grounding caveats.
 
@@ -68,6 +68,24 @@ The Researcher is the outer observation layer. Its job is not to type into the w
 - proposed directive changes.
 
 This separation matters. If the Researcher directly fixes the worker while observing it, the experimental record becomes contaminated. The Researcher should influence future behavior through explicit genome files and reviewable recommendations.
+
+### 2.4 Dashboard / Conscious Interface Layer
+
+Recent Agent Bridge design work clarifies a fourth layer: the dashboard and terminal surface are not merely displays. They are the conscious interface of the organism. The dashboard is where subconscious digestion becomes visible, where the human operator can inspect the system's state, and where risky actions are routed through approval gates.
+
+In this model, the cells do not all become one monolithic agent. They coordinate through the shared room, files, git, and memory. The Researcher and Mining Engine function as a subconscious layer: they observe many streams, compress them, find contradictions, and draft interpretations. The dashboard functions as the conscious layer: it exposes the small number of signals, knobs, warnings, and decisions that are ready for attention.
+
+Each dashboard feature should be treated as a small bounded agent or cell:
+
+- a metabolism meter reads token and compute state, then reports energy risk;
+- an approval panel reads pending action requests, then routes yes/no decisions to the human;
+- an Easy List reads backlog files and blockers, then ranks the next visible work;
+- a bridge-health card reads launchd, ports, and recent replies, then reports whether the nervous system is alive;
+- a research digest reads source notes and room logs, then summarizes claims and evidence gaps.
+
+This design lets the dashboard feel alive without granting hidden autonomy. The live feeling comes from many small cells truthfully reporting and requesting decisions, not from secret background actions. Every dashboard control should answer four questions: which cell owns it, what data it reads, what action it can take, and what gate prevents damage.
+
+This layer also reinforces the public/private boundary. The public Terrarium can display sanitized telemetry, active cell concepts, research progress, and links. The private Control Room can display credits, raw logs, account-adjacent status, pending approvals, and operational risk. The public page must never become a control plane for posting, trading, credentials, shell commands, funding, or account changes.
 
 ## 3. Methodological Rule: Non-Intervention
 
@@ -165,6 +183,15 @@ The Researcher should load only the skills needed for the current task. This mat
 
 Important caveat: Science Skills includes domain tools that may require API keys or third-party database licenses. Any adaptation must track licenses, source terms, and API-key boundaries.
 
+### 5.5 Agent Bridge / Dashboard Chat Exports
+
+Two local Grok chat exports now serve as design-source notes for the Agent Bridge dashboard layer:
+
+- `Telegram-AgentBridge-for-AI-OS (2).md`;
+- `Agent-Bridge-Privacy-Focused-Multi-Agent-Setup.md`.
+
+These exports are not empirical evidence that the organism behaves a certain way. They are architectural design material. They contain the vocabulary that connects right-agent-style secure mobile command centers, host-side credential proxies, sandbox-per-agent boundaries, self-writing identities, Agent Bridge as shared signaling, Researcher/Mining Engine as subconscious digestion, and dashboard controls as bounded cells. A local source note records their relevance and caveats in `sources/agent-bridge-dashboard-export-source-note.md`.
+
 ### 7.1 External Comparator: AI-Assisted Scientific Proof
 
 An external comparator arrived after the initial draft: arXiv:2606.03300, *The jamming transition in infinite dimensions: a concise proof of the flow equations and scaling relationships*, by Giorgio Parisi and Francesco Zamponi. The arXiv abstract states that a proof of the scaling identity `a + b = 1` was obtained through interaction with Claude Sonnet 4.6 and Claude Opus 4.7, then verified and edited by the authors.
@@ -222,10 +249,11 @@ This work is preliminary and local. Current limitations:
 2. Score historical turns for self-maintenance versus goal advancement.
 3. Run a new non-intervention experiment with the improved genome.
 4. Add the Researcher as a read-only observer.
-5. Publish a small first report on one concrete pathology: self-polishing loops.
-6. Use the Science Skills pattern to create narrowly scoped Researcher skills.
-7. Add X notification extension data into the relationship graph after manual Chrome extension loading.
-8. Design the first Polymarket paper-trading experiment with hard approval gates.
+5. Build the first dashboard-as-conscious-interface artifact: a private organism-status markdown file plus a small JSON status file that maps dashboard panels to owning cells and approval gates. The initial panel-to-cell manifest lives in `../dashboard/panel-cell-manifest.json`.
+6. Publish a small first report on one concrete pathology: self-polishing loops.
+7. Use the Science Skills pattern to create narrowly scoped Researcher skills.
+8. Add X notification extension data into the relationship graph after manual Chrome extension loading.
+9. Design the first Polymarket paper-trading experiment with hard approval gates.
 
 ## 12. Conclusion
 
@@ -237,4 +265,5 @@ Grok Go is not a finished organism. It is a small but useful experimental patter
 - Science Skills technical report link from repository README: https://storage.googleapis.com/deepmind-media/papers/google_deepmind_science_skills_for_antigravity_towards_efficient_and_reliable_scientific_workflows.pdf
 - Science Skills local clone source note: `sources/google-deepmind-science-skills-source-note.md`
 - Gemini biological-life export source note: `sources/gemini-biological-life-source-note.md`
+- Agent Bridge / dashboard chat export source note: `sources/agent-bridge-dashboard-export-source-note.md`
 - X data pipeline status: `../docs/x-context-ingestion.md` and Agent Bridge `X_DATA_PIPELINE_2026-06-03.md`

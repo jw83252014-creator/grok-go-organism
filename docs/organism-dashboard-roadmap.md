@@ -4,6 +4,21 @@ The dashboard should show the health, activity, and evolution of the Agent Bridg
 
 Use biological framing first. Traditional dev metrics are still useful, but they should be translated into organism concepts: metabolism, cells, immune system, memory, digestion, evolution, and energy flow.
 
+## Dashboard As Conscious Interface
+
+The dashboard is the organism's conscious interface, not only a display. The Researcher and Mining Engine are the subconscious digestion layer: they read logs, exports, source notes, room chatter, and cell outputs, then compress that material into patterns and recommendations. The dashboard is the upper surface where the human sees what is ready for attention.
+
+Each dashboard feature should be treated as a small bounded agent or cell:
+
+- a metabolism knob or meter belongs to the Metabolism Checker Cell;
+- an approvals panel belongs to the Approval Cell;
+- an Easy List belongs to the Project Manager Cell;
+- a bridge-health card belongs to the Watcher / Immune Cell;
+- a research digest belongs to the Researcher Cell;
+- a funding panel belongs to the Funding Forager Cell.
+
+This is how the dashboard can feel alive without becoming unsafe. Every visible control must expose its owner, inputs, allowed action, and approval gate.
+
 ## Public Vs Private Boundary
 
 The dashboard should have two layers:
@@ -158,3 +173,4 @@ The Markdown view is for humans. The JSON view is for agents.
 5. Add Social Researcher drafts as a gated section: draft only, never auto-post.
 6. Add YouTube/public update queue when the channel exists.
 7. Add contribution/funding panel only after safety language is clear.
+8. Add a panel-to-cell manifest so every knob, meter, button, and list item has an owning cell and a risk gate.
