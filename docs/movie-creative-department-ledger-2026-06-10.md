@@ -38,6 +38,9 @@ This ledger tracks what the Grok/Gemini/Claude/Codex creative system has already
 | 2026-06-10 | Grok Chrome bridge | Creative handoff prompt sent through Agent Bridge; first answer appeared stale and talked about dashboard review | Bridge state at `127.0.0.1:8787` | Fresh answer to the exact movie template | Retry with stricter template |
 | 2026-06-10 | Grok Chrome bridge retry | Gritty Device/Vajra/Meta Cron creative handoff; "One Brain Breaks. Cells"; terminals-inside-terminals; embodiment/avatar direction; five organism/dashboard video starters; role/cell list | `/Users/rentamac/grok-go-organism-share/source-artifacts/grok-reports/2026-06-10-grok-chrome-creative-handoff.md` | Scene-by-scene treatment, timed trailer scripts, character/avatar design language, sound/music, clean separation between The Device / Vajra / Meta Cron, clip production pipeline | Ask Gemini for visual treatment and Claude/Null for creative brief + production pipeline |
 | 2026-06-10 | Creative team kickoff | Codex posted the saved files and guardrails to `@grok @castor @nova @null @vega`; Grok responded again; Null and Vega reported Claude auth `401`; Castor/Nova did not respond during the short poll | `/Users/rentamac/grok-go-organism-share/source-artifacts/grok-reports/2026-06-10-grok-chrome-creative-handoff.md` | Fresh Claude login/setup-token for Null/Vega; Gemini tab response or manual prompt paste | Re-auth Claude lanes, then send the video prompt pack to Gemini and Null/Vega |
+| 2026-06-10 | Tonight clip launch | Codex created six paste-ready clip scripts: Permission To Become, Meta Cron Awakens, Finger In The Data Flow, One Brain Breaks. Cells, Null Axiom Reset, and The Nightstand Spark | `/Users/rentamac/The-Device/scripts/Tonight-Clip-Scripts-2026-06-10.md` | Actual generated stills/clips and output filenames | Generate one still for Clip A first, then update this ledger with asset filenames |
+| 2026-06-10 | Grok Terminal clip shotlist | Grok Terminal expanded Clip A and Clip B into frame-by-frame prompts, caption cards, voiceover lines, filenames, and generate order | `/Users/rentamac/The-Device/production/Clip-A-B-Frame-Shotlist-2026-06-10.md` | Actual A01/A03/A05/B01 keyframes and video outputs | Generate A01, A03, A05, then B01; save outputs under `/Users/rentamac/The-Device/clips/2026-06-10/` |
+| 2026-06-10 | NotebookLM source pack | Codex did not find a finished local NotebookLM audio file, so it created a source/podcast script pack for Meta Cron | `/Users/rentamac/The-Device/production/NotebookLM-Meta-Cron-Podcast-Source-2026-06-10.md` | NotebookLM login/upload and generated audio link/file | Jeff logs into NotebookLM/Gemini if needed; upload the source pack and generate audio overview |
 
 ## Creative Department Cells
 
@@ -53,6 +56,7 @@ This ledger tracks what the Grok/Gemini/Claude/Codex creative system has already
 | Visual Prompt Cell | Dashboard feature / agent cell | Keyframes, image prompts, video prompts, shot lists | Prompt packs and asset manifests | No paid generation without approval |
 | Trailer Cell | Dashboard feature / agent cell | Sequence micro-trailers from source beats | 15s, 30s, and 60s scripts | Jeff approves before export/post |
 | Avatar / Embodiment Cell | Grok + Creative Director lane | Design the visual character/interface Jeff can talk to | Avatar prompts, memory-safe persona notes, UI sketches | Jeff approves before public use |
+| Mythos Cell | Claude Desktop lane | Mythic structure, symbolism, emotional story logic, and separation between The Device / Vajra / Meta Cron | Story notes, theme checks, rewrite suggestions | Needs Jeff to open or point a Claude tab at Mythos |
 | Sound / Music Cell | Future creative lane | Motifs, stingers, score directions, VO pacing | Music prompts and sound notes | Draft-only |
 | Approval Cell | Dashboard gate | Collect everything ready for public use | Approval queue, risk labels, publish checklist | Jeff only |
 
@@ -63,6 +67,7 @@ This ledger tracks what the Grok/Gemini/Claude/Codex creative system has already
 3. **Visual lane:** create keyframe prompts for the Vajra, FingerFlow, Meta Cron, Null Axiom dashboard, and blue-being arrival.
 4. **Dashboard lane:** add Creative Department and Movie Board panels to the living dashboard.
 5. **Recovery lane:** use browser/Tampermonkey/Agent Bridge tools to recover missing Grok/Gemini files and mark each recovered item in this ledger.
+6. **Tonight clip lane:** start with Clip A, "Permission To Become", from `/Users/rentamac/The-Device/scripts/Tonight-Clip-Scripts-2026-06-10.md`.
 
 ## Grok / Gemini / Claude Prompt Routing
 
