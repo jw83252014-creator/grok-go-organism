@@ -15,6 +15,7 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 | Living dashboard architecture | `~/grok-go-organism-share/docs/dashboard-as-conscious-interface.md` |
 | Dashboard + movie production plan | `~/grok-go-organism-share/docs/dashboard-movie-grok-gemini-production-plan.md` |
 | Claude Fable 5 + free compute mesh plan | `~/grok-go-organism-share/docs/claude-fable5-free-compute-mesh-plan-2026-06-10.md` |
+| Pocket app, Mattermost, and public X roadmap | `~/grok-go-organism-share/docs/pocket-app-mattermost-public-x-roadmap-2026-06-10.md` |
 | Morpho Gemini Agent Bridge onboarding | `~/grok-go-organism-share/docs/morpho-agent-bridge-onboarding-2026-06-10.md` |
 | Morpho onboarding inventory + tasks | `~/grok-go-organism-share/docs/morpho-onboarding-inventory-2026-06-10.md` |
 | Movie creative department ledger | `~/grok-go-organism-share/docs/movie-creative-department-ledger-2026-06-10.md` |
