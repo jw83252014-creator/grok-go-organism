@@ -20,7 +20,7 @@ Status: starter tracker for Compute Hunt Mode
 | OpenRouter -> Claude Code | gateway/API | needs key | run `claude /status` after env setup | Official OpenRouter docs support Claude Code via `ANTHROPIC_BASE_URL=https://openrouter.ai/api`. |
 | NVIDIA NIM | free tier | needs key | list models + one small prompt | Candidate through direct route or proxy; one legitimate account only. |
 | free-claude-code proxy | local proxy | needs review | security/code review first | Routes Claude Code to NVIDIA NIM, OpenRouter, or LM Studio. Do not expose publicly. |
-| freemodel.dev | third-party API | needs review/key | verify Anthropic-compatible route or proxy need | Site exists and advertises OpenAI-compatible API; do not assume direct Claude Code config works. |
+| freemodel.dev | third-party API | ❌ REJECTED 2026-06-09 | scanned, do not use | 35-day-old domain, 35/100 trust score, flagged "risky"; owner unverifiable, dead support contacts, scripts/redirects that don't match the site. Profile of a credential/prompt harvester. Routing organism traffic through it = leaking every prompt to an anonymous proxy. NOT signing up, NOT installing its config. |
 | GitHub Models | free tier | needs PAT/key plan | one small OpenAI-compatible prompt | Good daily quota candidate; track per-call limits. |
 | Groq | free tier | needs key | one fast small prompt | Best for speed-sensitive work. |
 | Cerebras | free tier | needs key | one bulk/summarization prompt | Good token/day headroom candidate. |
@@ -40,5 +40,8 @@ Status: starter tracker for Compute Hunt Mode
 1. OpenRouter Claude Code route, if Jeff provides a key.
 2. NVIDIA NIM route, if Jeff provides a key.
 3. `free-claude-code` proxy code review, no install/run until approved.
-4. freemodel.dev manual review and key test, if Jeff wants to try one account.
+4. ~~freemodel.dev~~ — REJECTED (see table; untrusted new domain, harvester profile).
 5. freellmapi/free gateway local snapshot for OpenAI-compatible workloads.
+
+## Forager's rule (why freemodel got cut)
+Foraging ≠ eating poison. Before any endpoint: (1) **trust** — first-party (Anthropic/OpenAI/Google/Groq/NVIDIA/Cloudflare/GitHub) or self-hosted, never an anonymous proxy that sees our prompts; (2) **terms** — one honest account, no VPN/alias farms (a banned account costs more than the credits). The real free substrate is **Oracle's $0 24GB box + Groq/Gemini/GitHub Models free tiers + OpenAI researcher credits + our local Qwen** — same goal, no poison. Links: `~/champion-fencing-applications/SIGNUP-LINKS.md`.
