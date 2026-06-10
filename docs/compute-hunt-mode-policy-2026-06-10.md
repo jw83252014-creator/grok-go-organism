@@ -105,6 +105,14 @@ claude
 
 Security note: their docs also show plaintext `apiKeyHelper` examples. Prefer a local shell prompt, macOS Keychain, or an ignored env file over committing or chatting the key.
 
+Public Telegram group FAQ notes from Jeff:
+
+- Credit top-ups are one-time balance; monthly plans are rate-limit tiers.
+- Tier 0 request body limit is 3 MB; Tier 1+ is 5 MB.
+- Slow Claude sessions should be restarted with fresh context.
+- `ip_account_conflict` means only one free account per IP.
+- The group suggests VPN/mobile-network workarounds, but Grok Go policy still forbids quota evasion. If blocked, use a legitimate existing key, a paid/top-up path after approval, or another provider.
+
 ## Better Claude Code Free/Low-Cost Routes To Evaluate
 
 ### 1. OpenRouter Direct

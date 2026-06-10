@@ -85,6 +85,25 @@ Common failure modes:
 - The generated Telegram link can expire; use **Generate new link**.
 - A Telegram account can only bind once; if it says already bound, use the account that originally bound it or rotate accounts legitimately.
 - Browser handoff can fail on mobile; try desktop Chrome plus phone QR scan, or disable aggressive ad/tracking blockers for this site.
+- Joining the public Telegram group is **not** the same as account binding. Binding requires the dashboard-generated Telegram link/bot start token.
+
+## freemodel.dev Group FAQ Notes From Jeff
+
+Jeff joined the public Telegram group and captured the FAQ on 2026-06-10.
+
+Useful operational notes:
+
+- Group claims `Claude Fable 5` is live through the API and priced 2x higher than Opus.
+- Credit top-ups are one-time balance. Monthly plans are rate-limit tiers, not balance.
+- 413 errors mean request body is too large: Tier 0 is 3 MB, Tier 1+ is 5 MB.
+- Their own advice for slow Claude sessions is to start a fresh session because accumulated context slows every response.
+- Group FAQ says `ip_account_conflict` means only one free account is allowed per IP.
+
+Grok Go policy interpretation:
+
+- We will **not** use VPN/IP switching to bypass free-account restrictions, even though the group FAQ suggests it as an option.
+- If `ip_account_conflict` blocks a free account, the clean choices are: use the already-working key if it has balance, bind the intended account correctly, or pay/top up only after Jeff approves the risk and budget.
+- Treat group pricing and model claims as provider claims until we have receipts from the API and dashboard.
 
 ## Forager's Rule
 
