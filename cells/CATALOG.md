@@ -10,6 +10,7 @@ Extracted 2026-06-08 from the Grok "Telegram AgentBridge" chat (filed in mining-
 | **Free Compute Mesh / Gateway** | circulatory nutrient transport | pool approved local models, free endpoints, and free-tier VM workers behind a private routed substrate | local Qwen + approved free providers | human-gated for keys, VM signup, network exposure |
 | **Claude Fable 5 Expert** | high-order cortex | rare deep synthesis, methodology, hard research, long-horizon planning, creative structure | `claude-fable-5` API or Claude Desktop subscription lane | paid / subscription / approval-gated; never default |
 | **Intelligence Forager** | eyes / sensory organ | watch key people + sources (deronin/Tibo, Marc Andreessen, AI-GitHub) for signals & ideas → log + flag | x-scraper / free APIs | human-gated for any posting |
+| **Dexter Financial Intelligence** | economic sensory organ | convert SoMaCoSF/GYST/supply-chain/prediction-market signals into sourced, approval-gated thesis packets | local/free first; Fable/paid only by approval | research-only; no trading, betting, account actions, or public claims |
 | **Funding Forager (BitHawk)** | foraging for food | hunt funding/credits (research credits, grants, Codex-10x, accelerators), draft applications | free | human submits applications |
 | **NVIDIA Forager** | foraging (specialized) | hunt NVIDIA free models/credits (build.nvidia.com, Inception) | free | human signs up |
 | **Security / Threat-Intel** | immune system | monitor for threats, secret leakage, prompt-injection; harden the bridge | local (free) | free |
@@ -24,3 +25,4 @@ Extracted 2026-06-08 from the Grok "Telegram AgentBridge" chat (filed in mining-
 - Priority order to build: Intelligence Forager → Funding Forager → Project Manager (gives the "Next 7 Days" backlog) → the rest.
 - Claude Fable 5 is confirmed real as of 2026-06-09, but it is not free metabolism. Treat it as Tier 3 escalation after local/free paths fail, with cost estimates and Jeff approval.
 - Claude Mythos 5 is restricted access, not a generally available cell. Do not plan around Mythos 5 unless Jeff obtains explicit trusted-access approval.
+- Dexter was reconstructed from the Claude/Fable chat named `mac mini codex issues`; it links Sam's SoMaCoSF/GYST organism to Jeff's Grok Go approval dashboard.
