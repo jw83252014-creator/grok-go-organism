@@ -84,7 +84,9 @@ def write_receipt(api_key: str, endpoint: str, signal_count: int, uuid_tag: str)
         f.write(json.dumps(receipt) + "\n")
 
 # ── Auth ─────────────────────────────────────────────────────────────────
-def get_subscriber(x_api_key: str = Header(...)):
+def get_subscriber(x_api_key: Optional[str] = Header(default=None)):
+    if not x_api_key:
+        raise HTTPException(status_code=401, detail="Missing API key. Pass header 'x-api-key'. Subscribe at /subscribe")
     keys = load_keys()
     if x_api_key not in keys:
         raise HTTPException(status_code=401, detail="Invalid API key. Subscribe at /subscribe")
