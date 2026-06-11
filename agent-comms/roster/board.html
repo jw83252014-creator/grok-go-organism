@@ -70,6 +70,61 @@
   .b-new { background: rgba(66,245,227,.15); color: #42f5e3; }
   .b-human { background: rgba(245,197,66,.18); color: #f5c542; }
 
+  /* tldr strip */
+  .tldr {
+    background: linear-gradient(90deg, rgba(66,245,227,.08), rgba(155,89,245,.08));
+    border: 1px solid rgba(66,245,227,.2); border-radius: 12px;
+    padding: 10px 16px; margin-bottom: 16px; font-size: 13px; line-height: 1.5;
+  }
+  .tldr b { color: var(--glow); }
+
+  /* presence */
+  .dot {
+    width: 10px; height: 10px; border-radius: 50%; display: inline-block;
+    position: absolute; top: 12px; right: 12px;
+  }
+  .dot.on { background: #2ecc71; box-shadow: 0 0 8px #2ecc71; animation: pulse 2s infinite; }
+  .dot.off { background: #555f6e; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .45; } }
+  .tile { position: relative; }
+  .last-said {
+    font-size: 10px; color: var(--dim); margin-top: 6px; line-height: 1.3;
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    font-style: italic;
+  }
+
+  /* priorities */
+  .prio-row {
+    background: var(--card); border-radius: 10px; padding: 10px 14px; margin-bottom: 7px;
+    display: flex; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.05);
+  }
+  .prio-row.done { opacity: .35; }
+  .prio-row.done .p-title { text-decoration: line-through; }
+  .vote-btn {
+    background: rgba(66,245,227,.1); color: var(--glow); border: 1px solid rgba(66,245,227,.3);
+    border-radius: 8px; padding: 4px 10px; cursor: pointer; font-weight: 700; font-size: 13px;
+    min-width: 52px; text-align: center;
+  }
+  .vote-btn.voted { background: var(--glow); color: #0a0e14; }
+  .p-title { font-size: 13px; font-weight: 600; flex: 1; }
+  .p-meta { font-size: 10px; color: var(--dim); }
+  .p-tag {
+    font-size: 9px; padding: 2px 8px; border-radius: 8px; background: rgba(255,255,255,.07);
+    color: var(--dim); text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0;
+  }
+
+  /* schedule */
+  .block {
+    background: var(--card); border-radius: 12px; padding: 14px 16px; margin-bottom: 9px;
+    display: flex; gap: 16px; align-items: center; border-left: 3px solid #9b59f5;
+  }
+  .block.now { border-left-color: #2ecc71; box-shadow: 0 0 14px -6px #2ecc71; }
+  .block .b-time { font-family: monospace; font-size: 13px; color: #9b59f5; min-width: 100px; }
+  .block.now .b-time { color: #2ecc71; }
+  .block h4 { font-size: 14px; }
+  .block p { font-size: 12px; color: var(--dim); margin-top: 2px; }
+  .block .b-who { font-size: 10px; color: var(--glow); margin-top: 4px; }
+
   /* tasks */
   .task {
     background: var(--card); border-radius: 12px; padding: 14px 16px; margin-bottom: 10px;
@@ -170,14 +225,32 @@
   <h1>THE COMPANY</h1>
   <div class="sub" id="count"></div>
 
+  <div class="tldr" id="tldr"></div>
+
   <div class="tabs">
     <div class="tab on" data-pane="roster" onclick="switchTab(this)">Roster</div>
+    <div class="tab" data-pane="priorities" onclick="switchTab(this)">Priorities</div>
     <div class="tab" data-pane="tasks" onclick="switchTab(this)">Your Tasks <span class="pill" id="taskCount"></span></div>
+    <div class="tab" data-pane="schedule" onclick="switchTab(this)">Schedule</div>
     <div class="tab" data-pane="board" onclick="switchTab(this)">Board</div>
     <div class="tab" data-pane="directions" onclick="switchTab(this)">Directions</div>
   </div>
 
   <div class="pane on" id="pane-roster"><div class="grid" id="grid"></div></div>
+
+  <div class="pane" id="pane-priorities">
+    <div class="as-row" style="margin-bottom:12px">
+      <label>Voting as</label>
+      <select id="vote-as"><option value="@jeff">Jeff</option><option value="@somaco">Sam</option></select>
+      <span class="note" style="margin:0">Tap ▲ to vote. Top votes = what we build next. Tap the title to mark done.</span>
+    </div>
+    <div id="prio-list"></div>
+  </div>
+
+  <div class="pane" id="pane-schedule">
+    <div id="schedule-list"></div>
+    <div class="note" id="schedule-note"></div>
+  </div>
 
   <div class="pane" id="pane-tasks" >
     <div class="who-head" style="color:#f5c542">Jeff — catch up here</div>
@@ -206,7 +279,7 @@
 
 <script>
 const BRIDGE = 'http://127.0.0.1:8787';
-let MEMBERS = [], TASKS = [], DIRECTIONS = [], MEDIA = [];
+let MEMBERS = [], TASKS = [], DIRECTIONS = [], MEDIA = [], PRESENCE = {}, PRIORITIES = [];
 
 const store = {
   get: k => JSON.parse(localStorage.getItem('board:' + k) || 'null'),
@@ -240,14 +313,99 @@ function renderRoster(data) {
   document.getElementById('count').textContent =
     `${MEMBERS.length} members — ${humans} humans, ${MEMBERS.length - humans} agents` +
     (fresh ? ` — ${fresh} new today` : '') + ` · updated ${data.updated}`;
-  document.getElementById('grid').innerHTML = MEMBERS.map((m, i) => `
+  document.getElementById('grid').innerHTML = MEMBERS.map((m, i) => {
+    const p = PRESENCE[m.handle];
+    return `
     <div class="tile" style="--tile-color:${m.color}" onclick="openCard(${i})">
+      ${m.type !== 'human' ? `<span class="dot ${p && p.online ? 'on' : 'off'}"></span>` : ''}
       <div class="avatar" ${m.avatar ? `style="background-image:url('${m.avatar}');--tile-color:${m.color}"` : ''}>${m.avatar ? '' : m.name[0]}</div>
       <div class="handle">${m.handle}</div>
       <div class="role">${m.role}</div>
       ${m.type === 'human' ? '<span class="badge b-human">human</span>' : statusBadge(m.status)}
       ${m.joined ? '<span class="badge b-new">new</span>' : ''}
-    </div>`).join('');
+      ${p ? `<div class="last-said">"${p.last_said}"</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderPriorities(data) {
+  PRIORITIES = data.items;
+  const myVotes = store.get('votes') || {};       // {itemId: [who,...]}
+  const doneOverride = new Set(store.get('prio-done') || []);
+  const score = it => it.votes + ((myVotes[it.id] || []).length);
+  const sorted = [...PRIORITIES].sort((a, b) => {
+    const ad = doneOverride.has(a.id) || a.done, bd = doneOverride.has(b.id) || b.done;
+    if (ad !== bd) return ad ? 1 : -1;
+    return score(b) - score(a);
+  });
+  document.getElementById('prio-list').innerHTML = sorted.map(it => {
+    const done = doneOverride.has(it.id) || it.done;
+    const voters = myVotes[it.id] || [];
+    const me = document.getElementById('vote-as') ? document.getElementById('vote-as').value : '@jeff';
+    return `
+    <div class="prio-row ${done ? 'done' : ''}">
+      <button class="vote-btn ${voters.includes(me) ? 'voted' : ''}" onclick="vote('${it.id}')">▲ ${score(it)}</button>
+      <div style="flex:1">
+        <div class="p-title" onclick="togglePrioDone('${it.id}')" style="cursor:pointer">${it.title}</div>
+        <div class="p-meta">lead: ${it.lead}${voters.length ? ' · voted: ' + voters.join(', ') : ''}</div>
+      </div>
+      <span class="p-tag">${it.tag}</span>
+    </div>`;
+  }).join('');
+}
+
+function vote(id) {
+  const me = document.getElementById('vote-as').value;
+  const myVotes = store.get('votes') || {};
+  const voters = myVotes[id] || [];
+  const idx = voters.indexOf(me);
+  idx >= 0 ? voters.splice(idx, 1) : voters.push(me);
+  myVotes[id] = voters;
+  store.set('votes', myVotes);
+  const it = PRIORITIES.find(x => x.id === id);
+  if (idx < 0 && it) bridgeSay(`🗳 ${me} voted for: ${it.title}`);
+  renderPriorities({ items: PRIORITIES });
+}
+
+function togglePrioDone(id) {
+  const doneSet = new Set(store.get('prio-done') || []);
+  doneSet.has(id) ? doneSet.delete(id) : doneSet.add(id);
+  store.set('prio-done', [...doneSet]);
+  const it = PRIORITIES.find(x => x.id === id);
+  if (doneSet.has(id) && it) bridgeSay(`✅ priority done: ${it.title}`);
+  renderPriorities({ items: PRIORITIES });
+}
+
+function renderSchedule(data) {
+  const now = new Date();
+  const mins = now.getHours() * 60 + now.getMinutes();
+  document.getElementById('schedule-list').innerHTML = data.blocks.map(b => {
+    const [s, e] = b.time.split('–').map(t => {
+      const [h, m] = t.split(':').map(Number); return h * 60 + m;
+    });
+    const live = mins >= s && mins < e;
+    return `
+    <div class="block ${live ? 'now' : ''}">
+      <div class="b-time">${b.time}${live ? '<br>● NOW' : ''}</div>
+      <div>
+        <h4>${b.title}</h4>
+        <p>${b.what}</p>
+        <div class="b-who">${b.who.join(' · ')}</div>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('schedule-note').textContent = data.iphone_alerts;
+}
+
+function renderTldr() {
+  const doneSet = new Set(store.get('done') || []);
+  const openTasks = TASKS.filter(t => t.for === '@jeff' && !doneSet.has(t.id));
+  const online = Object.values(PRESENCE).filter(p => p.online).length;
+  const top = openTasks.sort((a, b) => a.priority - b.priority)[0];
+  document.getElementById('tldr').innerHTML =
+    `<b>TLDR:</b> ${online} agent${online === 1 ? '' : 's'} active now · ` +
+    `${openTasks.length} things need you · ` +
+    (top ? `do this first: <b>${top.title}</b>` : 'you are caught up 🎉');
 }
 
 function renderTasks(data) {
@@ -379,15 +537,30 @@ function closeCard() { document.getElementById('overlay').classList.remove('open
 Promise.all([
   fetch('roster.json').then(r => r.json()),
   fetch('tasks.json').then(r => r.json()).catch(() => ({ tasks: [], directions: [] })),
-  fetch('media.json').then(r => r.json()).catch(() => ({ items: [] }))
-]).then(([roster, tasks, media]) => {
+  fetch('media.json').then(r => r.json()).catch(() => ({ items: [] })),
+  fetch('presence.json').then(r => r.json()).catch(() => ({ agents: {} })),
+  fetch('priorities.json').then(r => r.json()).catch(() => ({ items: [] })),
+  fetch('schedule.json').then(r => r.json()).catch(() => ({ blocks: [], iphone_alerts: '' }))
+]).then(([roster, tasks, media, presence, priorities, schedule]) => {
+  PRESENCE = presence.agents || {};
   renderRoster(roster);
   renderTasks(tasks);
   renderMedia(media);
+  renderPriorities(priorities);
+  renderSchedule(schedule);
+  renderTldr();
 }).catch(() => {
   document.getElementById('count').textContent =
     'Could not load roster.json — serve this folder: python3 -m http.server 8090';
 });
+
+// re-render schedule "NOW" marker + presence freshness every minute
+setInterval(() => {
+  fetch('presence.json').then(r => r.json()).then(p => {
+    PRESENCE = p.agents || {};
+    renderTldr();
+  }).catch(() => {});
+}, 60000);
 </script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+{
+  "schema": "schedule.v1",
+  "updated": "2026-06-10",
+  "note": "Daily time blocks. Jeff's brain works fast — each block is ONE focus, scannable. Calendar events mirror these.",
+  "blocks": [
+    { "id": "b1", "time": "09:00–10:00", "title": "FUNDING HOUR", "what": "Submit/advance one application. Today: Emergent Ventures.", "who": ["@jeff", "@bithawk"] },
+    { "id": "b2", "time": "10:00–12:00", "title": "BUILD BLOCK", "what": "Vertex Chat / board / desktop fork. Codex drives, Jeff unblocks.", "who": ["@codex", "@vega"] },
+    { "id": "b3", "time": "13:00–15:00", "title": "OUTREACH BLOCK", "what": "VC package, Weinstein email, X chains. One send per day.", "who": ["@jeff", "@mythos"] },
+    { "id": "b4", "time": "15:00–17:00", "title": "CREATIVE BLOCK", "what": "Clips, film, avatars. Generate, review, approve.", "who": ["@vega", "@grok-chrome", "@grok-terminal"] },
+    { "id": "b5", "time": "20:00–21:00", "title": "BOARD TIME w/ SAM", "what": "Open the board together. Vote priorities. Comment on clips. 1 hour, done.", "who": ["@jeff", "@somaco"] }
+  ],
+  "iphone_alerts": "Set with Apple Shortcuts → Automation → 'When I arrive [location]' / 'When I leave' → Show Notification or Open URL http://100.89.238.84:8090/board.html. Calendar events carry their own alerts."
+}

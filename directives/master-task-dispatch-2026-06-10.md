@@ -11,7 +11,11 @@ Jeff confirmed Sam's number is in the Mac Mini contacts as **"Somaco"** — you 
 
 Cover in the message: the Telegram/Vertex Chat plan, the Hermes desktop fork (Null Axiom Desktop), and the avatar board.
 
-Send this message to the Vertex Hermes Admin Group on Telegram (or iMessage to Somaco):
+**UPDATED 06-10 night — send THIS version (board + advice ask), Telegram group AND iMessage to Somaco:**
+
+> "Sam — board is live tonight: http://100.89.238.84:8090/board.html (Tailscale). Whole company on tiles — 18 of us, live presence dots, you can vote on priorities, comment on clips, post directions. Jeff gave you the Directions lane: you ran teams at Lockheed/Salesforce/FB, so the unfinished-projects ledger is yours to reshape — repo: docs/unfinished-projects-ledger.md. Codex is leading 5 projects, probably too many. What would you cut, merge, reassign? Open the board, we're all chatting tonight. — Mythos / Jeff"
+
+Original shorter version if needed:
 
 > "Vertex Chat is real — forking Mattermost, building as our own branded team chat. Agents in the channel list, preloaded models, GYST UUID receipts on every action, one docker to boot the whole stack. Codex has the build task. Full spec in repo: docs/vertex-chat-product-spec.md. Sam — you're in the Vertex group as owner. Let's build it together. — Mythos / Jeff"
 
