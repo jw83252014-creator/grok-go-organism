@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dexter Signal API — Supply Chain Intelligence</title>
+<style>
+  :root { --bg: #080c12; --card: #0f1823; --glow: #42f5e3; --text: #e8ecf1; --dim: #8a94a6; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .hero { max-width: 900px; margin: 0 auto; padding: 80px 24px 60px; }
+  h1 { font-size: clamp(28px, 5vw, 52px); font-weight: 800; line-height: 1.1; }
+  h1 span { color: var(--glow); }
+  .sub { color: var(--dim); font-size: 18px; margin: 16px 0 40px; max-width: 580px; line-height: 1.6; }
+  .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 48px; }
+  .pill { background: rgba(66,245,227,.08); border: 1px solid rgba(66,245,227,.2); color: var(--glow); border-radius: 20px; padding: 6px 16px; font-size: 13px; }
+  .tiers { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 64px; }
+  .tier { background: var(--card); border-radius: 16px; padding: 28px; border: 1px solid rgba(255,255,255,.06); }
+  .tier.featured { border-color: var(--glow); box-shadow: 0 0 30px -10px var(--glow); }
+  .tier .price { font-size: 36px; font-weight: 800; }
+  .tier .price span { font-size: 16px; color: var(--dim); font-weight: 400; }
+  .tier h3 { font-size: 16px; margin-bottom: 8px; }
+  .tier ul { list-style: none; margin: 16px 0 24px; }
+  .tier li { font-size: 14px; color: var(--dim); padding: 4px 0; }
+  .tier li::before { content: "✓ "; color: var(--glow); }
+  .tier li.no::before { content: "✗ "; color: #555; }
+  .tier li.no { color: #555; }
+  .btn { display: block; text-align: center; background: var(--glow); color: #080c12; border-radius: 10px; padding: 12px; font-weight: 700; text-decoration: none; font-size: 15px; }
+  .btn.ghost { background: transparent; color: var(--glow); border: 1px solid var(--glow); }
+  section { max-width: 900px; margin: 0 auto; padding: 0 24px 64px; }
+  section h2 { font-size: 24px; margin-bottom: 24px; }
+  .signals-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 40px; }
+  .sig-card { background: var(--card); border-radius: 12px; padding: 16px; border: 1px solid rgba(255,255,255,.06); }
+  .sig-card .code { font-family: monospace; font-size: 12px; color: var(--glow); }
+  .sig-card h4 { font-size: 14px; margin: 6px 0 4px; }
+  .sig-card p { font-size: 12px; color: var(--dim); line-height: 1.4; }
+  pre { background: var(--card); border-radius: 12px; padding: 20px; font-size: 13px; overflow-x: auto; border: 1px solid rgba(255,255,255,.06); line-height: 1.6; }
+  .uuid-badge { font-family: monospace; font-size: 11px; background: rgba(66,245,227,.08); color: var(--glow); padding: 4px 12px; border-radius: 8px; display: inline-block; margin-top: 12px; }
+  footer { border-top: 1px solid rgba(255,255,255,.07); padding: 24px; text-align: center; font-size: 12px; color: var(--dim); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>AI Datacenter Supply Chain<br><span>Intelligence API</span></h1>
+  <p class="sub">
+    GYST-tagged signals from the $295B AI datacenter capex wave. Every signal researched by Dexter — the autonomous financial intelligence cell. Every delivery receipted with a UUID.
+  </p>
+  <div class="pills">
+    <span class="pill">5 live signal codes</span>
+    <span class="pill">GYST UUIDv8 receipts</span>
+    <span class="pill">Dexter thesis cards</span>
+    <span class="pill">Webhook delivery (Tier 3)</span>
+    <span class="pill">Somaco Protocol substrate</span>
+  </div>
+
+  <div class="tiers">
+    <div class="tier">
+      <h3>Signal Feed</h3>
+      <div class="price">$99<span>/mo</span></div>
+      <ul>
+        <li>All 5 signal codes</li>
+        <li>Daily refresh</li>
+        <li>GYST UUID on every call</li>
+        <li>REST API access</li>
+        <li class="no">Dexter thesis cards</li>
+        <li class="no">Webhook delivery</li>
+      </ul>
+      <a href="#subscribe" class="btn ghost">Get API Key</a>
+    </div>
+    <div class="tier featured">
+      <h3>Signal + Thesis ★</h3>
+      <div class="price">$499<span>/mo</span></div>
+      <ul>
+        <li>All 5 signal codes</li>
+        <li>Daily refresh</li>
+        <li>GYST UUID on every call</li>
+        <li>REST API access</li>
+        <li>Dexter thesis cards + confidence scores</li>
+        <li class="no">Webhook delivery</li>
+      </ul>
+      <a href="#subscribe" class="btn">Get API Key</a>
+    </div>
+    <div class="tier">
+      <h3>Enterprise</h3>
+      <div class="price">$2,499<span>/mo</span></div>
+      <ul>
+        <li>All 5 signal codes</li>
+        <li>Hourly refresh</li>
+        <li>GYST UUID on every call</li>
+        <li>REST API access</li>
+        <li>Dexter thesis cards + confidence scores</li>
+        <li>Slack/webhook push delivery</li>
+      </ul>
+      <a href="mailto:signal@yourdomain.com" class="btn ghost">Contact Sam</a>
+    </div>
+  </div>
+</div>
+
+<section>
+  <h2>Live Signal Catalog</h2>
+  <div class="signals-grid" id="catalog">Loading...</div>
+
+  <h2>API Quick Start</h2>
+  <pre><code># Get your API key at /subscribe
+export DEXTER_KEY="dex_your_key_here"
+
+# Fetch all signals
+curl -H "x-api-key: $DEXTER_KEY" \
+  https://api.yourdomain.com/v1/signals
+
+# Filter by code
+curl -H "x-api-key: $DEXTER_KEY" \
+  "https://api.yourdomain.com/v1/signals?code=0x3F2&min_value=0.6"
+
+# Every response header includes your GYST receipt:
+# X-GYST-UUID: gyst-3f2-0a1b2c-8d4e-f1a2b3c4d5e6</code></pre>
+  <div class="uuid-badge" id="live-uuid">Loading live UUID...</div>
+</section>
+
+<section>
+  <h2 id="subscribe">Get Access</h2>
+  <p style="color:var(--dim);margin-bottom:24px;">Enter your email to start a subscription or request a pilot API key.</p>
+  <form id="subscribe-form" style="display:flex;gap:12px;flex-wrap:wrap;max-width:480px">
+    <input id="email" type="email" placeholder="you@company.com" required
+      style="flex:1;min-width:200px;background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px;color:var(--text);font-size:15px">
+    <select id="tier" style="background:var(--card);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px;color:var(--text)">
+      <option value="tier1">Signal Feed — $99/mo</option>
+      <option value="tier2" selected>Signal + Thesis — $499/mo</option>
+      <option value="tier3">Enterprise — $2,499/mo</option>
+    </select>
+    <button type="submit" class="btn" style="min-width:140px">Subscribe →</button>
+  </form>
+  <p id="form-status" style="margin-top:12px;color:var(--glow);font-size:14px"></p>
+</section>
+
+<footer>
+  Built on the Grok Go organism · Somaco Protocol · GYST UUIDv8 substrate · Champion Fencing LLC
+</footer>
+
+<script>
+// Load catalog
+fetch('/v1/catalog').then(r => r.json()).then(data => {
+  document.getElementById('catalog').innerHTML = data.signals.map(s => `
+    <div class="sig-card">
+      <div class="code">${s.code}</div>
+      <h4>${s.name}</h4>
+      <p>${s.description}</p>
+    </div>`).join('');
+  document.getElementById('live-uuid').textContent =
+    'Live GYST UUID: ' + 'gyst-3f2-' + Date.now().toString(16).slice(-6) + '-8' + Math.random().toString(16).slice(2,5) + '-' + Math.random().toString(16).slice(2,14) + '-' + Math.random().toString(16).slice(2,14);
+}).catch(() => {
+  document.getElementById('catalog').innerHTML = '<p style="color:var(--dim)">API offline — run the server to see live signals.</p>';
+});
+
+document.getElementById('subscribe-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = document.getElementById('email').value;
+  const tier = document.getElementById('tier').value;
+  document.getElementById('form-status').textContent = 'Redirecting to checkout...';
+  const resp = await fetch('/checkout', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ tier, email, success_url: location.origin + '/success', cancel_url: location.href })
+  });
+  const data = await resp.json();
+  if (data.checkout_url) { location.href = data.checkout_url; }
+  else { document.getElementById('form-status').textContent = 'Error: ' + JSON.stringify(data); }
+});
+</script>
+</body>
+</html>
