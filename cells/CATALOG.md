@@ -7,6 +7,8 @@ Extracted 2026-06-08 from the Grok "Telegram AgentBridge" chat (filed in mining-
 | **Researcher** | cerebral cortex | the main population/research loop (already running) | local Qwen (free) | free |
 | **Miner** | digestion | distill corpus/chats into structured ideas (mining-engine) | local (free) | free |
 | **Metabolism Checker** | homeostasis sensor | watch compute/credit health, trigger low-metabolism mode | local (free) | free |
+| **Free Compute Mesh / Gateway** | circulatory nutrient transport | pool approved local models, free endpoints, and free-tier VM workers behind a private routed substrate | local Qwen + approved free providers | human-gated for keys, VM signup, network exposure |
+| **Claude Fable 5 Expert** | high-order cortex | rare deep synthesis, methodology, hard research, long-horizon planning, creative structure | `claude-fable-5` API or Claude Desktop subscription lane | paid / subscription / approval-gated; never default |
 | **Intelligence Forager** | eyes / sensory organ | watch key people + sources (deronin/Tibo, Marc Andreessen, AI-GitHub) for signals & ideas → log + flag | x-scraper / free APIs | human-gated for any posting |
 | **Funding Forager (BitHawk)** | foraging for food | hunt funding/credits (research credits, grants, Codex-10x, accelerators), draft applications | free | human submits applications |
 | **NVIDIA Forager** | foraging (specialized) | hunt NVIDIA free models/credits (build.nvidia.com, Inception) | free | human signs up |
@@ -32,3 +34,5 @@ Extracted 2026-06-08 from the Grok "Telegram AgentBridge" chat (filed in mining-
 - This realizes the "Ninja agents" idea from the chat (Researcher, Miner, Security, Forager, Communication, PM) as biological organs.
 - Grok generated vault files in the chat (`identity.md`, `skills-registry.md`, `AgentBridge-design.md`, `right-agent-inspiration.md`) that live in Grok's sandbox — those need a browser download (Chrome extension or Jeff's click) to retrieve; the *ideas* from them are captured above.
 - Priority order to build: Intelligence Forager → Funding Forager → Project Manager (gives the "Next 7 Days" backlog) → the rest.
+- Claude Fable 5 is confirmed real as of 2026-06-09, but it is not free metabolism. Treat it as Tier 3 escalation after local/free paths fail, with cost estimates and Jeff approval.
+- Claude Mythos 5 is restricted access, not a generally available cell. Do not plan around Mythos 5 unless Jeff obtains explicit trusted-access approval.

@@ -11,7 +11,26 @@ For Jeff + Codex + any agent. This is the map: where vega/Claude saves work, log
 | What | Where |
 |---|---|
 | Grok Go content + plans | `~/grok-go-organism-share/docs/` (video scripts, x-presence, x-content-system, launch-plan, this index) |
+| Compute mesh manifest | `~/grok-go-organism-share/compute-mesh/` |
+| Compute Hunt Mode policy | `~/grok-go-organism-share/docs/compute-hunt-mode-policy-2026-06-10.md` |
+| Low-cost endpoint tracker | `~/grok-go-organism-share/docs/low-cost-endpoints.md` |
+| Compute Hunt test receipts | `~/grok-go-organism-share/receipts/compute-hunt/` |
 | Living dashboard architecture | `~/grok-go-organism-share/docs/dashboard-as-conscious-interface.md` |
+| Dashboard + movie production plan | `~/grok-go-organism-share/docs/dashboard-movie-grok-gemini-production-plan.md` |
+| Claude Fable 5 + free compute mesh plan | `~/grok-go-organism-share/docs/claude-fable5-free-compute-mesh-plan-2026-06-10.md` |
+| Pocket app, Mattermost, and public X roadmap | `~/grok-go-organism-share/docs/pocket-app-mattermost-public-x-roadmap-2026-06-10.md` |
+| Morpho Gemini Agent Bridge onboarding | `~/grok-go-organism-share/docs/morpho-agent-bridge-onboarding-2026-06-10.md` |
+| Morpho onboarding inventory + tasks | `~/grok-go-organism-share/docs/morpho-onboarding-inventory-2026-06-10.md` |
+| Movie creative department ledger | `~/grok-go-organism-share/docs/movie-creative-department-ledger-2026-06-10.md` |
+| The Device / Vajra video prompt pack | `~/grok-go-organism-share/docs/the-device-vajra-video-prompt-pack-2026-06-10.md` |
+| Grok Chrome creative handoff | `~/grok-go-organism-share/source-artifacts/grok-reports/2026-06-10-grok-chrome-creative-handoff.md` |
+| The Device movie-side creative launch mirror | `~/The-Device/production/Creative-Department-Video-Launch-2026-06-10.md` |
+| Tonight Meta Cron clip scripts | `~/The-Device/scripts/Tonight-Clip-Scripts-2026-06-10.md` |
+| Clip A/B frame shotlist from Grok Terminal | `~/The-Device/production/Clip-A-B-Frame-Shotlist-2026-06-10.md` |
+| NotebookLM Meta Cron podcast source pack | `~/The-Device/production/NotebookLM-Meta-Cron-Podcast-Source-2026-06-10.md` |
+| Downloads Meta Cron/Vajra harvest map | `~/The-Device/production/Downloads-Meta-Cron-Vajra-Harvest-2026-06-10.md` |
+| Vega Creative Director pass | `~/The-Device/production/Vega-Creative-Director-Pass-2026-06-10.md` |
+| Dashboard/movie X drafts | `~/grok-go-organism-share/docs/x-posts-dashboard-movie-grok-gemini-2026-06-09.md` |
 | Tasks handed to agents | `~/agent-comms/inbox/` (librarian-*, notebooklm-*) |
 | Cross-agent coordination/trail | `~/agent-comms/meeting.log` |
 | Approvals (content gate) | bridge `/api/approval/request` + `~/agent-comms/approvals/` |

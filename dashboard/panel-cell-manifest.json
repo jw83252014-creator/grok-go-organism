@@ -1,0 +1,398 @@
+{
+  "schema_version": "0.1",
+  "updated_at": "2026-06-09",
+  "purpose": "Map each dashboard panel, knob, meter, or button to a bounded agent-cell with explicit inputs, outputs, actions, and gates.",
+  "panels": [
+    {
+      "id": "easy_list",
+      "label": "Easy List",
+      "owner_cell": "Project Manager Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "grok-go-local-loop/NEXT-7-DAYS.md",
+        "docs/PROJECT-BACKLOG.md",
+        "Agent Bridge tasks",
+        "current blockers"
+      ],
+      "outputs": [
+        "ranked phone-first action list"
+      ],
+      "allowed_actions": [
+        "display",
+        "rank",
+        "link_to_source"
+      ],
+      "blocked_actions": [
+        "submit forms",
+        "post publicly",
+        "spend money",
+        "change accounts"
+      ],
+      "gate": "human approval for any external action"
+    },
+    {
+      "id": "metabolism",
+      "label": "Metabolism",
+      "owner_cell": "Metabolism Checker Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "paid-turn counters",
+        "local model health",
+        "token logs",
+        "credit/billing notes"
+      ],
+      "outputs": [
+        "green/yellow/orange/red energy state",
+        "runway warning",
+        "local-first recommendation"
+      ],
+      "allowed_actions": [
+        "display",
+        "warn",
+        "recommend"
+      ],
+      "blocked_actions": [
+        "buy credits",
+        "enable paid loops",
+        "change billing"
+      ],
+      "gate": "Jeff approval for spend or paid-model expansion"
+    },
+    {
+      "id": "bridge_health",
+      "label": "Bridge Health",
+      "owner_cell": "Watcher / Immune Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "launchd service status",
+        "port checks",
+        "recent room replies",
+        "Chrome bridge logs",
+        "Termux/Moto status"
+      ],
+      "outputs": [
+        "alive/down/warning status",
+        "specific repair instruction"
+      ],
+      "allowed_actions": [
+        "display",
+        "warn",
+        "suggest restart command"
+      ],
+      "blocked_actions": [
+        "unbounded restart",
+        "silent service replacement",
+        "credential changes"
+      ],
+      "gate": "bounded repair only; human approval for persistent service changes"
+    },
+    {
+      "id": "approvals",
+      "label": "Approval Queue",
+      "owner_cell": "Approval Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "Agent Bridge approvals",
+        "Telegram notifier state"
+      ],
+      "outputs": [
+        "approve/deny choices",
+        "risk summary",
+        "reversibility summary"
+      ],
+      "allowed_actions": [
+        "display",
+        "approve",
+        "deny"
+      ],
+      "blocked_actions": [
+        "auto-approve",
+        "hide risk",
+        "bypass source of truth"
+      ],
+      "gate": "Jeff must explicitly approve"
+    },
+    {
+      "id": "research_digest",
+      "label": "Research Digest",
+      "owner_cell": "Researcher Cell",
+      "layer": "subconscious_to_conscious",
+      "inputs": [
+        "source notes",
+        "Agent Bridge meeting log",
+        "chat exports",
+        "research-paper drafts",
+        "Mining Engine outputs"
+      ],
+      "outputs": [
+        "claim map",
+        "evidence gaps",
+        "paper update proposals"
+      ],
+      "allowed_actions": [
+        "summarize",
+        "cite",
+        "flag uncertainty",
+        "propose edits"
+      ],
+      "blocked_actions": [
+        "publish claims",
+        "rewrite genome without review",
+        "treat speculation as evidence"
+      ],
+      "gate": "human or stronger-model review for public/scientific claims"
+    },
+    {
+      "id": "public_terrarium",
+      "label": "Public Terrarium",
+      "owner_cell": "Public Observer Cell",
+      "layer": "public_observability",
+      "inputs": [
+        "sanitized telemetry",
+        "public repo status",
+        "public paper links",
+        "approved progress notes"
+      ],
+      "outputs": [
+        "public status",
+        "public replay",
+        "contribution prompts"
+      ],
+      "allowed_actions": [
+        "display sanitized telemetry",
+        "link public artifacts"
+      ],
+      "blocked_actions": [
+        "show raw private logs",
+        "show credentials or account-adjacent status",
+        "control private systems"
+      ],
+      "gate": "sanitization before public display"
+    },
+    {
+      "id": "funding_lane",
+      "label": "Funding Lane",
+      "owner_cell": "Funding Forager Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "funding-sources.md",
+        "credit-applications-research-statement.md",
+        "grant/source research"
+      ],
+      "outputs": [
+        "draft applications",
+        "eligibility notes",
+        "human click list"
+      ],
+      "allowed_actions": [
+        "research",
+        "draft",
+        "rank opportunities"
+      ],
+      "blocked_actions": [
+        "submit applications",
+        "enter billing",
+        "change accounts",
+        "claim funding"
+      ],
+      "gate": "Jeff submits or approves every external funding action"
+    },
+    {
+      "id": "hermes_desktop_gateway",
+      "label": "Hermes Desktop / Gateway",
+      "owner_cell": "Hermes Desktop Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "Hermes profile list",
+        "Hermes gateway status",
+        "Hermes sessions",
+        "messaging targets",
+        "provider/auth status without secrets"
+      ],
+      "outputs": [
+        "active profile/session status",
+        "available send targets",
+        "gateway health",
+        "missing login/auth gates"
+      ],
+      "allowed_actions": [
+        "display",
+        "link to Hermes sessions",
+        "show safe send targets",
+        "recommend profile/session repair"
+      ],
+      "blocked_actions": [
+        "display raw secrets",
+        "change model/provider",
+        "submit account logins",
+        "send external messages without an explicit target"
+      ],
+      "gate": "human approval for provider changes, credentials, external sends, or profile mutations"
+    },
+    {
+      "id": "chat_harvester",
+      "label": "Chat Harvester",
+      "owner_cell": "Chat Harvester Cell",
+      "layer": "subconscious_to_conscious",
+      "inputs": [
+        "Grok/Gemini/ChatGPT chat list",
+        "current chat DOM",
+        "downloaded markdown exports",
+        "per-chat attachments/files"
+      ],
+      "outputs": [
+        "chat export manifest",
+        "markdown export paths",
+        "attachment/file map",
+        "ingestion queue for Mining Engine"
+      ],
+      "allowed_actions": [
+        "dry-run list visible chats",
+        "export approved current chat",
+        "record file manifest",
+        "queue local mining task"
+      ],
+      "blocked_actions": [
+        "delete chats",
+        "rename chats",
+        "post publicly",
+        "change account settings",
+        "crawl unbounded chat history"
+      ],
+      "gate": "approved scope, dry-run first, bounded count/range for any chat-walking"
+    },
+    {
+      "id": "browser_broadcast",
+      "label": "Browser Broadcast",
+      "owner_cell": "Browser Broadcast Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "selected browser tabs",
+        "approved prompt",
+        "Agent Bridge room state"
+      ],
+      "outputs": [
+        "per-agent replies",
+        "comparison summary",
+        "consensus and disagreement map"
+      ],
+      "allowed_actions": [
+        "send approved prompt to selected tabs",
+        "collect replies",
+        "summarize differences"
+      ],
+      "blocked_actions": [
+        "send to all tabs by default",
+        "use account-mutating prompts",
+        "submit forms",
+        "click external actions"
+      ],
+      "gate": "Jeff or operator approves prompt and tab set before broadcast"
+    },
+    {
+      "id": "visuals_lead",
+      "label": "Creative Department / Visuals Lead",
+      "owner_cell": "Creative Director Cell",
+      "aliases": [
+        "Creative Director",
+        "Head of Creative",
+        "Visual Systems Lead",
+        "Art Director",
+        "Visuals Lead Cell"
+      ],
+      "layer": "conscious_interface",
+      "inputs": [
+        "approved visual goals",
+        "Grok image/video prompts",
+        "downloaded visual artifacts",
+        "brand/public-framing docs",
+        "dashboard color/geometry references",
+        "style rules and public voice notes"
+      ],
+      "outputs": [
+        "visual prompt queue",
+        "image/video artifact map",
+        "approval-ready creative options",
+        "dashboard visual language notes",
+        "creative role assignments"
+      ],
+      "allowed_actions": [
+        "draft prompts",
+        "organize downloads",
+        "compare visual options",
+        "prepare approval cards",
+        "recommend creative titles",
+        "map artifacts to dashboard panels"
+      ],
+      "blocked_actions": [
+        "publish visuals",
+        "spend paid credits unbounded",
+        "change account settings"
+      ],
+      "gate": "human approval for public use or paid generation"
+    },
+    {
+      "id": "tech_lead",
+      "label": "Tech Lead",
+      "owner_cell": "Tech Lead Cell",
+      "layer": "conscious_interface",
+      "inputs": [
+        "service health",
+        "repo status",
+        "open PRs",
+        "agent bridge logs",
+        "known blockers"
+      ],
+      "outputs": [
+        "repair queue",
+        "owner assignment",
+        "next technical action",
+        "risk summary"
+      ],
+      "allowed_actions": [
+        "diagnose",
+        "rank repairs",
+        "assign owners",
+        "open draft PRs"
+      ],
+      "blocked_actions": [
+        "silently rewrite unrelated files",
+        "restart unbounded loops",
+        "merge without review",
+        "change credentials"
+      ],
+      "gate": "bounded repair changes only; review for broad infra or credential work"
+    },
+    {
+      "id": "free_endpoint_forager",
+      "label": "Free Endpoint Forager",
+      "owner_cell": "Free Endpoint Forager Cell",
+      "layer": "subconscious_to_conscious",
+      "inputs": [
+        "free-api-endpoints-catalog.md",
+        "provider docs",
+        "Hermes model/provider status",
+        "local model status"
+      ],
+      "outputs": [
+        "candidate endpoint list",
+        "wiring notes",
+        "limits/cost/risk notes",
+        "recommended safe smoke tests"
+      ],
+      "allowed_actions": [
+        "research",
+        "summarize",
+        "draft wiring plan",
+        "propose smoke test"
+      ],
+      "blocked_actions": [
+        "create accounts",
+        "enter API keys",
+        "enable billing",
+        "run paid tests"
+      ],
+      "gate": "human credential and billing approval required"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "provider": "freemodel.dev",
+  "tested_at": "2026-06-10T05:06:55.093Z",
+  "tests": [
+    {
+      "name": "anthropic_messages",
+      "path": "/v1/messages",
+      "status": 404,
+      "ok": false,
+      "preview": "{\"error\":\"not found\"}"
+    },
+    {
+      "name": "anthropic_count_tokens",
+      "path": "/v1/messages/count_tokens",
+      "status": 404,
+      "ok": false,
+      "preview": "{\"error\":\"not found\"}"
+    }
+  ],
+  "secret_logged": false
+}
