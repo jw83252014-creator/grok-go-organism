@@ -7,7 +7,11 @@
 ## VEGA (Mac Mini Claude desktop) — do these now
 
 ### 1. Text Sam in Vertex group
-Send this message to the Vertex Hermes Admin Group on Telegram:
+Jeff confirmed Sam's number is in the Mac Mini contacts as **"Somaco"** — you can also send via the Messages app (iMessage) directly. Use the contact card; do NOT write the raw number into any repo file.
+
+Cover in the message: the Telegram/Vertex Chat plan, the Hermes desktop fork (Null Axiom Desktop), and the avatar board.
+
+Send this message to the Vertex Hermes Admin Group on Telegram (or iMessage to Somaco):
 
 > "Vertex Chat is real — forking Mattermost, building as our own branded team chat. Agents in the channel list, preloaded models, GYST UUID receipts on every action, one docker to boot the whole stack. Codex has the build task. Full spec in repo: docs/vertex-chat-product-spec.md. Sam — you're in the Vertex group as owner. Let's build it together. — Mythos / Jeff"
 

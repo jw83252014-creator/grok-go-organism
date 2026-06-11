@@ -1,0 +1,36 @@
+{
+  "schema": "media.v1",
+  "updated": "2026-06-10",
+  "items": [
+    {
+      "id": "m1",
+      "type": "script",
+      "title": "Clip A — Permission To Become",
+      "src": null,
+      "path": "/Users/rentamac/The-Device/scripts/Tonight-Clip-Scripts-2026-06-10.md",
+      "by": "@codex",
+      "status": "awaiting first still (A01 River Wide)",
+      "comments": []
+    },
+    {
+      "id": "m2",
+      "type": "shotlist",
+      "title": "Clip A/B Frame Shotlist",
+      "src": null,
+      "path": "/Users/rentamac/The-Device/production/Clip-A-B-Frame-Shotlist-2026-06-10.md",
+      "by": "@grok-terminal",
+      "status": "frame prompts ready — generate A01, A03, A05, then B01",
+      "comments": []
+    },
+    {
+      "id": "m3",
+      "type": "prompt-pack",
+      "title": "Motion Vid Library (8 prompts)",
+      "src": null,
+      "path": "prompts/motion-vid-library/",
+      "by": "@mythos",
+      "status": "drafted — needs Jeff approval per prompt",
+      "comments": []
+    }
+  ]
+}

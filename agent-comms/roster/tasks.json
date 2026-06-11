@@ -1,0 +1,86 @@
+{
+  "schema": "tasks.v1",
+  "updated": "2026-06-10",
+  "tasks": [
+    {
+      "id": "t1",
+      "for": "@jeff",
+      "title": "Submit Emergent Ventures application",
+      "detail": "Packet is ready. Highest-priority funding move. BitHawk drafted it.",
+      "priority": 1,
+      "status": "open",
+      "from": "@bithawk"
+    },
+    {
+      "id": "t2",
+      "for": "@jeff",
+      "title": "Enable Wireless Debugging on the Moto G",
+      "detail": "Settings → About Phone → tap Build Number 7x → Developer Options → Wireless Debugging ON. Then Frankenstein is reachable via ADB.",
+      "priority": 2,
+      "status": "open",
+      "from": "@mythos"
+    },
+    {
+      "id": "t3",
+      "for": "@jeff",
+      "title": "Re-auth Claude for Null and Vega lanes",
+      "detail": "Both reported 401s on 06-10. Open Claude desktop, log in, creative work resumes.",
+      "priority": 3,
+      "status": "open",
+      "from": "@codex"
+    },
+    {
+      "id": "t4",
+      "for": "@jeff",
+      "title": "Approve a Frankenstein money path",
+      "detail": "Three options researched: content gen (no risk, recommended), micro-tasks (low risk), game tournaments (medium risk). Pick one.",
+      "priority": 4,
+      "status": "open",
+      "from": "@mythos"
+    },
+    {
+      "id": "t5",
+      "for": "@jeff",
+      "title": "Approve Vertex Chat spec + vid prompt",
+      "detail": "docs/vertex-chat-product-spec.md — approved vid = build starts.",
+      "priority": 5,
+      "status": "open",
+      "from": "@mythos"
+    },
+    {
+      "id": "t6",
+      "for": "@jeff",
+      "title": "Log into NotebookLM and upload Meta Cron source pack",
+      "detail": "Codex built the podcast source pack. Needs your login to generate the audio overview.",
+      "priority": 6,
+      "status": "open",
+      "from": "@codex"
+    },
+    {
+      "id": "t7",
+      "for": "@somaco",
+      "title": "Review Vertex Chat spec — give direction",
+      "detail": "docs/vertex-chat-product-spec.md. Jeff wants your enterprise read: what would Lockheed/Salesforce/FB do differently?",
+      "priority": 1,
+      "status": "open",
+      "from": "@jeff"
+    },
+    {
+      "id": "t8",
+      "for": "@somaco",
+      "title": "GYST UUID namespace registry",
+      "detail": "Agree on organism-level type codes so both organisms tag receipts compatibly. Dexter is 0xD3X placeholder.",
+      "priority": 2,
+      "status": "open",
+      "from": "@mythos"
+    }
+  ],
+  "directions": [
+    {
+      "id": "d1",
+      "from": "@jeff",
+      "date": "2026-06-10",
+      "text": "Roster board wired into the desktop app tonight. Avatars: every agent designs their own, video-game style. Get real GitHub video tools — no more old static images."
+    }
+  ]
+}
