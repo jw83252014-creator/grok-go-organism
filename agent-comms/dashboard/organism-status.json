@@ -1,0 +1,81 @@
+{
+  "generated_at": "2026-06-10T01:13:50+00:00",
+  "schema_version": 1,
+  "organism": "Grok Go",
+  "vessel": "Champion Fencing LLC (GA)",
+  "metabolic_state": "HUNGRY/FORAGING (assumed \u2014 Metabolism Checker not yet live)",
+  "loop": {
+    "latest_turn_file": "turn-20260609-222848.md",
+    "latest_turn_stamp": "20260609-222848",
+    "last_main_commit": "048a0a7 2026-06-09 14:57 Grok Go autonomous research \u2014 2026-06-09 14:57",
+    "current_move": "Expand with field validation rules."
+  },
+  "cells": [
+    {
+      "name": "Intelligence Forager",
+      "spec": "cells/intelligence-forager-cell.md",
+      "status": "spec-defined",
+      "runnable": false
+    },
+    {
+      "name": "Funding Forager (BitHawk)",
+      "spec": "cells/funding-forager-cell.md",
+      "status": "spec-defined",
+      "runnable": false
+    },
+    {
+      "name": "Project Manager",
+      "spec": "cells/project-manager-cell.md",
+      "status": "spec-defined",
+      "runnable": false
+    },
+    {
+      "name": "Metabolism Checker",
+      "spec": "cells/metabolism-checker-cell.md",
+      "status": "spec-defined",
+      "runnable": false
+    },
+    {
+      "name": "Revenue Research",
+      "spec": "cells/revenue-research-cell.md",
+      "status": "spec-defined",
+      "runnable": false
+    },
+    {
+      "name": "Security",
+      "spec": "cells/security-cells.md",
+      "status": "spec-defined",
+      "runnable": false
+    }
+  ],
+  "watcher": {
+    "status": "unknown-from-cloud",
+    "note": "Bridge health only visible from the Mac mini; run scripts/start-watcher.sh status locally."
+  },
+  "approvals_pending": {
+    "funding_applications": [
+      "Emergent Ventures ($5K-$50K+, broadest fit \u2014 submit first)",
+      "OpenAI Researcher Access (up to $1K credits)",
+      "AWS Activate Founders (~$5K)",
+      "MS Founders Hub (up to $150K Azure)",
+      "Google for Startups (up to $350K)",
+      "Anthropic AI-for-Science (~$20K API credits)",
+      "NVIDIA Inception (partner credits)"
+    ],
+    "other": [
+      "Grab free Gemini/Groq/GitHub API keys",
+      "Confirm OpenAI free-token eligibility on sandbox project",
+      "Install Tampermonkey X export script",
+      "Add X-Bridge-Token auth before widening Tailscale access"
+    ]
+  },
+  "blockers": [
+    "Command Center + Midspace unreachable from outside Tailscale (check Mini awake + tailscale up)",
+    "Metabolism Checker cell not yet runnable (Day 1 item)"
+  ],
+  "memory": {
+    "turn_files": 50,
+    "docs": 58,
+    "cells_defined": 6
+  }
+}

@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  api:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_PRICE_TIER1=${STRIPE_PRICE_TIER1}
+      - STRIPE_PRICE_TIER2=${STRIPE_PRICE_TIER2}
+      - STRIPE_PRICE_TIER3=${STRIPE_PRICE_TIER3}
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+      - LOCAL_MODEL_URL=http://ollama:11434/api/generate
+      - LOCAL_MODEL_NAME=${LOCAL_MODEL_NAME:-qwen3:4b}
+      - SOMACOSF_URL=${SOMACOSF_URL:-https://somacosf.com}
+      - SOMACOSF_TOKEN=${SOMACOSF_TOKEN}
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - ollama
+
+  dexter:
+    build: .
+    restart: unless-stopped
+    command: python dexter_research.py --loop --interval 3600
+    environment:
+      - LOCAL_MODEL_URL=http://ollama:11434/api/generate
+      - LOCAL_MODEL_NAME=${LOCAL_MODEL_NAME:-qwen3:4b}
+      - SOMACOSF_URL=${SOMACOSF_URL:-https://somacosf.com}
+      - SOMACOSF_TOKEN=${SOMACOSF_TOKEN}
+    volumes:
+      - ./data:/app/data
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama
+
+volumes:
+  ollama_models:

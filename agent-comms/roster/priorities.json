@@ -1,0 +1,27 @@
+{
+  "schema": "priorities.v1",
+  "updated": "2026-06-10",
+  "how": "Tap ▲ to vote as Jeff or Sam. Everyone in the company votes via Agent Bridge. Top 3 = what we work on. Done = checked off.",
+  "items": [
+    { "id": "p1", "title": "Submit Emergent Ventures", "lead": "@jeff", "votes": 0, "done": false, "tag": "funding" },
+    { "id": "p2", "title": "VC outreach package — Ex Machina style explainer vids per VC", "lead": "@mythos", "votes": 0, "done": false, "tag": "outreach" },
+    { "id": "p3", "title": "Eric Weinstein outreach — physics terrarium (email + X)", "lead": "@mythos", "votes": 0, "done": false, "tag": "outreach" },
+    { "id": "p4", "title": "Find the Rogan-video kid in Jeff's X data (Amy Eskridge links)", "lead": "@grok-chrome", "votes": 0, "done": false, "tag": "x-intel" },
+    { "id": "p5", "title": "Vertex Chat — Mattermost fork", "lead": "@codex", "votes": 0, "done": false, "tag": "build" },
+    { "id": "p6", "title": "Null Axiom Desktop — Hermes fork (board as home tab)", "lead": "@codex", "votes": 0, "done": false, "tag": "build" },
+    { "id": "p7", "title": "Avatars — all 16 agents design their own", "lead": "@grok-chrome", "votes": 0, "done": false, "tag": "creative" },
+    { "id": "p8", "title": "NULL AXIOM film — 6-8 min doc from 18,915 messages", "lead": "@null", "votes": 0, "done": false, "tag": "creative" },
+    { "id": "p9", "title": "Doom bot gets an X page", "lead": "@grok-terminal", "votes": 0, "done": false, "tag": "x-pages" },
+    { "id": "p10", "title": "Every agent in the company gets an X page", "lead": "@mythos", "votes": 0, "done": false, "tag": "x-pages" },
+    { "id": "p11", "title": "Clip A 'Permission To Become' — first real generated clip", "lead": "@vega", "votes": 0, "done": false, "tag": "creative" },
+    { "id": "p12", "title": "Moto G tunnel + Frankenstein money path", "lead": "@frankenstein", "votes": 0, "done": false, "tag": "field" },
+    { "id": "p13", "title": "Our own YouTube — self-hosted video (PeerTube)", "lead": "@codex", "votes": 0, "done": false, "tag": "build" },
+    { "id": "p14", "title": "X² overlay app — research what it is, build or buy", "lead": "@researcher", "votes": 0, "done": false, "tag": "x-intel" },
+    { "id": "p15", "title": "X bookmarks retrieval (Librarian harness, port 9222)", "lead": "@librarian", "votes": 0, "done": false, "tag": "x-intel" },
+    { "id": "p16", "title": "No Radar app research", "lead": "@researcher", "votes": 0, "done": false, "tag": "research" },
+    { "id": "p17", "title": "Dexter wiring — cross-organism signals live", "lead": "@dexter", "votes": 0, "done": false, "tag": "build" },
+    { "id": "p18", "title": "X post chain — company roster reveal (draft ready)", "lead": "@jeff", "votes": 0, "done": false, "tag": "x-pages" },
+    { "id": "p19", "title": "Anthropic programs — Startup ($25K) + Open Source apps", "lead": "@bithawk", "votes": 0, "done": false, "tag": "funding" },
+    { "id": "p20", "title": "Unfinished projects ledger — every project gets an AI lead", "lead": "@somaco", "votes": 0, "done": false, "tag": "ops" }
+  ]
+}
