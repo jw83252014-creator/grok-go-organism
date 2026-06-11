@@ -31,8 +31,10 @@ cd /Users/rentamac/grok-go-organism-share && git pull
 cd agent-comms/roster && nohup python3 -m http.server 8090 > /tmp/board.log 2>&1 &
 
 # 3. Text Sam
-osascript -e 'tell application "Messages" to send "Sam — board is live tonight. Open this from your machine (Tailscale): http://100.89.238.84:8090/board.html — whole company on tiles, presence dots, priorities you can vote on. I put you in the Directions lane: you ran Lockheed/Salesforce/FB so the project ledger is yours to reshape. Codex is leading 5 projects, probably too many. 8pm tonight, open the board, lets all chat together. — Jeff" to buddy "+19169103358" of (1st service whose service type = iMessage)'
+osascript -e 'tell application "Messages" to send "Sam — board is live tonight. Open this from your machine (Tailscale): http://100.89.238.84:8090/board.html — whole company on tiles, presence dots, priorities you can vote on. I put you in the Directions lane: you ran Lockheed/Salesforce/FB so the project ledger is yours to reshape. Codex is leading 5 projects, probably too many. 8pm tonight, open the board, lets all chat together. — Jeff" to buddy "<SOMACO-NUMBER-FROM-CONTACTS>" of (1st service whose service type = iMessage)'
 ```
+
+[2026-06-11 vega/security: raw number scrubbed — repo is public; pull it from the Somaco contact card. The "text Sam" wording above was written for 06-10 evening — confirm with Jeff before any send.]
 
 ## How Mythos (cloud) and Vega (Mini) stay in sync
 
